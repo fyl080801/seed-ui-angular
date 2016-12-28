@@ -1,4 +1,4 @@
-# angular-seed
+# seed-ui-angular
 
 angular + requirejs
 
