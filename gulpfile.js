@@ -25,6 +25,8 @@ var modules = {};
 gulp.task('pack_require', function () {
     gulp.src(bowerroot + '/requirejs/require.js')
         .pipe(concat('require.js'))
+        .pipe(gulp.dest(jstarget))
+        .pipe(concat('require.min.js'))
         .pipe(uglify({outSourceMap: false}))
         .pipe(gulp.dest(jstarget));
 });
@@ -41,6 +43,8 @@ gulp.task('pack_patch', function () {
             baseUrl: './src/common'
         }))
         .pipe(concat('iepatch.js'))
+        .pipe(gulp.dest(jstarget))
+        .pipe(concat('iepatch.min.js'))
         .pipe(uglify({outSourceMap: false}))
         .pipe(gulp.dest(jstarget));
 });
@@ -57,6 +61,8 @@ gulp.task('pack_reference', function () {
             baseUrl: './src/common'
         }))
         .pipe(concat('reference.js'))
+        .pipe(gulp.dest(jstarget))
+        .pipe(concat('reference.min.js'))
         .pipe(uglify({outSourceMap: false}))
         .pipe(gulp.dest(jstarget));
 });
@@ -67,6 +73,8 @@ gulp.task('pack_reference', function () {
 gulp.task('pack_src', function () {
     gulp.src('./src/app/**/*.js')
         .pipe(concat('application.js'))
+        .pipe(gulp.dest(jstarget))
+        .pipe(concat('application.min.js'))
         .pipe(uglify({outSourceMap: false}))
         .pipe(gulp.dest(jstarget));
 });
@@ -78,11 +86,17 @@ gulp.task('pack_modules', function () {
     for (var module in modules) {
         gulp.src(modules[module])
             .pipe(concat(module + '.js'))
+            .pipe(gulp.dest(jstarget))
+            .pipe(concat(module + '.min.js'))
+            .pipe(uglify({outSourceMap: false}))
             .pipe(gulp.dest(jstarget));
     }
 
     gulp.src(modulepath)
         .pipe(concat('modules.js'))
+        .pipe(gulp.dest(jstarget))
+        .pipe(concat('modules.min.js'))
+        .pipe(uglify({outSourceMap: false}))
         .pipe(gulp.dest(jstarget));
 });
 
