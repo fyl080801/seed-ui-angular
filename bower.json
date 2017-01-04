@@ -16,19 +16,15 @@
   ],
   "dependencies": {
     "angular": "1.2.32",
-    "angular-async-loader": "https://github.com/subchen/angular-async-loader.git#1.3.2",
     "angular-bootstrap": "0.12.0",
     "angular-css": "1.0.8",
     "angular-ui-router": "0.3.1",
     "bootstrap": "3.3.7",
     "es5-shim": "4.5.9",
-    "fex-webuploader": "0.1.5",
     "json2": "*",
     "jquery": "1.12.4",
     "html5shiv": "3.7.3",
     "requirejs": "latest",
-    "require-css": "0.1.8",
-    "requirejs/text": "2.0.15",
     "respond": "1.4.2"
   }
 }

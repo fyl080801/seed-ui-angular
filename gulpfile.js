@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     cssmin = require('gulp-cssmin'),
     uglify = require('gulp-uglify'),
-    ngmin = require('gulp-ngmin'),
     rename = require('gulp-rename'),
     amdOptimize = require('amd-optimize'),
     webserver = require('gulp-webserver');
@@ -17,6 +16,8 @@ var jstarget = './app/js';
 var csstarget = './app/css';
 var fontestarget = './app/fonts';
 var modulepath = './src/modules/*.js';
+var libraries = [];
+var csses = [];
 var modules = {};
 
 /**
@@ -65,6 +66,10 @@ gulp.task('pack_reference', function () {
         .pipe(concat('reference.min.js'))
         .pipe(uglify({outSourceMap: false}))
         .pipe(gulp.dest(jstarget));
+    gulp.src(libraries)
+        .pipe(gulp.dest(jstarget));
+    gulp.src(csses)
+        .pipe(gulp.dest(csstarget));
 });
 
 /**
