@@ -8,15 +8,7 @@
         'system': {},
         'controls': {deps: ['system']},
         'user': {deps: ['controls']},
-        'role': {deps: ['controls']},
-        'group': {deps: ['controls']},
-        'log': {deps: ['controls']},
-        'resource': {deps: ['controls']},
-        'program': {deps: ['controls']},
-        'examine': {deps: ['controls']},
-        'notify': {deps: ['controls']},
-        'terminal': {deps: ['controls']},
-        'monitor': {deps: ['controls']}
+        'role': {deps: ['controls']}
     };
 
     var nonDebug = [];
@@ -30,11 +22,9 @@
                 'reference': 'js/reference',// 所有基础框架引用
                 'bs-table': 'js/bootstrap-table',// 项目中需要用到的第三方框架
                 'bs-table-cn': 'js/bootstrap-table-zh-CN',
-                'clockpicker': 'js/bootstrap-clockpicker',
                 'angular-formly': 'js/formly',
                 'angular-formly-templates-bootstrap': 'js/angular-formly-templates-bootstrap',
                 'api-check': 'js/api-check',
-                'webuploader': 'js/webuploader',
                 'app.application': 'js/app.application'// 最后引用主框架
             },
             shim: {

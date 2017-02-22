@@ -7,20 +7,6 @@
       ],
       "fonts": "/bootstrap/dist/fonts/*"
     },
-    "clockpicker": {
-      "js": [
-        "/clockpicker/dist/bootstrap-clockpicker.js",
-        "/clockpicker/dist/bootstrap-clockpicker.min.js"
-      ],
-      "css": "/clockpicker/dist/bootstrap-clockpicker.min.css"
-    },
-    "webuploader": {
-      "js": [
-        "/fex-webuploader/dist/webuploader.js",
-        "/fex-webuploader/dist/webuploader.min.js"
-      ],
-      "css": "/fex-webuploader/dist/webuploader.css"
-    },
     "bs-table": {
       "js": [
         "/bootstrap-table/dist/bootstrap-table.js",
