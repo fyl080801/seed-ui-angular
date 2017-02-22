@@ -5,13 +5,17 @@
 <html lang="zh-cn" data-html-type="no-js"><!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>标题</title>
+    <title></title>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/site.css" rel="stylesheet"/>
 </head>
-<body ui-view>
+<body>
+<div ui-view></div>
+<script id="app"
+        src="js/require.min.js"
+        data-main="main.js"
+        data-debug="true"
+        data-server="http://localhost:8003"></script>
 </body>
-<script id="app" src="js/require.js" data-main="main.js" data-debug="true"
-        data-server=""></script>
 </html>

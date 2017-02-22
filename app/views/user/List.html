@@ -1,0 +1,47 @@
+<div ng-controller="modules.user.controllers.list as me">
+    <div class="well container-fluid">
+        <div class="row">
+            <div class="col-sm-3 pull-left">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="关键字"
+                           ng-model="me.list.params.searchPhrase"/>
+                    <span element-addon="button" element-icon="glyphicon-search"
+                          ng-click="me.list.reload()"></span>
+                </div>
+            </div>
+            <div class="col-md-7 pull-right text-right">
+                <button element-button="default" element-text="添加" element-icon="glyphicon-plus-sign"
+                        ng-click="me.create()"></button>
+            </div>
+        </div>
+    </div>
+    <table bs-table="me.list"
+           data-toggle="table"
+           data-url="/User/Users"
+           data-id-field="Id"
+           data-classes="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th data-field="Username" data-sortable="true">用户名</th>
+            <th data-field="PersonalName" data-sortable="true">姓名</th>
+            <th data-field="Email" data-sortable="true">邮箱</th>
+            <th data-field="Id" data-template="true" data-title="操作">
+                <div class="btn-group btn-group-xs">
+                    <button class="btn btn-default" data-action="details">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </button>
+                    <button class="btn btn-default" data-action="edit">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    <button class="btn btn-default" data-action="setPassword">
+                        <i class="glyphicon glyphicon-lock"></i>
+                    </button>
+                    <button class="btn btn-danger" data-action="drop">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </div>
+            </th>
+        </tr>
+        </thead>
+    </table>
+</div>

@@ -1,0 +1,7 @@
+<div id="valuefield-{{$id}}" ng-hide="exHidden" class="form-group">
+    <label id="valuefield-label-{{$id}}" class="control-label col-md-{{exFlexLabel}}">{{exFieldLabel}}</label>
+    <div class="col-md-{{exFlexInput?exFlexInput:12-exFlexLabel}}">
+        <input id="valuefield-input-{{$id}}" type="hidden" ng-model="exBindModel"/>
+        <p id="valuefield-content-{{$id}}" class="form-control-static">{{exBindModel}}</p>
+    </div>
+</div>

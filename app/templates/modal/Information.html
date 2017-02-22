@@ -1,0 +1,18 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">
+            <i class="glyphicon glyphicon-info-sign"></i>&nbsp;消息
+        </h3>
+    </div>
+    <div class="modal-body">
+        <p ng-if="$data.text">{{$data.text}}</p>
+        <ul ng-if="$data.contents">
+            <li ng-repeat="content in $data.contents track by $index">{{content}}</li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="$close()">
+            <i class="glyphicon glyphicon-ok-sign"></i>&nbsp;确定
+        </button>
+    </div>
+</div>

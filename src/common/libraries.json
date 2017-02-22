@@ -1,0 +1,60 @@
+{
+  "bowers": {
+    "bootstrap": {
+      "css": [
+        "/bootstrap/dist/css/bootstrap.min.css",
+        "/bootstrap/dist/css/bootstrap.min.css.map"
+      ],
+      "fonts": "/bootstrap/dist/fonts/*"
+    },
+    "clockpicker": {
+      "js": [
+        "/clockpicker/dist/bootstrap-clockpicker.js",
+        "/clockpicker/dist/bootstrap-clockpicker.min.js"
+      ],
+      "css": "/clockpicker/dist/bootstrap-clockpicker.min.css"
+    },
+    "webuploader": {
+      "js": [
+        "/fex-webuploader/dist/webuploader.js",
+        "/fex-webuploader/dist/webuploader.min.js"
+      ],
+      "css": "/fex-webuploader/dist/webuploader.css"
+    },
+    "bs-table": {
+      "js": [
+        "/bootstrap-table/dist/bootstrap-table.js",
+        "/bootstrap-table/dist/bootstrap-table.min.js",
+        "/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js",
+        "/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"
+      ],
+      "css": [
+        "/bootstrap-table/dist/bootstrap-table.css",
+        "/bootstrap-table/dist/bootstrap-table.min.css"
+      ]
+    },
+    "angular-formly": {
+      "js": [
+        "/angular-formly/dist/formly.js",
+        "/angular-formly/dist/formly.min.js"
+      ]
+    },
+    "angular-formly-templates-bootstrap": {
+      "js": [
+        "/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js",
+        "/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"
+      ]
+    },
+    "api-check": {
+      "js": [
+        "/api-check/dist/api-check.js",
+        "/api-check/dist/api-check.min.js"
+      ]
+    }
+  },
+  "paths": {
+    "resources": {
+      "css": "./resources/css/*.css"
+    }
+  }
+}

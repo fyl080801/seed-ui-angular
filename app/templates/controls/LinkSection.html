@@ -1,0 +1,9 @@
+<li>
+    <div class="link">
+        <i ng-class="sysLinkSection.icon"></i>&nbsp;{{sysLinkSection.text}}
+        <i class="fa fa-chevron-down"></i>
+    </div>
+    <ul class="submenu" ng-if="sysLinkSection.links.length">
+        <li sys-link-item="linkItem" ng-repeat="linkItem in sysLinkSection.links track by $index"></li>
+    </ul>
+</li>

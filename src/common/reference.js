@@ -13,6 +13,7 @@ require.config({
         'angular-css': bowerroot + '/angular-css/angular-css.min'
     },
     shim: {
+        'angular': {exports: 'angular'},
         'bootstrap': {deps: ['jquery']},
         'ui-bootstrap-tpls': {deps: ['angular', 'bootstrap']},
         'angular-ui-router': {deps: ['angular']},

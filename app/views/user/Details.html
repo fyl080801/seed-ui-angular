@@ -1,0 +1,28 @@
+<div class="container-fluid" ng-controller="modules.user.controllers.form as me">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h3 class="modal-title">用户明细</h3>
+    </div>
+    <div class="modal-body">
+        <form role="form" name="form" class="form-horizontal">
+            <ex-valuefield ex-field-label="用户名:" ex-flex-label="2" ng-model="$data.Username"></ex-valuefield>
+            <div class="row">
+                <div class="col-md-6">
+                    <ex-valuefield ex-field-label="姓:" ex-flex-label="4" ng-model="$data.LastName"></ex-valuefield>
+                </div>
+                <div class="col-md-6">
+                    <ex-valuefield ex-field-label="名:" ex-flex-label="4" ng-model="$data.FirstName"></ex-valuefield>
+                </div>
+            </div>
+            <ex-valuefield ex-field-label="邮箱:" ex-flex-label="2" ng-model="$data.Email"></ex-valuefield>
+            <ex-valuefield ex-field-label="分组:" ex-flex-label="2" ng-model="$data.GroupName"></ex-valuefield>
+            <input type="hidden" ng-model="$data.Id"/>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button element-button="primary" element-text="编辑" element-icon="glyphicon-pencil"
+                ng-click="me.edit($data)"></button>
+    </div>
+</div>

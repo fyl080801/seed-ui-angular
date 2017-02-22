@@ -6,21 +6,17 @@ define('app.configs.appEnvironment', [
 ], function (configs) {
     'use strict';
 
-    configs.config(
-        [
-            '$provide',
-            function ($provide) {
-                $provide.constant('$appEnvironment',
-                    {
-                        session: null,
-                        ajaxState: {
-                            loading: false,
-                            url: null,
-                            method: null,
-                            data: null
-                        }
-                    });
-            }
-        ]
-    );
+    configs.config([
+        '$provide',
+        function ($provide) {
+            $provide.constant('$appEnvironment', {
+                ajaxState: {
+                    loading: false,
+                    url: null,
+                    method: null,
+                    data: null
+                }
+            });
+        }
+    ]);
 });

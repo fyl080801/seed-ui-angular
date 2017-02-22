@@ -1,0 +1,7 @@
+<div id="textfield-{{$id}}" class="form-group">
+    <label id="textfield-label-{{$id}}" class="control-label col-md-{{exFlexLabel}}" for="textfield-input-{{$id}}">{{exFieldLabel}}</label>
+    <div class="col-md-{{exFlexInput?exFlexInput:12-exFlexLabel}}">
+        <input id="textfield-input-{{$id}}" type="{{exType?exType:'text'}}" class="form-control" ng-model="exBindModel"
+               ng-disabled="exBindDisabled" ng-required="exBindRequired"/>
+    </div>
+</div>

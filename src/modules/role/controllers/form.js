@@ -1,0 +1,41 @@
+/**
+ * Created by fyl08 on 2017/1/21.
+ */
+define('modules.role.controllers.form', [
+    'modules.role'
+], function (role) {
+    'use strict';
+
+    role.controller('modules.role.controllers.form', [
+        '$scope',
+        '$rootScope',
+        '$modal',
+        'app.services.popupService',
+        'modules.role.services.roleService',
+        function ($scope, $rootScope, $modal, popupService, roleService) {
+            this.fields = [{
+                key: 'Name',
+                type: 'input',
+                templateOptions: {
+                    required: true,
+                    label: '角色名',
+                    placeholder: '角色名'
+                }
+            }, {
+                key: 'Description',
+                type: 'textarea',
+                templateOptions: {
+                    label: '描述',
+                    placeholder: '描述信息',
+                    rows: 4
+                }
+            }];
+
+            this.edit = $scope.$handlers.edit;
+
+            this.member = $scope.$handlers.member;
+
+            this.auth = $scope.$handlers.auth;
+        }
+    ]);
+});

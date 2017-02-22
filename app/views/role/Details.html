@@ -1,0 +1,23 @@
+<div class="container-fluid" ng-controller="modules.role.controllers.form as me">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h3 class="modal-title">角色明细</h3>
+    </div>
+    <div class="modal-body">
+        <form role="form" name="form" class="form-horizontal">
+            <ex-valuefield ex-field-label="名称:" ex-flex-label="2" ng-model="$data.Name"></ex-valuefield>
+            <ex-valuefield ex-field-label="说明:" ex-flex-label="2" ng-model="$data.Description"></ex-valuefield>
+            <input type="hidden" ng-model="$data.Id"/>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button element-button="primary" element-text="编辑" element-icon="glyphicon-pencil"
+                ng-click="me.edit($data)"></button>
+        <button element-button="default" element-text="成员" element-icon="glyphicon-user"
+                ng-click="me.member($data)"></button>
+        <button element-button="default" element-text="权限" element-icon="glyphicon-asterisk"
+                ng-click="me.auth($data)"></button>
+    </div>
+</div>

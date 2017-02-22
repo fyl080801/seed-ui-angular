@@ -1,0 +1,32 @@
+/**
+ * Created by fyl08 on 2017/2/21.
+ */
+define('modules.system.directives.linkItem', [
+    'modules.system'
+], function (system) {
+    'use strict';
+
+    system.directive('sysLinkItem', [
+        function () {
+            var _link = function ($scope, $element, $attrs, $ctrl) {
+
+            };
+
+            var _controller = function ($scope, $element, $attrs) {
+
+            };
+
+            return {
+                scope: {
+                    sysLinkItem: '='
+                },
+                restrict: 'AE',
+                replace: true,
+                transclude: true,
+                link: _link,
+                controller: ['$scope', '$element', '$attrs', _controller],
+                template: '<li><a href="{{sysLinkItem.href}}">{{sysLinkItem.text}}</a></li>'
+            };
+        }
+    ]);
+});
