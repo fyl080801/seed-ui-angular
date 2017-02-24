@@ -1,51 +1,29 @@
 /**
  * Created by fyl08 on 2016/12/22.
  */
-(function (app) {
+(function (app, options) {
     'use strict';
-
-    var modules = {
-        'system': {},
-        'controls': {deps: ['system']},
-        'user': {deps: ['controls']},
-        'role': {deps: ['controls']}
-    };
-
-    var nonDebug = [];
 
     var requires = ['app.application'],
         config = {
             urlArgs: 'v=1.0.18',
             paths: {
-                'iepatch': 'js/iepatch',// ie8补丁
-                'angular': 'js/reference',// angular需要在模块里引用所以声明一下
-                'reference': 'js/reference',// 所有基础框架引用
-                'bs-table': 'js/bootstrap-table',// 项目中需要用到的第三方框架
-                'bs-table-cn': 'js/bootstrap-table-zh-CN',
-                'angular-formly': 'js/formly',
-                'angular-formly-templates-bootstrap': 'js/angular-formly-templates-bootstrap',
-                'api-check': 'js/api-check',
-                'app.application': 'js/app.application'// 最后引用主框架
+                'iepatch': 'js/iepatch',
+                'angular': 'js/reference',
+                'reference': 'js/reference',
+                'app.application': 'js/app.application'
             },
             shim: {
                 'app.application': {
                     deps: ['reference']
-                },
-                'bs-table-cn': {
-                    deps: ['bs-table']
-                },
-                'angular-formly': {
-                    deps: ['api-check']
-                },
-                'angular-formly-templates-bootstrap': {
-                    deps: ['angular-formly']
                 }
             }
         };
 
     initBrowserPatch(requires);
-    initModules(requires, config, modules);
-    initDebug(config);
+    initReference(config, options.references);
+    initModules(requires, config, options.modules);
+    initDebug(config, options.nonDebugs);
     startup(requires, config);
 
     function startup(requires, config) {
@@ -60,12 +38,25 @@
         });
     }
 
+    function initReference(config, references) {
+        for (var name in references) {
+            var reference = references[name];
+            var referenceType = Object.prototype.toString.call(reference);
+            if (referenceType === '[object Object]') {
+                config.paths[name] = reference.path;
+                config.shim[name] = reference.shim;
+            } else if (referenceType === '[object String]') {
+                config.paths[name] = reference;
+            }
+        }
+    }
+
     function initModules(requires, config, modules) {
-        for (var moduleName in modules) {
-            var modulePath = 'modules.' + moduleName;
+        for (var name in modules) {
+            var modulePath = 'modules.' + name;
             var requirePath = modulePath + '.requires';
             var moduleDeps = ['app.application'];
-            var configDeps = modules[moduleName].deps;
+            var configDeps = modules[name].deps;
             if (Object.prototype.toString.call(configDeps) === '[object Array]') {
                 for (var index in configDeps) {
                     moduleDeps.push('modules.' + configDeps[index]);
@@ -74,7 +65,7 @@
             else if (configDeps) {
                 moduleDeps.push('modules.' + configDeps);
             }
-            config.paths[requirePath] = 'js/module.' + moduleName;
+            config.paths[requirePath] = 'js/module.' + name;
             config.paths[modulePath] = 'js/modules';
             config.shim[modulePath] = {deps: moduleDeps};
             config.shim[requirePath] = {deps: [modulePath]};
@@ -82,12 +73,12 @@
         }
     }
 
-    function initDebug(config) {
+    function initDebug(config, nonDebugs) {
         var debug = eval(app.getAttribute('data-debug')) ? '' : '.min';
         for (var index in config.paths) {
             var isDebug = true;
-            for (var i in nonDebug) {
-                if (nonDebug[i] === index) {
+            for (var i in nonDebugs) {
+                if (nonDebugs[i] === index) {
                     isDebug = false;
                     break;
                 }
@@ -100,4 +91,31 @@
         if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8')
             requires.splice(0, 0, 'iepatch');
     }
-})(document.getElementById('app'));
+})(
+    document.getElementById('app'),
+    {
+        modules: {
+            'system': {},
+            'controls': {deps: ['system']},
+            'user': {deps: ['controls']},
+            'role': {deps: ['controls']}
+        },
+        references: {
+            'bs-table': 'js/bootstrap-table',
+            'bs-table-cn': {
+                path: 'js/bootstrap-table-zh-CN',
+                shim: {deps: ['bs-table']}
+            },
+            'api-check': 'js/api-check',
+            'angular-formly': {
+                path: 'js/formly',
+                shim: {deps: ['api-check']}
+            },
+            'angular-formly-templates-bootstrap': {
+                path: 'js/angular-formly-templates-bootstrap',
+                shim: {deps: ['angular-formly']}
+            }
+        },
+        nonDebugs: []
+    }
+);
