@@ -2,12 +2,11 @@
  * Created by fyl08 on 2017/1/17.
  */
 define('modules.controls.directives.elementButton', [
-    'require',
-    'modules.controls'
-], function (require, controls) {
+    'modules.controls.module'
+], function (module) {
     'use strict';
 
-    controls.directive('elementButton', [
+    module.directive('elementButton', [
         '$rootScope',
         function ($rootScope) {
             var _scope = {

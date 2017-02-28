@@ -2,12 +2,11 @@
  * Created by fyl08 on 2017/1/17.
  */
 define('modules.controls.directives.elementAddon', [
-    'require',
-    'modules.controls'
-], function (require, controls) {
+    'modules.controls.module'
+], function (module) {
     'use strict';
 
-    controls.directive('elementAddon', [
+    module.directive('elementAddon', [
         '$rootScope',
         function ($rootScope) {
             var _scope = {

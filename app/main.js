@@ -53,17 +53,17 @@
 
     function initModules(requires, config, modules) {
         for (var name in modules) {
-            var modulePath = 'modules.' + name;
-            var requirePath = modulePath + '.requires';
+            var modulePath = 'modules.' + name + '.module';
+            var requirePath = 'modules.' + name + '.requires';
             var moduleDeps = ['app.application'];
             var configDeps = modules[name].deps;
             if (Object.prototype.toString.call(configDeps) === '[object Array]') {
                 for (var index in configDeps) {
-                    moduleDeps.push('modules.' + configDeps[index]);
+                    moduleDeps.push('modules.' + configDeps[index] + '.module');
                 }
             }
             else if (configDeps) {
-                moduleDeps.push('modules.' + configDeps);
+                moduleDeps.push('modules.' + configDeps + '.module');
             }
             config.paths[requirePath] = 'js/module.' + name;
             config.paths[modulePath] = 'js/modules';

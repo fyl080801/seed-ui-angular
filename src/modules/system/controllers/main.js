@@ -2,13 +2,13 @@
  * Created by fyl08 on 2017/1/4.
  */
 define('modules.system.controllers.main', [
-    'modules.system',
+    'modules.system.module',
     'modules.system.links',
     'modules.system.components.sidebar'
-], function (system, links) {
+], function (module, links) {
     'use strict';
 
-    system.controller('modules.system.controllers.main', [
+    module.controller('modules.system.controllers.main', [
         '$scope',
         '$rootScope',
         '$state',

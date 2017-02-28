@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/21.
  */
 define('modules.role.controllers.form', [
-    'modules.role'
-], function (role) {
+    'modules.role.module'
+], function (module) {
     'use strict';
 
-    role.controller('modules.role.controllers.form', [
+    module.controller('modules.role.controllers.form', [
         '$scope',
         '$rootScope',
         '$modal',

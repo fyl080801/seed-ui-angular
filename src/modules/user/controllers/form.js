@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/4.
  */
 define('modules.user.controllers.form', [
-    'modules.user'
-], function (user) {
+    'modules.user.module'
+], function (module) {
     'use strict';
 
-    user.controller('modules.user.controllers.form', [
+    module.controller('modules.user.controllers.form', [
         '$scope',
         function ($scope) {
             this.fields = [{

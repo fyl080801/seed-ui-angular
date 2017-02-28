@@ -1,7 +1,7 @@
 /**
  * Created by fyl08 on 2017/1/4.
  */
-define('modules.user', [
+define('modules.user.module', [
     'app.application'
 ], function (application) {
     'use strict';

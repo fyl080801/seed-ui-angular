@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/4.
  */
 define('modules.system.controllers.login', [
-    'modules.system'
-], function (system) {
+    'modules.system.module'
+], function (module) {
     'use strict';
 
-    system.controller('modules.system.controllers.login', [
+    module.controller('modules.system.controllers.login', [
         '$scope',
         '$state',
         '$appEnvironment',

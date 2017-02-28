@@ -2,13 +2,13 @@
  * Created by fyl08 on 2017/2/3.
  */
 define('modules.controls.directives.bsTable', [
-    'modules.controls',
+    'modules.controls.module',
     'bs-table',
     'bs-table-cn'
-], function (controls) {
+], function (module) {
     'use strict';
 
-    controls.directive('bsTable', [
+    module.directive('bsTable', [
         '$compile',
         'app.services.httpService',
         function ($compile, httpService) {

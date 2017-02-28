@@ -1,7 +1,7 @@
 /**
  * Created by fyl08 on 2017/1/16.
  */
-define('modules.role', [
+define('modules.role.module', [
     'app.application'
 ], function (application) {
     'use strict';

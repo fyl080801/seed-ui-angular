@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/21.
  */
 define('modules.role.services.roleService', [
-    'modules.role'
-], function (role) {
+    'modules.role.module'
+], function (module) {
     'use strict';
 
-    role.service('modules.role.services.roleService', [
+    module.service('modules.role.services.roleService', [
         'app.services.popupService',
         'app.services.httpService',
         function (popupService, httpService) {

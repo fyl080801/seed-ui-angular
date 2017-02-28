@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/4.
  */
 define('modules.system.services.sessionService', [
-    'modules.system'
-], function (system) {
+    'modules.system.module'
+], function (module) {
     'use strict';
 
-    system.service('modules.system.services.sessionService', [
+    module.service('modules.system.services.sessionService', [
         '$q',
         '$modal',
         '$appEnvironment',

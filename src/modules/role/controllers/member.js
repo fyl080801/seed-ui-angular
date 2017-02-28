@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/2/21.
  */
 define('modules.role.controllers.member', [
-    'modules.role'
-], function (role) {
+    'modules.role.module'
+], function (module) {
     'use strict';
 
-    role.controller('modules.role.controllers.member', [
+    module.controller('modules.role.controllers.member', [
         '$scope',
         '$modal',
         'modules.role.services.roleService',

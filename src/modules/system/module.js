@@ -1,7 +1,7 @@
 /**
  * Created by fyl08 on 2017/1/4.
  */
-define('modules.system', [
+define('modules.system.module', [
     'app.application',
     'modules.system.configs.appStates',
     'modules.system.configs.state',

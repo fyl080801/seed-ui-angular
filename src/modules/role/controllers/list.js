@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/16.
  */
 define('modules.role.controllers.list', [
-    'modules.role'
-], function (role) {
+    'modules.role.module'
+], function (module) {
     'use strict';
 
-    role.controller('modules.role.controllers.list', [
+    module.controller('modules.role.controllers.list', [
         '$scope',
         '$modal',
         'app.services.popupService',

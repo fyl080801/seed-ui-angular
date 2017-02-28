@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/2/21.
  */
 define('modules.system.directives.linkSection', [
-    'modules.system'
-], function (system) {
+    'modules.system.module'
+], function (module) {
     'use strict';
 
-    system.directive('sysLinkSection', [
+    module.directive('sysLinkSection', [
         function () {
             var _link = function ($scope, $element, $attrs, $ctrl) {
 

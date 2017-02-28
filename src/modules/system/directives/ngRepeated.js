@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/4.
  */
 define('modules.system.directives.ngRepeated', [
-    'modules.system'
-], function (system) {
+    'modules.system.module'
+], function (module) {
     'use strict';
 
-    system.directive('ngRepeated', [
+    module.directive('ngRepeated', [
         function () {
             var _link = function (scope, element, attr) {
                 if (scope.$last === true) {

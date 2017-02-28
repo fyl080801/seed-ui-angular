@@ -2,13 +2,12 @@
  * Created by fyl08 on 2017/1/22.
  */
 define('modules.controls.directives.exTextarea', [
-    'require',
-    'modules.controls',
+    'modules.controls.module',
     'modules.controls.directives.exField'
-], function (require, controls, exField) {
+], function (module, exField) {
     'use strict';
 
-    controls.directive('exTextarea', [
+    module.directive('exTextarea', [
         function () {
             var _scope = $.extend({
                 exRows: '@'

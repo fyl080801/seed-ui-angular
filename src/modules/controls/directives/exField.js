@@ -2,9 +2,8 @@
  * Created by fyl08 on 2017/1/22.
  */
 define('modules.controls.directives.exField', [
-    'require',
-    'modules.controls'
-], function (require, controls) {
+    'modules.controls.module'
+], function (module) {
     'use strict';
 
     document.createElement('ex-valuefield');

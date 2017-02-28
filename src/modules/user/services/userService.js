@@ -2,11 +2,11 @@
  * Created by fyl08 on 2017/1/22.
  */
 define('modules.user.services.userService', [
-    'modules.user'
-], function (user) {
+    'modules.user.module'
+], function (module) {
     'use strict';
 
-    user.service('modules.user.services.userService', [
+    module.service('modules.user.services.userService', [
         'app.services.popupService',
         'app.services.httpService',
         function (popupService, httpService) {
