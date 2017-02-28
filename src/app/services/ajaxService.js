@@ -12,7 +12,7 @@ define('app.services.ajaxService', [
         '$appConfig',
         'app.factories.httpDataHandler',
         function ($q, $modal, $appConfig, httpDataHandler) {
-
+// jquery.ajax
         }
     ]);
 });

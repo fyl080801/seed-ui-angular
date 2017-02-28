@@ -18,7 +18,7 @@ define('modules.role.controllers.member', [
             me.edit = function (data) {
                 $modal
                     .open({
-                        templateUrl: 'views/role/EditMember.html',
+                        templateUrl: 'views/role/MemberEdit.html',
                         data: data,
                         size: 'lg'
                     }).result

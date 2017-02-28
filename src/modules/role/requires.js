@@ -5,7 +5,9 @@ define('modules.role.requires', [
     'modules.role.controllers.list',
     'modules.role.controllers.form',
     'modules.role.controllers.member',
-    'modules.role.services.roleService'
+    'modules.role.controllers.auth',
+    'modules.role.services.roleService',
+    'modules.role.services.authService'
 ], function () {
     'use strict';
 

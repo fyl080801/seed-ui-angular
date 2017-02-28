@@ -76,7 +76,8 @@ define('modules.role.controllers.list', [
             me.auth = function (record) {
                 $modal
                     .open({
-                        templateUrl: 'views/role/Auth.html'
+                        templateUrl: 'views/role/Auth.html',
+                        data: record
                     });
             };
 

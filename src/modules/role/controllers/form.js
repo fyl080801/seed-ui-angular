@@ -8,11 +8,7 @@ define('modules.role.controllers.form', [
 
     module.controller('modules.role.controllers.form', [
         '$scope',
-        '$rootScope',
-        '$modal',
-        'app.services.popupService',
-        'modules.role.services.roleService',
-        function ($scope, $rootScope, $modal, popupService, roleService) {
+        function ($scope) {
             this.fields = [{
                 key: 'Name',
                 type: 'input',
