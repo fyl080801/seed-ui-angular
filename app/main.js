@@ -21,7 +21,7 @@
         };
 
     initBrowserPatch(requires);
-    initReference(config, options.references);
+    initReference(requires, config, options.references);
     initModules(requires, config, options.modules);
     initDebug(config, options.nonDebugs);
     startup(requires, config);
@@ -38,13 +38,16 @@
         });
     }
 
-    function initReference(config, references) {
+    function initReference(requires, config, references) {
         for (var name in references) {
             var reference = references[name];
             var referenceType = Object.prototype.toString.call(reference);
             if (referenceType === '[object Object]') {
                 config.paths[name] = reference.path;
                 config.shim[name] = reference.shim;
+                if (reference.required) {
+                    requires.push(name);
+                }
             } else if (referenceType === '[object String]') {
                 config.paths[name] = reference;
             }

@@ -20,22 +20,22 @@ define('app.services.httpService', [
             };
 
             me.get = function (url) {
-                var defered = $q.defer();
+                var defer = $q.defer();
                 $http({
                     method: 'get',
                     url: me.resolveUrl(url),
                     withCredentials: true
                 })
                     .then(function (response) {
-                        httpDataHandler.doResponse(response, defered);
+                        httpDataHandler.doResponse(response, defer);
                     }, function (response) {
-                        httpDataHandler.doError(response, defered);
+                        httpDataHandler.doError(response, defer);
                     });
-                return defered.promise;
+                return defer.promise;
             };
 
             me.post = function (url, params) {
-                var defered = $q.defer();
+                var defer = $q.defer();
                 $http({
                     method: 'post',
                     data: params,
@@ -43,11 +43,11 @@ define('app.services.httpService', [
                     withCredentials: true
                 })
                     .then(function (response) {
-                        httpDataHandler.doResponse(response, defered);
+                        httpDataHandler.doResponse(response, defer);
                     }, function (response) {
-                        httpDataHandler.doError(response, defered);
+                        httpDataHandler.doError(response, defer);
                     });
-                return defered.promise;
+                return defer.promise;
             };
         }
     ]);
