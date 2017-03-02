@@ -3,9 +3,9 @@
  */
 define('modules.system.controllers.main', [
     'modules.system.module',
-    'modules.system.links',
+    //'modules.system.links',
     'modules.system.components.sidebar'
-], function (module, links) {
+], function (module) {
     'use strict';
 
     module.controller('modules.system.controllers.main', [
@@ -13,9 +13,10 @@ define('modules.system.controllers.main', [
         '$rootScope',
         '$state',
         '$appEnvironment',
+        'modules.system.configs.linkManager',
         'app.services.popupService',
         'modules.system.services.sessionService',
-        function ($scope, $rootScope, $state, $appEnvironment, popupService, sessionService) {
+        function ($scope, $rootScope, $state, $appEnvironment, linkManager, popupService, sessionService) {
             var me = this;
 
             $scope.$rootScope = $rootScope;
@@ -24,13 +25,13 @@ define('modules.system.controllers.main', [
                 sessionService
                     .checkSession()
                     .authenticated(function (session) {
-                        me.links = links;
+                        me.links = linkManager.tree();
                     })
                     .unAuthenticated(function () {
                         $state.go('login');
                     });
             } else {
-                me.links = links;
+                me.links = linkManager.tree();
             }
 
             me.changePassword = function () {

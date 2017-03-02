@@ -6,8 +6,9 @@ define('modules.system.configs', [
 ], function (require) {
     'use strict';
 
-    return angular.module('modules.system.configs', [
-        'ui.bootstrap',
-        'ui.router'
-    ]);
+    return angular
+        .module('modules.system.configs', [
+            'ui.bootstrap',
+            'ui.router'
+        ]);
 });

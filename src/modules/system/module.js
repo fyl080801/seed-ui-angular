@@ -5,7 +5,8 @@ define('modules.system.module', [
     'app.application',
     'modules.system.configs.appStates',
     'modules.system.configs.state',
-    'modules.system.configs.router'
+    'modules.system.configs.router',
+    'modules.system.configs.linkManager'
 ], function (application) {
     'use strict';
 
@@ -13,6 +14,17 @@ define('modules.system.module', [
 
     return angular
         .module('modules.system', ['ui.router', 'modules.system.configs'])
+        .config([
+            'modules.system.configs.linkManagerProvider',
+            function (linkManagerProvider) {
+                linkManagerProvider
+                    .add({
+                        id: 'system',
+                        text: '系统管理',
+                        icon: 'glyphicon glyphicon-cog'
+                    });
+            }
+        ])
         .run([
             '$rootScope',
             '$appStates',
