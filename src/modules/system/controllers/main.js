@@ -3,7 +3,6 @@
  */
 define('modules.system.controllers.main', [
     'modules.system.module',
-    //'modules.system.links',
     'modules.system.components.sidebar'
 ], function (module) {
     'use strict';

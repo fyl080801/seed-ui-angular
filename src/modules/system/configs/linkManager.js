@@ -14,7 +14,12 @@ define('modules.system.configs.linkManager', [
                 var _links = {};
 
                 this.add = function (link) {
+                    if (_links[link.id]) {
+                        _links[link.id] = $.extend(_links[link.id], link);
+                    }
+
                     link.order = link.order ? link.order : defaultOrder;
+
                     var linkObj = {
                         _links: {},
                         root: function () {
@@ -42,6 +47,7 @@ define('modules.system.configs.linkManager', [
                     return _links[id];
                 };
 
+                // $get
                 this.$get = function () {
                     return {
                         get: that.get,

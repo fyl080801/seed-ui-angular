@@ -16,6 +16,8 @@ define('modules.controls.directives.bsTable', [
             };
 
             var _controller = function ($scope, $element, $attrs) {
+                var me = this;
+
                 var options = $.extend($scope.bsTable, $attrs);
 
                 // 初始化参数
@@ -25,10 +27,25 @@ define('modules.controls.directives.bsTable', [
                 options.pagination = options.pagination ? options.pagination : 'true';
                 options.sidePagination = options.sidePagination ? options.sidePagination : 'server';
                 options.url = options.url ? httpService.resolveUrl(options.url) : options.url;
+                options.converters = options.converters ? options.converters : {};
 
+                // 初始化windows的options对象，data-formatter这种属性只是别windows对象中的方法
+                window[$scope.$id] = options;
+                $scope.$on('$destroy', function () {
+                    delete window[$scope.$id];
+                });
+
+                //
                 var templates = $element.find('[data-template="true"]');
                 templates.attr('data-formatter', function () {
                     return templates.html();
+                });
+
+                //
+                var converters = $element.find('[data-converter]');
+                converters.each(function (i, a) {
+                    var elm = $(a), name = elm.attr('data-converter');
+                    elm.attr('data-formatter', $scope.$id + '.converters.' + name);
                 });
 
                 // 重新定义ajax方法
@@ -63,6 +80,7 @@ define('modules.controls.directives.bsTable', [
                     var rows = $element.find('tbody tr');
                     rows.each(function (index, elm) {
                         var rowData = data.data[index];
+                        // actions
                         var actions = $(elm).find('[data-action]');
                         actions.each(function (i, a) {
                             var action = $(a);
@@ -71,6 +89,7 @@ define('modules.controls.directives.bsTable', [
                                 e(rowData);
                             });
                         });
+                        //
                     });
                 };
 
