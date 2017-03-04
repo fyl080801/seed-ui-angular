@@ -97,11 +97,6 @@ define('modules.role.controllers.list', [
                 params: {
                     searchPhrase: null
                 },
-                // converters: {
-                //     testcon: function (val, row, index) {
-                //         return val + ' bbb';
-                //     }
-                // },
                 actions: {
                     details: me.details,
                     edit: me.edit,

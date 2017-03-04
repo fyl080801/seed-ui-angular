@@ -6,14 +6,18 @@ define('modules.system.module', [
     'modules.system.configs.appStates',
     'modules.system.configs.state',
     'modules.system.configs.router',
-    'modules.system.configs.linkManager'
+    'modules.system.configs.linkManager',
+    'modules.system.configs.httpConfig'
 ], function (application) {
     'use strict';
 
     application.requires.push('modules.system');
 
     return angular
-        .module('modules.system', ['ui.router', 'modules.system.configs'])
+        .module('modules.system', [
+            'ui.router',
+            'modules.system.configs'
+        ])
         .config([
             'modules.system.configs.linkManagerProvider',
             function (linkManagerProvider) {

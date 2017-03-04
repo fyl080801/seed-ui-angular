@@ -246,3 +246,13 @@ h1 a {
     background: #b63b4d;
     color: #FFF;
 }
+
+/**
+* patch
+*/
+.fixed-table-pagination {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
