@@ -2,7 +2,8 @@
  * Created by fyl08 on 2017/3/4.
  */
 define('modules.system.configs.httpConfig', [
-    'modules.system.configs'
+    'modules.system.configs',
+    'app.application'
 ], function (configs) {
     'use strict';
 
@@ -13,12 +14,19 @@ define('modules.system.configs.httpConfig', [
                 '$delegate',
                 function ($delegate) {
                     var responseFn = $delegate.doResponse;
+                    var errorFn = $delegate.doError;
 
                     $delegate.doResponse = function (response, defer) {
 
                         // 准备处理会话过期事件
                         responseFn(response, defer);
                     };
+
+                    $delegate.doError = function (response, defer) {
+                        errorFn(response, defer);
+                    };
+
+                    return $delegate;
                 }
             ]);
         }

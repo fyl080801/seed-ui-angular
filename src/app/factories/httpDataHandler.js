@@ -9,11 +9,11 @@ define('app.factories.httpDataHandler', [
     factories.factory('app.factories.httpDataHandler', [
         '$modal',
         function ($modal) {
-            return {
+            var handler = {
                 doResponse: function (response, defered) {
                     response.data = response.data ? response.data : {};
                     if (response.data && response.data.success === false) {
-                        this.doError(response, defered);
+                        handler.doError(response, defered);
                     } else {
                         defered.resolve(response.data);
                     }
@@ -31,6 +31,7 @@ define('app.factories.httpDataHandler', [
                     defered.reject(response.data);
                 }
             };
+            return handler;
         }
     ]);
 });

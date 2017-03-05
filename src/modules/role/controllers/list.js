@@ -103,6 +103,16 @@ define('modules.role.controllers.list', [
                     member: me.member,
                     auth: me.auth,
                     drop: me.drop
+                },
+                converters: {
+                    conv: function (record) {
+                        return record.Name;
+                    }
+                },
+                behaviors: {
+                    popalert: {
+                        click: me.details
+                    }
                 }
             };
         }
