@@ -18,7 +18,7 @@ define('modules.system.configs.linkManager', [
                         _links[link.id] = $.extend(_links[link.id], link);
                     }
 
-                    link.order = link.order ? link.order : defaultOrder;
+                    link.order = link.order || link.order <= 0 ? link.order : defaultOrder;
 
                     var linkObj = {
                         _links: {},
@@ -26,7 +26,7 @@ define('modules.system.configs.linkManager', [
                             return that;
                         },
                         add: function (l) {
-                            l.order = l.order ? l.order : defaultOrder;
+                            l.order = l.order || l.order <= 0 ? l.order : defaultOrder;
                             linkObj._links[l.id] = $.extend(l, deepClone(linkObj));
                             return linkObj;
                         },
@@ -75,7 +75,32 @@ define('modules.system.configs.linkManager', [
                         tree.links = buildTree(tree._links);
                         result.push(tree);
                     }
+                    result.sort(orderBy('order'));
                     return result;
+                }
+
+                function orderBy(name) {
+                    if (!name)
+                        return function () {
+                            return -1;
+                        };
+                    return function (o, p) {
+                        var a, b;
+                        if (typeof o === 'object' && typeof p === 'object' && o && p) {
+                            a = o[name];
+                            b = p[name];
+                            if (a === b) {
+                                return 0;
+                            }
+                            if (typeof a === typeof b) {
+                                return a < b ? -1 : 1;
+                            }
+                            return typeof a < typeof b ? -1 : 1;
+                        }
+                        else {
+                            throw ('菜单排序异常');
+                        }
+                    }
                 }
             }
         );

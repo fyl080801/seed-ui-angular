@@ -64,8 +64,6 @@ define('modules.controls.directives.bsTable', [
 
                     // 数据加载完毕生成表，执行附加样式
                     options.onLoadSuccess = function (data) {
-                        if (!options.actions || options.actions.length <= 0)
-                            return;
                         var rows = $element.find('tbody tr');
                         rows.each(function (index, elm) {
                             var rowData = data.data[index];
@@ -75,7 +73,7 @@ define('modules.controls.directives.bsTable', [
                                 var action = $(a);
                                 var e = options.actions[action.attr('data-action')];
                                 if (e) action.on('click', function () {
-                                    e(rowData, index, elm);
+                                    e(rowData, index, a);
                                 });
                             });
 
@@ -84,16 +82,19 @@ define('modules.controls.directives.bsTable', [
                             cells.each(function (i, a) {
                                 var behavior = me.behaviors[i];
                                 if (behavior) {
-                                    for (var name in behavior) {
-                                        $(a).on(name, function () {
-                                            behavior[name](rowData, index, elm);
-                                        });
+                                    var eventNames = '',
+                                        behaviorFn = function (event) {
+                                            behavior.behavior[event.type](event, rowData[behavior.field], rowData, index);
+                                        };
+                                    for (var name in behavior.behavior) {
+                                        eventNames = eventNames + name + ' ';
                                     }
+                                    $(a).on(eventNames, behaviorFn);
                                 }
 
                                 var converter = me.converters[i];
                                 if (converter) {
-                                    $(a).html(converter(rowData, index, elm));
+                                    $(a).html(converter.converter(a, rowData[converter.field], rowData, index));
                                 }
                             });
                         });
@@ -111,11 +112,18 @@ define('modules.controls.directives.bsTable', [
                     this.converters = {};
                     headers.each(function (i, a) {
                         var behaviorName = $(a).attr('data-behavior'),
-                            converterName = $(a).attr('data-converter');
+                            converterName = $(a).attr('data-converter'),
+                            fieldName = $(a).attr('data-field');
                         if (behaviorName)
-                            me.behaviors[i] = options.behaviors[behaviorName];
+                            me.behaviors[i] = {
+                                field: fieldName,
+                                behavior: options.behaviors[behaviorName]
+                            };
                         if (converterName)
-                            me.converters[i] = options.converters[converterName];
+                            me.converters[i] = {
+                                field: fieldName,
+                                converter: options.converters[converterName]
+                            };
                     });
 
                     // 初始化表格
