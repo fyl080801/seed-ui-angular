@@ -8,6 +8,67 @@ define('modules.controls.directives.bsTable', [
 ], function (module) {
     'use strict';
 
+    // 初始化行
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initRow = BootstrapTable.prototype.initRow;
+
+    BootstrapTable.prototype.initRow = function (item, i, data, parentDom) {
+        var that = this;
+
+        var row = _initRow.apply(that, Array.prototype.slice.apply(arguments));
+        if (Object.prototype.toString.call(row) !== '[object String]') {
+            return row;
+        }
+        var rowElement = $(row);
+        var rowData = item;
+
+        // actions
+        var actions = rowElement.find('[data-action]');
+        actions.each(function (idx, a) {
+            var action = $(a);
+            var e = that.options.actions[action.attr('data-action')];
+            if (e) action.on('click', function (event) {
+                e(rowData, i, event);
+            });
+        });
+
+        // ext
+        rowElement.find('td').each(function (idx, cell) {
+            var cellElement = $(cell);
+            var columnOptions = that.columns[idx];
+            var args = {
+                options: that.options,
+                column: columnOptions
+            };
+
+            // behavior
+            var behavior = columnOptions.behavior && that.options.behaviors && that.options.behaviors[columnOptions.behavior]
+                ? that.options.behaviors[columnOptions.behavior]
+                : null;
+            if (behavior) {
+                for (var name in  behavior) {
+                    cellElement.on(name, function (event) {
+                        behavior[event.type](rowData[columnOptions.field], rowData, i, $.extend({
+                            event: event
+                        }, args));
+                    });
+                }
+            }
+
+            // converter
+            var converter = columnOptions.converter && that.options.converters && that.options.converters[columnOptions.converter]
+                ? that.options.converters[columnOptions.converter]
+                : null;
+            if (converter) {
+                cellElement.html(converter(rowData[columnOptions.field], rowData, i, $.extend({
+                    element: cellElement
+                }, args)));
+            }
+        });
+
+        return rowElement;
+    };
+
     module.directive('bsTable', [
         '$compile',
         'app.services.httpService',
@@ -23,6 +84,7 @@ define('modules.controls.directives.bsTable', [
                     var me = this;
 
                     var options = $.extend($scope.bsTable, $attrs);
+                    this.options = options;
 
                     // 初始化参数
                     options.striped = options.striped ? options.striped : true;
@@ -62,69 +124,12 @@ define('modules.controls.directives.bsTable', [
                         return exParams;
                     };
 
-                    // 数据加载完毕生成表，执行附加样式
-                    options.onLoadSuccess = function (data) {
-                        var rows = $element.find('tbody tr');
-                        rows.each(function (index, elm) {
-                            var rowData = data.data[index];
-                            // actions
-                            var actions = $(elm).find('[data-action]');
-                            actions.each(function (i, a) {
-                                var action = $(a);
-                                var e = options.actions[action.attr('data-action')];
-                                if (e) action.on('click', function () {
-                                    e(rowData, index, a);
-                                });
-                            });
-
-                            // ext
-                            var cells = $(elm).find('td');
-                            cells.each(function (i, a) {
-                                var behavior = me.behaviors[i];
-                                if (behavior) {
-                                    var eventNames = '',
-                                        behaviorFn = function (event) {
-                                            behavior.behavior[event.type](event, rowData[behavior.field], rowData, index);
-                                        };
-                                    for (var name in behavior.behavior) {
-                                        eventNames = eventNames + name + ' ';
-                                    }
-                                    $(a).on(eventNames, behaviorFn);
-                                }
-
-                                var converter = me.converters[i];
-                                if (converter) {
-                                    $(a).html(converter.converter(a, rowData[converter.field], rowData, index));
-                                }
-                            });
-                        });
-                    };
-
                     // 直接输出列定义的html
                     var templates = $element.find('[data-template="true"]');
                     templates.attr('data-formatter', function () {
                         return templates.html();
                     });
 
-                    // 初始化行为
-                    var headers = $element.find('th');
-                    this.behaviors = {};
-                    this.converters = {};
-                    headers.each(function (i, a) {
-                        var behaviorName = $(a).attr('data-behavior'),
-                            converterName = $(a).attr('data-converter'),
-                            fieldName = $(a).attr('data-field');
-                        if (behaviorName)
-                            me.behaviors[i] = {
-                                field: fieldName,
-                                behavior: options.behaviors[behaviorName]
-                            };
-                        if (converterName)
-                            me.converters[i] = {
-                                field: fieldName,
-                                converter: options.converters[converterName]
-                            };
-                    });
 
                     // 初始化表格
                     $element.bootstrapTable(options);
