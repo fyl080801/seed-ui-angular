@@ -32,6 +32,16 @@ define('modules.controls.directives.bsTable', [
             });
         });
 
+        //renderer
+        var renderers = rowElement.find('[data-renderer]');
+        renderers.each(function (idx, a) {
+            var element = $(a);
+            var e = that.options.renderers[element.attr('data-renderer')];
+            if (e) {
+                e(rowData, i, element);
+            }
+        });
+
         // ext
         rowElement.find('td').each(function (idx, cell) {
             var cellElement = $(cell);
@@ -90,11 +100,12 @@ define('modules.controls.directives.bsTable', [
                     options.striped = options.striped ? options.striped : true;
                     options.method = options.method ? options.method : 'POST';
                     options.dataField = options.dataField ? options.dataField : 'data';
-                    options.pagination = options.pagination ? options.pagination : 'true';
+                    options.pagination = options.pagination !== undefined ? options.pagination : 'true';
                     options.sidePagination = options.sidePagination ? options.sidePagination : 'server';
                     options.url = options.url ? httpService.resolveUrl(options.url) : options.url;
                     options.converters = options.converters ? options.converters : {};
                     options.behaviors = options.behaviors ? options.behaviors : {};
+                    options.renderers = options.renderers ? options.renderers : {};
                     options.limitParam = options.limitParam ? options.limitParam : 'rowCount';// 传递分页记录数
                     options.pageParam = options.pageParam ? options.pageParam : 'current';// 传递当前页参数
                     options.sortsParam = options.sortsParam ? options.sortsParam : 'sort';// 传递排序参数
@@ -129,7 +140,6 @@ define('modules.controls.directives.bsTable', [
                     templates.attr('data-formatter', function () {
                         return templates.html();
                     });
-
 
                     // 初始化表格
                     $element.bootstrapTable(options);

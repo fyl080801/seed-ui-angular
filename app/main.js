@@ -101,7 +101,9 @@
             'system': {},
             'controls': {deps: ['system']},
             'user': {deps: ['controls']},
-            'role': {deps: ['controls']}
+            'role': {deps: ['controls']},
+            'plugin': {deps: ['controls']},
+            'formeditor': {deps: ['controls']}
         },
         references: {
             'bs-table': 'js/bootstrap-table',
