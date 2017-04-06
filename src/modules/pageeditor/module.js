@@ -1,15 +1,15 @@
 /**
  * Created by fyl08 on 2017/3/11.
  */
-define('modules.formeditor.module', [
+define('modules.pageeditor.module', [
     'app.application'
 ], function (application) {
     'use strict';
 
-    application.requires.push('modules.formeditor');
+    application.requires.push('modules.pageeditor');
 
     return angular
-        .module('modules.formeditor', [
+        .module('modules.pageeditor', [
             'ui.router',
             'modules.system'
         ])
@@ -19,9 +19,9 @@ define('modules.formeditor.module', [
                 $stateProvider.state('main.dictionary', {
                     text: '字典变量',
                     url: '/dictionary',
-                    templateUrl: 'views/formeditor/dictionary/List.html',
+                    templateUrl: 'views/pageeditor/dictionary/List.html',
                     css: ['./css/bootstrap-table.min.css'],
-                    dependencies: ['modules.controls.requires', 'modules.formeditor.requires']
+                    dependencies: ['modules.controls.requires', 'modules.pageeditor.requires']
                 });
             }
         ])

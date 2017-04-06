@@ -103,7 +103,7 @@
             'user': {deps: ['controls']},
             'role': {deps: ['controls']},
             'plugin': {deps: ['controls']},
-            'formeditor': {deps: ['controls']}
+            'pageeditor': {deps: ['controls']}
         },
         references: {
             'bs-table': 'js/bootstrap-table',
