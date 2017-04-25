@@ -9,7 +9,7 @@ define('modules.system.directives.links', [
     module.directive('sysLinks', [
         function () {
             var _link = function ($scope, $element, $attrs, $ctrl) {
-
+                
             };
 
             var _controller = function ($scope, $element, $attrs) {

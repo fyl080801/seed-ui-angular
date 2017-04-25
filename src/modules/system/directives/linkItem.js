@@ -9,7 +9,7 @@ define('modules.system.directives.linkItem', [
     module.directive('sysLinkItem', [
         function () {
             var _link = function ($scope, $element, $attrs, $ctrl) {
-
+                
             };
 
             var _controller = function ($scope, $element, $attrs) {
@@ -25,7 +25,7 @@ define('modules.system.directives.linkItem', [
                 transclude: true,
                 link: _link,
                 controller: ['$scope', '$element', '$attrs', _controller],
-                template: '<li><a href="{{sysLinkItem.href}}">{{sysLinkItem.text}}</a></li>'
+                templateUrl: 'templates/controls/LinkItem.html'
             };
         }
     ]);

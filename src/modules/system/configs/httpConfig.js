@@ -17,12 +17,12 @@ define('modules.system.configs.httpConfig', [
                     var errorFn = $delegate.doError;
 
                     $delegate.doResponse = function (response, defer) {
-
                         // 准备处理会话过期事件
                         responseFn(response, defer);
                     };
 
                     $delegate.doError = function (response, defer) {
+                        // 处理会话过期
                         errorFn(response, defer);
                     };
 

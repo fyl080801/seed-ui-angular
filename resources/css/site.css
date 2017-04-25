@@ -227,7 +227,7 @@ h1 a {
     font-size: 14px;
 }
 
-.submenu li {
+.submenuitem {
     border-bottom: 1px solid #4b4a5e;
 }
 
@@ -235,7 +235,7 @@ h1 a {
     display: block;
     text-decoration: none;
     color: #d9d9d9;
-    padding: 12px;
+    padding: 11px;
     padding-left: 42px;
     -webkit-transition: all 0.25s ease;
     -o-transition: all 0.25s ease;
@@ -255,4 +255,41 @@ h1 a {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+}
+
+.link-icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: transparent;
+    border: none;
+    width:25px;
+}
+
+.link-icon span{
+    color: silver
+}
+
+.link-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: transparent;
+    border: none;
+    width:25px;
+}
+
+.link-button:hover {
+    background: rgba(89, 88, 116, 1);
+}
+
+.link-button span {
+    color: silver
+}
+
+.link-menu{
+    top:-5%;
+    left: 100%
 }

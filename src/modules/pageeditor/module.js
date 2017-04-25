@@ -33,8 +33,11 @@ define('modules.pageeditor.module', [
                         id: 'editor',
                         text: '定制管理',
                         icon: 'glyphicon glyphicon-wrench'
-                    })
-                    .child({
+                    });
+
+                linkManagerProvider
+                    .get('editor')
+                    .add({
                         id: 'editor.dictionary',
                         text: '字典变量',
                         href: '#/main/dictionary'

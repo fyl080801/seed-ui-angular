@@ -17,7 +17,7 @@ define('modules.plugin.module', [
             function (linkManagerProvider) {
                 linkManagerProvider
                     .get('system')
-                    .child({
+                    .add({
                         id: 'system.plugin',
                         text: '插件管理',
                         href: '#/main/plugin',

@@ -1,0 +1,9 @@
+<li class="dropdown">
+    <a ng-href="{{sysLinkItem.href}}">{{sysLinkItem.text}}</a>
+    <button ng-if="sysLinkItem.links.length>0" class="link-button" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </button>
+    <ul ng-if="sysLinkItem.links.length>0" class="dropdown-menu link-menu">
+        <li ng-repeat="menu in sysLinkItem.links" ng-include="'templates/controls/LinkMenu.html'" class="dropdown"></li>
+    </ul>
+</li>

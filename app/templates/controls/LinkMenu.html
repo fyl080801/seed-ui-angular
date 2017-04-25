@@ -1,0 +1,7 @@
+<a ng-href="{{menu.href}}" link-hover="dropdown">
+    {{menu.text}} 
+    <span ng-if="menu.links.length>0" class="glyphicon glyphicon-chevron-right pull-right"></span>
+</a>
+<ul ng-if="menu.links.length>0" class="dropdown-menu link-menu">
+    <li ng-repeat="menu in menu.links" ng-include="'templates/controls/LinkMenu.html'" class="dropdown"></li>
+</ul>

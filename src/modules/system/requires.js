@@ -12,6 +12,7 @@ define('modules.system.requires', [
     'modules.system.directives.links',
     'modules.system.directives.linkSection',
     'modules.system.directives.linkItem',
+    'modules.system.directives.linkHover',
     'modules.system.filters.linkAuthorize',
     'modules.system.components.sidebar'
 ], function () {

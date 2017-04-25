@@ -36,6 +36,40 @@ define('modules.role.module', [
                         authorize: '/Role/Roles',
                         order: 0
                     });
+                // .get('system.role')
+                // .add({
+                //     id: 'system.role.test1',
+                //     text: 'sub1',
+                //     href: '#/main/role',
+                //     authorize: '/Role/Roles',
+                //     order: 0
+                // })
+                // .add({
+                //     id: 'system.role.test2',
+                //     text: 'sub2',
+                //     href: '#/main/role',
+                //     authorize: '/Role/Roles',
+                //     order: 1
+                // })
+                // .get('system.role.test2')
+                // .add({
+                //     id: 'system.role.test2.aaa',
+                //     text: 'sub2',
+                //     href: '#/main/role',
+                //     authorize: '/Role/Roles',
+                //     order: 1
+                // });
+                // linkManagerProvider
+                //     .get('system')
+                //     .get('system.role')
+                //     .get('system.role.test1')
+                //     .add({
+                //         id: 'system.role.test1.aaa',
+                //         text: 'subxxx',
+                //         href: '#/main/role',
+                //         authorize: '/Role/Roles',
+                //         order: 1
+                //     })
             }
         ]);
 });

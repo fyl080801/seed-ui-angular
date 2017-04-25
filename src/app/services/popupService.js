@@ -31,16 +31,14 @@ define('app.services.popupService', [
                 var defered = $q.defer();
 
                 defered.promise.ok = function (fn) {
-                    defered.promise.then(function () {
-                        fn();
-                    });
+                    defered.promise
+                        .then(fn);
                     return defered.promise;
                 };
 
                 defered.promise.cancel = function (fn) {
-                    defered.promise.then(null, function () {
-                        fn();
-                    });
+                    defered.promise
+                        .catch(fn);
                     return defered.promise;
                 };
 
