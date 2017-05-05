@@ -23,7 +23,7 @@ define('modules.system.controllers.main', [
             if (!$appEnvironment.session) {
                 sessionService
                     .checkSession()
-                    .authenticated(function (session) {
+                    .authenticated(function () {
                         me.links = linkManager.tree();
                     })
                     .unAuthenticated(function () {

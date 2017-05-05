@@ -29,5 +29,6 @@ define('modules.system.filters.linkAuthorize', [
                 });
                 return result;
             };
-        }]);
+        }
+    ]);
 });

@@ -6,7 +6,7 @@
 
     var requires = ['app.application'],
         config = {
-            urlArgs: 'v=1.0.18',
+            urlArgs: app.getAttribute('data-args'),
             paths: {
                 'iepatch': 'js/iepatch',
                 'angular': 'js/reference',
@@ -116,11 +116,15 @@
                 path: 'js/formly',
                 shim: {deps: ['api-check']}
             },
-            'angular-formly-templates-bootstrap': {
+            'angular-formly-bootstrap': {
                 path: 'js/angular-formly-templates-bootstrap',
-                shim: {deps: ['angular-formly']}
+                shim: {deps: ['api-check', 'angular-formly']}
             }
         },
-        nonDebugs: []
+        nonDebugs: [
+            'api-check',
+            'angular-formly',
+            'angular-formly-bootstrap'
+        ]
     }
 );

@@ -4,7 +4,7 @@
 define('modules.controls.module', [
     'app.application',
     'angular-formly',
-    'angular-formly-templates-bootstrap'
+    'angular-formly-bootstrap'
 ], function (application) {
     'use strict';
 

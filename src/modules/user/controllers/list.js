@@ -81,7 +81,7 @@ define('modules.user.controllers.list', [
                     .open({
                         templateUrl: 'views/user/Password.html',
                         data: {
-                            Id: record.id
+                            Id: record.Id
                         },
                         size: 'sm'
                     }).result
