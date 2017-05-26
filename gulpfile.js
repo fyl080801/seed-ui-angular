@@ -29,7 +29,7 @@ gulp.task('pack_require', function () {
         .pipe(concat('require.js'))
         .pipe(gulp.dest(jsTarget))
         .pipe(concat('require.min.js'))
-        .pipe(uglify({outSourceMap: false}))
+        .pipe(uglify({ outSourceMap: false }))
         .pipe(gulp.dest(jsTarget));
 });
 
@@ -47,7 +47,7 @@ gulp.task('pack_patch', function () {
         .pipe(concat('iepatch.js'))
         .pipe(gulp.dest(jsTarget))
         .pipe(concat('iepatch.min.js'))
-        .pipe(uglify({outSourceMap: false}))
+        .pipe(uglify({ outSourceMap: false }))
         .pipe(gulp.dest(jsTarget));
 });
 
@@ -65,7 +65,7 @@ gulp.task('pack_reference', function () {
         .pipe(concat('reference.js'))
         .pipe(gulp.dest(jsTarget))
         .pipe(concat('reference.min.js'))
-        .pipe(uglify({outSourceMap: false}))
+        .pipe(uglify({ outSourceMap: false }))
         .pipe(gulp.dest(jsTarget));
 });
 
@@ -116,7 +116,7 @@ gulp.task('pack_src', function () {
         .pipe(concat('app.application.js'))
         .pipe(gulp.dest(jsTarget))
         .pipe(concat('app.application.min.js'))
-        .pipe(uglify({outSourceMap: false}))
+        .pipe(uglify({ outSourceMap: false }))
         .pipe(gulp.dest(jsTarget));
 });
 
@@ -135,7 +135,7 @@ gulp.task('pack_modules', function () {
             .pipe(concat('module.' + modules[module] + '.js'))
             .pipe(gulp.dest(jsTarget))
             .pipe(concat('module.' + modules[module] + '.min.js'))
-            .pipe(uglify({outSourceMap: false}))
+            .pipe(uglify({ outSourceMap: false }))
             .pipe(gulp.dest(jsTarget));
     }
 
@@ -147,18 +147,11 @@ gulp.task('pack_modules', function () {
         .pipe(concat('modules.js'))
         .pipe(gulp.dest(jsTarget))
         .pipe(concat('modules.min.js'))
-        .pipe(uglify({outSourceMap: false}))
+        .pipe(uglify({ outSourceMap: false }))
         .pipe(gulp.dest(jsTarget));
 });
 
-gulp.task('build', function () {
-    gulp.run('pack_require');
-    gulp.run('pack_libraries');
-    gulp.run('pack_patch');
-    gulp.run('pack_reference');
-    gulp.run('pack_src');
-    gulp.run('pack_modules');
-});
+gulp.task('build', ['pack_require', 'pack_libraries', 'pack_patch', 'pack_reference', 'pack_src', 'pack_modules']);
 
 gulp.task('webserver', function () {
     gulp.src(appRoot)

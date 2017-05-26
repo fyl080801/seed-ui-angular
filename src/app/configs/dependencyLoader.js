@@ -21,7 +21,7 @@ define('app.configs.dependencyLoader', [
             };
 
             function resolveDependencies(dependencies) {
-                if (typeof(dependencies) === 'string') {
+                if (typeof (dependencies) === 'string') {
                     dependencies = [dependencies];
                 }
                 return ['$q', function ($q) {
