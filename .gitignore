@@ -30,6 +30,7 @@ build/Release
 lib
 bower_components
 node_modules
+publish
 
 # build path
 app/js
