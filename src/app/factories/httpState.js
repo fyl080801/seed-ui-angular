@@ -47,7 +47,7 @@ define('app.factories.httpState', [
                     };
                     return err;
                 }
-            }
+            };
         }
     ]);
 });
