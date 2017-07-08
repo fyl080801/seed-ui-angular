@@ -9,7 +9,8 @@ define('modules.controls.requires', [
     'modules.controls.directives.exTextfield',
     'modules.controls.directives.exTextarea',
     'modules.controls.directives.exPattern',
-    'modules.controls.directives.bsTable'
+    'modules.controls.directives.bsTable',
+    'modules.controls.directives.exConfirm'
 ], function () {
     'use strict';
 

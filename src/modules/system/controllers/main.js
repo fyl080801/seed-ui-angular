@@ -12,10 +12,12 @@ define('modules.system.controllers.main', [
         '$rootScope',
         '$state',
         '$appEnvironment',
+        '$modal',
         'modules.system.configs.linkManager',
         'app.services.popupService',
+        'app.services.httpService',
         'modules.system.services.sessionService',
-        function ($scope, $rootScope, $state, $appEnvironment, linkManager, popupService, sessionService) {
+        function ($scope, $rootScope, $state, $appEnvironment, $modal, linkManager, popupService, httpService, sessionService) {
             var me = this;
 
             $scope.$rootScope = $rootScope;
@@ -34,7 +36,22 @@ define('modules.system.controllers.main', [
             }
 
             me.changePassword = function () {
-
+                $modal
+                    .open({
+                        templateUrl: 'views/system/UserPassword.html',
+                        size: 'sm'
+                    }).result
+                    .then(function (result) {
+                        httpService
+                            .post('/Account/ChangePassword', {
+                                OldPassword: result.OldPassword,
+                                NewPassword: result.NewPassword,
+                                ConfirmPassword: result.ConfirmPassword
+                            })
+                            .then(function () {
+                                popupService.infomation();
+                            });
+                    });
             };
 
             me.logout = function () {
