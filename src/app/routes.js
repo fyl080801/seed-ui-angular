@@ -1,7 +1,4 @@
-/**
- * Created by fyl08 on 2016/12/23.
- */
-define('app.routes', [
+define([
     'angular-ui-router'
 ], function () {
     'use strict';

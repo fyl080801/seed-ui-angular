@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2016/12/26.
- */
-define('app.configs.dependencyLoader', [
-    'app.configs'
+define([
+    'app/configs'
 ], function (configs) {
     'use strict';
 
@@ -14,7 +11,7 @@ define('app.configs.dependencyLoader', [
             $stateProvider.state = function (state, config) {
                 if (config.dependencies) {
                     var resolve = config.resolve || {};
-                    resolve['$deps'] = resolveDependencies(config.dependencies);
+                    resolve.$deps = resolveDependencies(config.dependencies);
                     config.resolve = resolve;
                 }
                 return stateFn(state, config);

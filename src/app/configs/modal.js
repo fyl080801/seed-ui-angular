@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2017/1/20.
- */
-define('app.configs.modal', [
-    'app.configs'
+define([
+    'app/configs'
 ], function (configs) {
     'use strict';
 

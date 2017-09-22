@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2017/1/5.
- */
-define('app.directives.title', [
-    'app.directives'
+define([
+    'app/directives'
 ], function (directives) {
     'use strict';
 
@@ -13,9 +10,8 @@ define('app.directives.title', [
             var _link = function (scope, element, attrs) {
                 $rootScope.$on('$stateChangeSuccess', function (event, toState) {
                     $timeout(function () {
-                        document.title = (toState.data && toState.data.title)
-                            ? toState.data.title
-                            : '';
+                        document.title = (toState.data && toState.data.title) ?
+                            toState.data.title : '';
                     });
                 });
             };

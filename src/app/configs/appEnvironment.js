@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2016/12/28.
- */
-define('app.configs.appEnvironment', [
-    'app.configs'
+define([
+    'app/configs'
 ], function (configs) {
     'use strict';
 
@@ -15,7 +12,8 @@ define('app.configs.appEnvironment', [
                     url: null,
                     method: null,
                     data: null
-                }
+                },
+                theme: null
             });
         }
     ]);

@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2017/2/22.
- */
-define('app.services.ajaxService', [
-    'app.services'
+define([
+    'app/services'
 ], function (services) {
     'use strict';
 
@@ -12,7 +9,7 @@ define('app.services.ajaxService', [
         '$appConfig',
         'app.factories.httpDataHandler',
         function ($q, $modal, $appConfig, httpDataHandler) {
-// jquery.ajax
+            // jquery.ajax
         }
     ]);
 });

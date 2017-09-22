@@ -1,22 +1,34 @@
-/// <binding Clean='clean' />
-'use strict';
+/**
+ * 基本路径
+ */
+var appRoot = '',
+    bowerRoot = 'bower_components',
+    jsTarget = 'dist/js',
+    cssTarget = 'dist/css',
+    fontTarget = 'dist/fonts',
+    imgTarget = 'dist/images',
+    modulePath = 'src/modules';
 
-var appRoot = './app';
-var bowerRoot = './bower_components';
-var jsTarget = './app/js';
-var cssTarget = './app/css';
-var fontTarget = './app/fonts';
-var imgTarget = './app/img';
-var modulePath = './src/modules';
-var libraryPath = './src/common/libraries.json';
+/**
+ * 用于pack_modules的参数
+ */
+var moduleOptions = {
+    string: 'p',
+    default: {
+        p: null
+    }
+};
 
+/**
+ * 模块定义
+ */
 var gulp = require('gulp'),
     rimraf = require('rimraf'),
     concat = require('gulp-concat'),
     cssmin = require('gulp-cssmin'),
     uglify = require('gulp-uglify'),
     ngmin = require('gulp-ngmin'),
-    rename = require('gulp-rename'),
+    minimist = require('minimist'),
     amdOptimize = require('amd-optimize'),
     webserver = require('gulp-webserver'),
     fs = require('fs');
@@ -29,7 +41,9 @@ gulp.task('pack_require', function () {
         .pipe(concat('require.js'))
         .pipe(gulp.dest(jsTarget))
         .pipe(concat('require.min.js'))
-        .pipe(uglify({ outSourceMap: false }))
+        .pipe(uglify({
+            outSourceMap: false
+        }))
         .pipe(gulp.dest(jsTarget));
 });
 
@@ -37,123 +51,139 @@ gulp.task('pack_require', function () {
  * 打包兼容性补丁
  */
 gulp.task('pack_patch', function () {
-    var paths = ['./src/common/iepatch.js'];
+    var paths = ['src/patch.js'];
     gulp.src(paths)
-        .pipe(amdOptimize('iepatch', {
+        .pipe(amdOptimize('patch', {
             name: 'iepatch',
-            configFile: './src/common/iepatch.js',
-            baseUrl: './src/common'
+            configFile: 'src/patch.js',
+            baseUrl: 'src'
         }))
-        .pipe(concat('iepatch.js'))
+        .pipe(concat('patch.js'))
         .pipe(gulp.dest(jsTarget))
-        .pipe(concat('iepatch.min.js'))
-        .pipe(uglify({ outSourceMap: false }))
+        .pipe(concat('patch.min.js'))
+        .pipe(uglify({
+            outSourceMap: false
+        }))
         .pipe(gulp.dest(jsTarget));
 });
 
 /**
  * 打包主体库
  */
-gulp.task('pack_reference', function () {
-    var paths = ['./src/common/reference.js'];
+gulp.task('pack_app', function () {
+    var paths = ['src/app.js'];
     gulp.src(paths)
-        .pipe(amdOptimize('reference', {
-            name: 'reference',
-            configFile: './src/common/reference.js',
-            baseUrl: './src/common'
+        .pipe(amdOptimize('app', {
+            name: 'app',
+            configFile: 'src/app.js',
+            baseUrl: 'src'
         }))
-        .pipe(concat('reference.js'))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest(jsTarget))
-        .pipe(concat('reference.min.js'))
-        .pipe(uglify({ outSourceMap: false }))
+        .pipe(concat('app.min.js'))
+        .pipe(uglify({
+            outSourceMap: false
+        }))
         .pipe(gulp.dest(jsTarget));
-});
-
-/**
- * 打包引用库
- */
-gulp.task('pack_libraries', function () {
-    var libraries = JSON.parse(fs.readFileSync(libraryPath));
-    if (libraries.bowers) {
-        for (var index in libraries.bowers) {
-            var lib = libraries.bowers[index];
-            doTarget(lib.js, bowerRoot, jsTarget);
-            doTarget(lib.css, bowerRoot, cssTarget);
-            doTarget(lib.fonts, bowerRoot, fontTarget);
-            doTarget(lib.img, bowerRoot, imgTarget);
-        }
-    }
-    if (libraries.paths) {
-        for (var index in libraries.paths) {
-            var lib = libraries.paths[index];
-            doTarget(lib.js, '', jsTarget);
-            doTarget(lib.css, '', cssTarget);
-            doTarget(lib.fonts, '', fontTarget);
-            doTarget(lib.img, '', imgTarget);
-        }
-    }
-
-    function doTarget(lib, root, target) {
-        if (!lib) return;
-        var libArray = [];
-        if (Object.prototype.toString.call(lib) === '[object Array]') {
-            for (var i in lib) {
-                libArray.push(root + lib[i]);
-            }
-        } else {
-            libArray.push(root + lib);
-        }
-        gulp.src(libArray)
-            .pipe(gulp.dest(target));
-    }
 });
 
 /**
  * 打包应用框架
  */
-gulp.task('pack_src', function () {
-    gulp.src('./src/app/**/*.js')
+gulp.task('pack_application', function () {
+    gulp.src('src/**/*.js')
+        .pipe(amdOptimize('app/application', {
+            name: 'app/application',
+            configFile: 'src/build.js',
+            baseUrl: 'src'
+        }))
         .pipe(concat('app.application.js'))
-        .pipe(gulp.dest(jsTarget))
+        .pipe(gulp.dest('dist/js'))
         .pipe(concat('app.application.min.js'))
-        .pipe(uglify({ outSourceMap: false }))
+        .pipe(uglify({
+            outSourceMap: false
+        }))
         .pipe(gulp.dest(jsTarget));
+});
+
+/**
+ * 打包静态文件
+ */
+gulp.task('pack_resources', function () {
+    var paths = [
+        'resources/**/*',
+        'src/**/*',
+        '!src/app',
+        '!src/modules',
+        '!src/app',
+        '!src/**/*.js',
+        '!src/index.html'
+    ];
+    gulp.src(paths)
+        .pipe(gulp.dest('dist'));
 });
 
 /**
  * 打包模块
  */
 gulp.task('pack_modules', function () {
-    var modules = fs.readdirSync(modulePath);
-    for (var module in modules) {
-        gulp.src([
-            './src/modules/' + modules[module] + '/**/*.js',
-            '!./src/modules/**/module.js',
-            '!./src/modules/**/configs.js',
-            '!./src/modules/**/configs/**/*.js'
-        ])
-            .pipe(concat('module.' + modules[module] + '.js'))
+    var modules = fs.readdirSync(modulePath),
+        packOptions = minimist(process.argv.slice(2), moduleOptions),
+        target = packOptions.p ? './publish' : jsTarget,
+        config = packOptions.p ? JSON.parse(fs.readFileSync(packOptions.p)) : {
+            name: null,
+            modules: []
+        },
+        packs = [
+            './src/modules/**/module.js',
+            './src/modules/**/configs.js',
+            './src/modules/**/configs/**/*.js'
+        ];
+
+    for (var idx in modules) {
+        var requiresPath = 'modules/' + modules[idx] + '/requires';
+        var referencePath = 'modules/' + modules[idx] + '/module';
+        var requiresName = 'modules.' + modules[idx];
+
+        gulp.src('src/**/*.js')
+            .pipe(amdOptimize(requiresPath, {
+                exclude: [referencePath],
+                configFile: 'src/build.js',
+                baseUrl: 'src'
+            }))
+            .pipe(concat(requiresName + '.js'))
+            .pipe(gulp.dest('dist/js'))
+            .pipe(concat(requiresName + '.min.js'))
+            .pipe(uglify({
+                outSourceMap: false
+            }))
+            .pipe(gulp.dest(jsTarget));
+
+        gulp.src('src/**/*.js')
+            .pipe(amdOptimize(referencePath, {
+                exclude: ['app/application'],
+                configFile: 'src/build.js',
+                baseUrl: 'src'
+            }))
+            .pipe(concat('modules.js'))
             .pipe(gulp.dest(jsTarget))
-            .pipe(concat('module.' + modules[module] + '.min.js'))
-            .pipe(uglify({ outSourceMap: false }))
+            .pipe(concat('modules.min.js'))
+            .pipe(uglify({
+                outSourceMap: false
+            }))
             .pipe(gulp.dest(jsTarget));
     }
-
-    gulp.src([
-        './src/modules/**/module.js',
-        './src/modules/**/configs.js',
-        './src/modules/**/configs/**/*.js'
-    ])
-        .pipe(concat('modules.js'))
-        .pipe(gulp.dest(jsTarget))
-        .pipe(concat('modules.min.js'))
-        .pipe(uglify({ outSourceMap: false }))
-        .pipe(gulp.dest(jsTarget));
 });
 
-gulp.task('build', ['pack_require', 'pack_libraries', 'pack_patch', 'pack_reference', 'pack_src', 'pack_modules']);
+/**
+ * 执行build
+ */
+gulp.task('build', ['pack_require', 'pack_patch', 'pack_app', 'pack_application', 'pack_resources', 'pack_modules']);
 
-gulp.task('webserver', function () {
+/**
+ * 启动server
+ */
+gulp.task('start', function () {
     gulp.src(appRoot)
         .pipe(webserver({
             fallback: '/',
@@ -162,16 +192,4 @@ gulp.task('webserver', function () {
             directoryListing: false,
             open: false
         }));
-});
-
-gulp.task('watch', function () {
-    gulp.watch('doc/*.md', function () {
-        gulp.run('md');
-    });
-});
-
-gulp.task('default', function () {
-    gulp.run('build');
-    gulp.run('webserver');
-    gulp.run('watch');
 });

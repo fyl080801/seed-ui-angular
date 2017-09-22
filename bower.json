@@ -1,9 +1,9 @@
 {
-  "name": "seedproject",
+  "name": "requiretest",
   "description": "",
-  "main": "",
+  "main": "index.js",
   "authors": [
-    "fyl <fyl080801@hotmail.com>"
+    "fyl080801 <fyl080801@hotmail.com>"
   ],
   "license": "ISC",
   "homepage": "",
@@ -17,17 +17,12 @@
   "dependencies": {
     "angular": "1.2.32",
     "angular-bootstrap": "0.12.0",
-    "angular-css": "1.0.8",
     "angular-ui-router": "0.3.1",
-    "angular-formly": "*",
-    "angular-formly-templates-bootstrap": "*",
-    "api-check": "*",
     "bootstrap": "3.3.7",
-    "bootstrap-table": "*",
     "es5-shim": "4.5.9",
-    "json2": "*",
-    "jquery": "1.12.4",
     "html5shiv": "3.7.3",
+    "jquery": "1.12.4",
+    "json2": "*",
     "requirejs": "latest",
     "respond": "1.4.2"
   }

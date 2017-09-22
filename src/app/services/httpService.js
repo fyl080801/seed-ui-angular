@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2016/12/23.
- */
-define('app.services.httpService', [
-    'app.services'
+define([
+    'app/services'
 ], function (services) {
     'use strict';
 
@@ -15,38 +12,54 @@ define('app.services.httpService', [
         function ($http, $q, $modal, $appConfig, httpDataHandler) {
             var me = this;
 
-            me.resolveUrl = function (url) {
-                return url.indexOf('http://') === 0 ? url : $appConfig.serverUrl + url;
+            this.resolveUrl = function (url) {
+                return (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) ? url : $appConfig.serverUrl + url;
             };
 
-            me.get = function (url) {
+            this.get = function (url) {
                 var defer = $q.defer();
                 $http({
                     method: 'get',
                     url: me.resolveUrl(url),
-                    withCredentials: true
-                })
-                    .then(function (response) {
-                        httpDataHandler.doResponse(response, defer);
-                    }, function (response) {
-                        httpDataHandler.doError(response, defer);
-                    });
+                    withCredentials: false
+                }).then(function (response) {
+                    httpDataHandler.doResponse(response, defer);
+                }, function (response) {
+                    httpDataHandler.doError(response, defer);
+                });
                 return defer.promise;
             };
 
-            me.post = function (url, params) {
+            this.post = function (url, params) {
                 var defer = $q.defer();
                 $http({
                     method: 'post',
                     data: params,
                     url: me.resolveUrl(url),
-                    withCredentials: true
-                })
-                    .then(function (response) {
-                        httpDataHandler.doResponse(response, defer);
-                    }, function (response) {
-                        httpDataHandler.doError(response, defer);
-                    });
+                    withCredentials: false,
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8'
+                    }
+                }).then(function (response) {
+                    httpDataHandler.doResponse(response, defer);
+                }, function (response) {
+                    httpDataHandler.doError(response, defer);
+                });
+                return defer.promise;
+            };
+
+            this.jsonp = function (url, params) {
+                var defer = $q.defer();
+                $http({
+                    method: 'jsonp',
+                    data: params,
+                    url: me.resolveUrl(url),
+                    withCredentials: false
+                }).then(function (response) {
+                    httpDataHandler.doResponse(response, defer);
+                }, function (response) {
+                    httpDataHandler.doError(response, defer);
+                });
                 return defer.promise;
             };
         }

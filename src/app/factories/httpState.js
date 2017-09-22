@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2016/12/28.
- */
-define('app.factories.httpState', [
-    'app.factories'
+define([
+    'app/factories'
 ], function (factories) {
     'use strict';
 

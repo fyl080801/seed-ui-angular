@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2017/2/22.
- */
-define('app.routes.run', [
-    'app.routes'
+define([
+    'app/routes'
 ], function (routes) {
     'use strict';
 

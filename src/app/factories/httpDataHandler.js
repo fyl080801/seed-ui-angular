@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2017/1/23.
- */
-define('app.factories.httpDataHandler', [
-    'app.factories'
+define([
+    'app/factories'
 ], function (factories) {
     'use strict';
 

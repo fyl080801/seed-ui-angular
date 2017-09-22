@@ -33,7 +33,4 @@ node_modules
 publish
 
 # build path
-app/js
-app/css
-app/fonts
-app/img
+dist

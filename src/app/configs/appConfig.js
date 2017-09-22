@@ -1,8 +1,5 @@
-/**
- * Created by fyl08 on 2016/12/23.
- */
-define('app.configs.appConfig', [
-    'app.configs'
+define([
+    'app/configs'
 ], function (configs) {
     'use strict';
 
