@@ -7,7 +7,8 @@ var appRoot = '',
     cssTarget = 'dist/css',
     fontTarget = 'dist/fonts',
     imgTarget = 'dist/images',
-    modulePath = 'src/modules';
+    modulePath = 'src/modules',
+    referenceConfig = 'src/reference.json';
 
 /**
  * 用于pack_modules的参数
@@ -110,17 +111,31 @@ gulp.task('pack_application', function () {
  * 打包静态文件
  */
 gulp.task('pack_resources', function () {
-    var paths = [
-        'resources/**/*',
-        'src/**/*',
-        '!src/app',
-        '!src/modules',
-        '!src/app',
-        '!src/**/*.js',
-        '!src/index.html'
-    ];
-    gulp.src(paths)
+    gulp.src([
+            'resources/**/*',
+            'src/**/*',
+            '!src/app',
+            '!src/modules',
+            '!src/app',
+            '!src/**/*.js',
+            '!src/index.html'
+        ])
         .pipe(gulp.dest('dist'));
+
+    var reference = JSON.parse(fs.readFileSync(referenceConfig));
+    for (var name in reference) {
+        var ref = reference[name];
+        doTarget(ref.js, jsTarget);
+        doTarget(ref.css, cssTarget);
+        doTarget(ref.fonts, fontTarget);
+        doTarget(ref.images, imgTarget);
+    }
+
+    function doTarget(lib, target) {
+        if (!lib || !target) return;
+        gulp.src(lib)
+            .pipe(gulp.dest(target));
+    }
 });
 
 /**
