@@ -186,7 +186,7 @@ gulp.task('build', ['pack_require', 'pack_patch', 'pack_app', 'pack_application'
 gulp.task('start', function () {
     gulp.src(appRoot)
         .pipe(webserver({
-            fallback: '/',
+            fallback: 'src/index.html',
             livereload: false,
             port: 7999,
             directoryListing: false,
