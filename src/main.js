@@ -5,6 +5,13 @@
         config = {
             urlArgs: app.getAttribute('data-args'),
             paths: {
+                // patch
+                'es5-shim': '../bower_components/es5-shim/es5-shim.min',
+                'es5-sham': '../bower_components/es5-shim/es5-sham.min',
+                'html5shiv': '../bower_components/html5shiv/dist/html5shiv.min',
+                'json2': '../bower_components/json2/json2',
+                'respond': '../bower_components/respond/dest/respond.min',
+                // app
                 'angular': '../bower_components/angular/angular',
                 'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
                 'ui-bootstrap-tpls': '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
@@ -12,7 +19,15 @@
                 'jquery': '../bower_components/jquery/dist/jquery',
                 'app/application': 'app/application'
             },
+            map: {
+                '*': {
+                    'rcss': '../bower_components/require-css/css'
+                }
+            },
             shim: {
+                'respond': {
+                    deps: ['html5shiv']
+                },
                 'app/application': {
                     deps: ['angular', 'jquery', 'bootstrap', 'angular-ui-router', 'ui-bootstrap-tpls']
                 },
@@ -28,7 +43,7 @@
             }
         };
 
-    // initBrowserPatch(config);
+    initBrowserPatch(config);
     initReference(requires, config, options.references);
     initModules(requires, options);
     startup(requires, config);
@@ -68,38 +83,25 @@
         }
     }
 
-    // function initBrowserPatch(config) {
-    //     if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8')
-    //         config.shim['app'] = {
-    //             deps: ['patch']
-    //         };
-    // }
+    function initBrowserPatch(config) {
+        if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8') {
+            var patchs = ['es5-shim', 'es5-sham', 'html5shiv', 'json2', 'respond'];
+            config.shim['angular'] = {
+                deps: patchs
+            };
+            config.shim['bootstrap'] = {
+                deps: patchs
+            };
+            config.shim['jquery'] = {
+                deps: patchs
+            };
+        }
+    }
 })({
     app: document.getElementById('app'),
-    references: {
-        // modules
-        // 'modules.system.module': {
-        //     path: 'js/modules'
-        // },
-        // 'modules/sample/module': {
-        //     path: 'modules/sample/module'
-        // },
-
-        // requires
-        // 'modules.system.requires': {
-        //     path: 'js/module.system',
-        //     shim: {
-        //         deps: ['modules.system.module']
-        //     }
-        // },
-        // 'modules/sample/requires': {
-        //     path: 'modules/sample/requires',
-        //     shim: {
-        //         deps: ['modules/sample/module']
-        //     }
-        // }
-    },
+    references: {},
     requires: [
+        'rcss!../bower_components/bootstrap/dist/css/bootstrap.css',
         'modules/sample/module'
     ],
     noDebugs: []

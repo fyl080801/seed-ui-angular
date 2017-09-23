@@ -6,6 +6,7 @@
             urlArgs: app.getAttribute('data-args'),
             paths: {
                 'patch': 'js/patch',
+                'rcss': 'js/app',
                 'angular': 'js/app',
                 'app': 'js/app',
                 'app/application': 'js/app.application'
@@ -17,10 +18,10 @@
             }
         };
 
-    // initBrowserPatch(config);
+    initBrowserPatch(config);
     initReference(requires, config, options.references);
     initModules(requires, options);
-    // initDebug(config, options.noDebugs);
+    initDebug(config, options.noDebugs);
     startup(requires, config);
 
     function startup(requires, config) {
@@ -58,44 +59,38 @@
         }
     }
 
-    // function initDebug(config, nonDebugs) {
-    //     var debug = eval(app.getAttribute('data-debug')) ? '' : '.min';
-    //     for (var index in config.paths) {
-    //         var isDebug = true;
-    //         for (var i in nonDebugs) {
-    //             if (nonDebugs[i] === index) {
-    //                 isDebug = false;
-    //                 break;
-    //             }
-    //         }
-    //         config.paths[index] = config.paths[index] + (isDebug ? debug : '');
-    //     }
-    // }
+    function initDebug(config, nonDebugs) {
+        var debug = eval(app.getAttribute('data-debug')) ? '' : '.min';
+        for (var index in config.paths) {
+            var isDebug = true;
+            for (var i in nonDebugs) {
+                if (nonDebugs[i] === index) {
+                    isDebug = false;
+                    break;
+                }
+            }
+            config.paths[index] = config.paths[index] + (isDebug ? debug : '');
+        }
+    }
 
-    // function initBrowserPatch(config) {
-    //     if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8')
-    //         config.shim['app'] = {
-    //             deps: ['patch']
-    //         };
-    // }
+    function initBrowserPatch(config) {
+        if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8')
+            config.shim['app'] = {
+                deps: ['patch']
+            };
+    }
 })({
     app: document.getElementById('app'),
     references: {
-        // // modules
-        // 'modules.system.module': {
-        //     path: 'js/modules'
-        // },
+        // modules
         'modules/sample/module': {
-            path: 'js/modules'
+            path: 'js/modules',
+            shim: {
+                deps: ['app/application']
+            }
         },
 
-        // // requires
-        // 'modules.system.requires': {
-        //     path: 'js/module.system',
-        //     shim: {
-        //         deps: ['modules.system.module']
-        //     }
-        // },
+        // requires
         'modules/sample/requires': {
             path: 'js/modules.sample',
             shim: {
@@ -104,6 +99,7 @@
         }
     },
     requires: [
+        'rcss!css/bootstrap.min.css',
         'modules/sample/module'
     ],
     noDebugs: []

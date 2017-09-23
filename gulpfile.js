@@ -114,7 +114,8 @@ gulp.task('pack_resources', function () {
             '!src/modules',
             '!src/app',
             '!src/**/*.js',
-            '!src/index.html'
+            '!src/index.html',
+            '!src/reference.json'
         ])
         .pipe(gulp.dest('dist'));
 

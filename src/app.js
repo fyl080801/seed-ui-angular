@@ -1,5 +1,6 @@
 require.config({
     paths: {
+        'rcss': '../bower_components/require-css/css.min',
         'angular': '../bower_components/angular/angular.min',
         'jquery': '../bower_components/jquery/dist/jquery.min',
         'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
@@ -23,6 +24,7 @@ require.config({
 });
 
 define([
+    'rcss',
     'angular',
     'jquery',
     'bootstrap',

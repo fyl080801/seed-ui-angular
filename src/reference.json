@@ -4,5 +4,12 @@
       "./bower_components/api-check/dist/api-check.js",
       "./bower_components/api-check/dist/api-check.min.js"
     ]
+  },
+  "bootstrap": {
+    "css": [
+      "./bower_components/bootstrap/dist/css/bootstrap.min.css",
+      "./bower_components/bootstrap/dist/css/bootstrap.min.css.map"
+    ],
+    "fonts": ["./bower_components/bootstrap/dist/fonts/*"]
   }
 }
