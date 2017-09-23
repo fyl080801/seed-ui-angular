@@ -1,6 +1,7 @@
 define([
+    'require',
     'app/configs'
-], function (configs) {
+], function (require, configs) {
     'use strict';
 
     configs.config([

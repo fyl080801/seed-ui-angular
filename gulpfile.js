@@ -7,16 +7,6 @@ var jsTarget = 'dist/js',
     imgTarget = 'dist/images';
 
 /**
- * 用于pack_modules的参数
- */
-var moduleOptions = {
-    string: 'p',
-    default: {
-        p: null
-    }
-};
-
-/**
  * 模块定义
  */
 var gulp = require('gulp'),
@@ -110,7 +100,6 @@ gulp.task('pack_resources', function () {
     gulp.src([
             'resources/**/*',
             'src/**/*',
-            '!src/app',
             '!src/modules',
             '!src/app',
             '!src/**/*.js',
@@ -141,7 +130,12 @@ gulp.task('pack_resources', function () {
  */
 gulp.task('pack_modules', function () {
     var modules = fs.readdirSync('src/modules'),
-        packOptions = minimist(process.argv.slice(2), moduleOptions),
+        packOptions = minimist(process.argv.slice(2), {
+            string: 'p',
+            default: {
+                p: null
+            }
+        }),
         config = packOptions.p ? JSON.parse(fs.readFileSync(packOptions.p)) : {
             name: null,
             modules: []
