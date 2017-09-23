@@ -1,14 +1,10 @@
 /**
  * 基本路径
  */
-var appRoot = '',
-    bowerRoot = 'bower_components',
-    jsTarget = 'dist/js',
+var jsTarget = 'dist/js',
     cssTarget = 'dist/css',
     fontTarget = 'dist/fonts',
-    imgTarget = 'dist/images',
-    modulePath = 'src/modules',
-    referenceConfig = 'src/reference.json';
+    imgTarget = 'dist/images';
 
 /**
  * 用于pack_modules的参数
@@ -38,7 +34,7 @@ var gulp = require('gulp'),
  * 打包require
  */
 gulp.task('pack_require', function () {
-    gulp.src(bowerRoot + '/requirejs/require.js')
+    gulp.src('bower_components/requirejs/require.js')
         .pipe(concat('require.js'))
         .pipe(gulp.dest(jsTarget))
         .pipe(concat('require.min.js'))
@@ -122,7 +118,8 @@ gulp.task('pack_resources', function () {
         ])
         .pipe(gulp.dest('dist'));
 
-    var reference = JSON.parse(fs.readFileSync(referenceConfig));
+    var reference = JSON.parse(fs.readFileSync('src/reference.json'));
+
     for (var name in reference) {
         var ref = reference[name];
         doTarget(ref.js, jsTarget);
@@ -142,9 +139,8 @@ gulp.task('pack_resources', function () {
  * 打包模块
  */
 gulp.task('pack_modules', function () {
-    var modules = fs.readdirSync(modulePath),
+    var modules = fs.readdirSync('src/modules'),
         packOptions = minimist(process.argv.slice(2), moduleOptions),
-        target = packOptions.p ? './publish' : jsTarget,
         config = packOptions.p ? JSON.parse(fs.readFileSync(packOptions.p)) : {
             name: null,
             modules: []
@@ -199,11 +195,11 @@ gulp.task('build', ['pack_require', 'pack_patch', 'pack_app', 'pack_application'
  * 启动server
  */
 gulp.task('start', function () {
-    gulp.src(appRoot)
+    gulp.src('')
         .pipe(webserver({
             fallback: 'src/index.html',
             livereload: false,
-            port: 7999,
+            port: 8999,
             directoryListing: false,
             open: false
         }));

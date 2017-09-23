@@ -1,12 +1,10 @@
-var bowerroot = '../bower_components';
-
 require.config({
     paths: {
-        'es5-shim': bowerroot + '/es5-shim/es5-shim.min',
-        'es5-sham': bowerroot + '/es5-shim/es5-sham.min',
-        'html5shiv': bowerroot + '/html5shiv/dist/html5shiv.min',
-        'json2': bowerroot + '/json2/json2',
-        'respond': bowerroot + '/respond/dest/respond.min'
+        'es5-shim': '../bower_components/es5-shim/es5-shim.min',
+        'es5-sham': '../bower_components/es5-shim/es5-sham.min',
+        'html5shiv': '../bower_components/html5shiv/dist/html5shiv.min',
+        'json2': '../bower_components/json2/json2',
+        'respond': '../bower_components/respond/dest/respond.min'
     },
     shim: {
         'respond': {
@@ -21,6 +19,6 @@ define([
     'html5shiv',
     'json2',
     'respond'
-], function (require) {
+], function () {
     'use strict';
 });

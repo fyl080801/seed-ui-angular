@@ -1,12 +1,10 @@
-var bowerroot = '../bower_components';
-
 require.config({
     paths: {
-        'angular': bowerroot + '/angular/angular.min',
-        'jquery': bowerroot + '/jquery/dist/jquery.min',
-        'bootstrap': bowerroot + '/bootstrap/dist/js/bootstrap.min',
-        'ui-bootstrap-tpls': bowerroot + '/angular-bootstrap/ui-bootstrap-tpls.min',
-        'angular-ui-router': bowerroot + '/angular-ui-router/release/angular-ui-router.min',
+        'angular': '../bower_components/angular/angular.min',
+        'jquery': '../bower_components/jquery/dist/jquery.min',
+        'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
+        'ui-bootstrap-tpls': '../bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
+        'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router.min',
         'app/application': 'app/application'
     },
     shim: {
@@ -33,12 +31,11 @@ require.config({
 });
 
 define([
-    'require',
     'angular',
     'jquery',
     'bootstrap',
     'ui-bootstrap-tpls',
     'angular-ui-router'
-], function (require) {
+], function () {
     'use strict';
 });
