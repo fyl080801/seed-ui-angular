@@ -86,13 +86,13 @@
     function initBrowserPatch(config) {
         if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8') {
             var patchs = ['es5-shim', 'es5-sham', 'html5shiv', 'json2', 'respond'];
-            config.shim['angular'] = {
+            config.shim.angular = {
                 deps: patchs
             };
-            config.shim['bootstrap'] = {
+            config.shim.bootstrap = {
                 deps: patchs
             };
-            config.shim['jquery'] = {
+            config.shim.jquery = {
                 deps: patchs
             };
         }
@@ -102,7 +102,7 @@
     references: {},
     requires: [
         'rcss!../bower_components/bootstrap/dist/css/bootstrap.css',
-        'modules/sample/module'
+        'modules'
     ],
     noDebugs: []
 });

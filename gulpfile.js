@@ -129,22 +129,7 @@ gulp.task('pack_resources', function () {
  * 打包模块
  */
 gulp.task('pack_modules', function () {
-    var modules = fs.readdirSync('src/modules'),
-        packOptions = minimist(process.argv.slice(2), {
-            string: 'p',
-            default: {
-                p: null
-            }
-        }),
-        config = packOptions.p ? JSON.parse(fs.readFileSync(packOptions.p)) : {
-            name: null,
-            modules: []
-        },
-        packs = [
-            './src/modules/**/module.js',
-            './src/modules/**/configs.js',
-            './src/modules/**/configs/**/*.js'
-        ];
+    var modules = fs.readdirSync('src/modules');
 
     for (var idx in modules) {
         var requiresPath = 'modules/' + modules[idx] + '/requires';
@@ -164,21 +149,21 @@ gulp.task('pack_modules', function () {
                 outSourceMap: false
             }))
             .pipe(gulp.dest(jsTarget));
-
-        gulp.src('src/**/*.js')
-            .pipe(amdOptimize(referencePath, {
-                exclude: ['app/application'],
-                configFile: 'src/build.js',
-                baseUrl: 'src'
-            }))
-            .pipe(concat('modules.js'))
-            .pipe(gulp.dest(jsTarget))
-            .pipe(concat('modules.min.js'))
-            .pipe(uglify({
-                outSourceMap: false
-            }))
-            .pipe(gulp.dest(jsTarget));
     }
+
+    gulp.src('src/**/*.js')
+        .pipe(amdOptimize('modules', {
+            exclude: ['app/application'],
+            configFile: 'src/build.js',
+            baseUrl: 'src'
+        }))
+        .pipe(concat('modules.js'))
+        .pipe(gulp.dest(jsTarget))
+        .pipe(concat('modules.min.js'))
+        .pipe(uglify({
+            outSourceMap: false
+        }))
+        .pipe(gulp.dest(jsTarget));
 });
 
 /**

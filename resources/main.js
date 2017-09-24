@@ -83,7 +83,7 @@
     app: document.getElementById('app'),
     references: {
         // modules
-        'modules/sample/module': {
+        'modules': {
             path: 'js/modules',
             shim: {
                 deps: ['app/application']
@@ -94,13 +94,13 @@
         'modules/sample/requires': {
             path: 'js/modules.sample',
             shim: {
-                deps: ['modules/sample/module']
+                deps: ['modules']
             }
         }
     },
     requires: [
         'rcss!css/bootstrap.min.css',
-        'modules/sample/module'
+        'modules'
     ],
     noDebugs: []
 });
