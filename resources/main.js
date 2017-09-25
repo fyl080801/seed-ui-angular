@@ -28,10 +28,10 @@
         require.config(config);
         require(requires, function (application) {
             angular.element(document).ready(function () {
-                angular.bootstrap(document, ['app.application']);
                 angular.element(document).find('html')
                     .attr('id', 'ng-app')
                     .attr('ng-app', 'app.application');
+                angular.bootstrap(document, ['app.application']);
             });
         });
     }
@@ -74,10 +74,14 @@
     }
 
     function initBrowserPatch(config) {
-        if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8')
-            config.shim['app'] = {
+        if (document.getElementsByTagName('html')[0].getAttribute('data-html-type') === 'no-js lte-ie8') {
+            config.shim.app = {
                 deps: ['patch']
             };
+            config.shim.rcss = {
+                deps: ['patch']
+            };
+        }
     }
 })({
     app: document.getElementById('app'),
@@ -99,7 +103,6 @@
         }
     },
     requires: [
-        'rcss!css/bootstrap.min.css',
         'modules'
     ],
     noDebugs: []

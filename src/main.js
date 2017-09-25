@@ -52,10 +52,10 @@
         require.config(config);
         require(requires, function (application) {
             angular.element(document).ready(function () {
-                angular.bootstrap(document, ['app.application']);
                 angular.element(document).find('html')
                     .attr('id', 'ng-app')
                     .attr('ng-app', 'app.application');
+                angular.bootstrap(document, ['app.application']);
             });
         });
     }
@@ -101,7 +101,6 @@
     app: document.getElementById('app'),
     references: {},
     requires: [
-        'rcss!../bower_components/bootstrap/dist/css/bootstrap.css',
         'modules'
     ],
     noDebugs: []
