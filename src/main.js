@@ -101,7 +101,7 @@
     app: document.getElementById('app'),
     references: {},
     requires: [
-        'modules'
+        'sample.modules'
     ],
     noDebugs: []
 });

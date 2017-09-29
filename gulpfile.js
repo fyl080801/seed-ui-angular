@@ -42,7 +42,7 @@ gulp.task('pack_patch', function () {
     gulp.src(paths)
         .pipe(amdOptimize('patch', {
             name: 'iepatch',
-            configFile: 'src/patch.js',
+            configFile: 'src/patch.build.js',
             baseUrl: 'src'
         }))
         .pipe(concat('patch.js'))
@@ -62,7 +62,7 @@ gulp.task('pack_app', function () {
     gulp.src(paths)
         .pipe(amdOptimize('app', {
             name: 'app',
-            configFile: 'src/app.js',
+            configFile: 'src/app.build.js',
             baseUrl: 'src'
         }))
         .pipe(concat('app.js'))
@@ -81,7 +81,7 @@ gulp.task('pack_application', function () {
     gulp.src('src/**/*.js')
         .pipe(amdOptimize('app/application', {
             name: 'app/application',
-            configFile: 'src/build.js',
+            configFile: 'src/application.build.js',
             baseUrl: 'src'
         }))
         .pipe(concat('app.application.js'))
@@ -130,16 +130,22 @@ gulp.task('pack_resources', function () {
  */
 gulp.task('pack_modules', function () {
     var modules = fs.readdirSync('src/modules');
+    var builds = fs.readdirSync('src')
+        .filter(function (file) {
+            return file.endsWith('.build.js') &&
+                !file.startsWith('requires.') &&
+                file !== 'app.build.js' &&
+                file !== 'application.build.js' &&
+                file !== 'patch.build.js';
+        });
 
     for (var idx in modules) {
         var requiresPath = 'modules/' + modules[idx] + '/requires';
-        var referencePath = 'modules/' + modules[idx] + '/module';
         var requiresName = 'modules.' + modules[idx];
 
         gulp.src('src/**/*.js')
             .pipe(amdOptimize(requiresPath, {
-                exclude: [referencePath],
-                configFile: 'src/build.js',
+                configFile: 'src/requires.build.js',
                 baseUrl: 'src'
             }))
             .pipe(concat(requiresName + '.js'))
@@ -151,19 +157,23 @@ gulp.task('pack_modules', function () {
             .pipe(gulp.dest(jsTarget));
     }
 
-    gulp.src('src/**/*.js')
-        .pipe(amdOptimize('modules', {
-            exclude: ['app/application'],
-            configFile: 'src/build.js',
-            baseUrl: 'src'
-        }))
-        .pipe(concat('modules.js'))
-        .pipe(gulp.dest(jsTarget))
-        .pipe(concat('modules.min.js'))
-        .pipe(uglify({
-            outSourceMap: false
-        }))
-        .pipe(gulp.dest(jsTarget));
+    for (var bidx in builds) {
+        var buildFile = builds[bidx];
+        var buildName = buildFile.replace('.build.js', '');
+
+        gulp.src('src/**/*.js')
+            .pipe(amdOptimize(buildName + '.modules', {
+                configFile: 'src/' + buildFile,
+                baseUrl: 'src'
+            }))
+            .pipe(concat(buildName + '.modules.js'))
+            .pipe(gulp.dest(jsTarget))
+            .pipe(concat(buildName + '.modules.min.js'))
+            .pipe(uglify({
+                outSourceMap: false
+            }))
+            .pipe(gulp.dest(jsTarget));
+    }
 });
 
 /**

@@ -87,8 +87,8 @@
     app: document.getElementById('app'),
     references: {
         // modules
-        'modules': {
-            path: 'js/modules',
+        'sample.modules': {
+            path: 'js/sample.modules',
             shim: {
                 deps: ['app/application']
             }
@@ -98,12 +98,12 @@
         'modules/sample/requires': {
             path: 'js/modules.sample',
             shim: {
-                deps: ['modules']
+                deps: ['sample.modules']
             }
         }
     },
     requires: [
-        'modules'
+        'sample.modules'
     ],
     noDebugs: []
 });
