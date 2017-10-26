@@ -63,7 +63,7 @@ define([
                 var _data = {};
                 if (text === null || text === undefined) {
                     _data.text = '发生错误';
-                } else if (Object.prototype.toString.call(text) == '[object Array]') {
+                } else if (Object.prototype.toString.call(text) === '[object Array]') {
                     _data.contents = text;
                 } else {
                     _data.text = text;

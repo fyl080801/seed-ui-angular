@@ -60,7 +60,7 @@ define([
                     type: 'POST',
                     contentType: 'application/json',
                     dataType: 'json',
-                    data: JSON.stringify(params),
+                    data: params,
                     url: me.resolveUrl(url),
                     success: function (response) {
                         httpDataHandler.doResponse({
