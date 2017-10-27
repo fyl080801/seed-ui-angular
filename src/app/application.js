@@ -16,6 +16,7 @@ define([
     'app/services/popupService',
     'app/directives/title',
     'app/directives/theme',
+    'app/directives/equals',
     'app/routes/run'
 ], function () {
     'use strict';
