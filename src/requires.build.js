@@ -11,6 +11,7 @@ require.config({
     },
     exclude: [
         'app/application',
-        'modules/sample/module'
+        'modules/sample/module',
+        'modules/ngtable/module'
     ]
 });
