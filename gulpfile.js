@@ -42,7 +42,7 @@ gulp.task('pack_patch', function () {
     gulp.src(paths)
         .pipe(amdOptimize('patch', {
             name: 'iepatch',
-            configFile: 'src/patch.build.js',
+            configFile: 'config/patch.build.js',
             baseUrl: 'src'
         }))
         .pipe(concat('patch.js'))
@@ -62,7 +62,7 @@ gulp.task('pack_app', function () {
     gulp.src(paths)
         .pipe(amdOptimize('app', {
             name: 'app',
-            configFile: 'src/app.build.js',
+            configFile: 'config/app.build.js',
             baseUrl: 'src'
         }))
         .pipe(concat('app.js'))
@@ -81,7 +81,7 @@ gulp.task('pack_application', function () {
     gulp.src('src/**/*.js')
         .pipe(amdOptimize('app/application', {
             name: 'app/application',
-            configFile: 'src/application.build.js',
+            configFile: 'config/application.build.js',
             baseUrl: 'src'
         }))
         .pipe(concat('app.application.js'))
@@ -108,7 +108,7 @@ gulp.task('pack_resources', function () {
         ])
         .pipe(gulp.dest('dist'));
 
-    var reference = JSON.parse(fs.readFileSync('src/reference.json'));
+    var reference = JSON.parse(fs.readFileSync('config/reference.json'));
 
     for (var name in reference) {
         var ref = reference[name];
@@ -130,7 +130,7 @@ gulp.task('pack_resources', function () {
  */
 gulp.task('pack_modules', function () {
     var modules = fs.readdirSync('src/modules');
-    var builds = fs.readdirSync('src')
+    var builds = fs.readdirSync('config')
         .filter(function (file) {
             return file.endsWith('.build.js') &&
                 !file.startsWith('requires.') &&
@@ -145,7 +145,7 @@ gulp.task('pack_modules', function () {
 
         gulp.src('src/**/*.js')
             .pipe(amdOptimize(requiresPath, {
-                configFile: 'src/requires.build.js',
+                configFile: 'config/requires.build.js',
                 baseUrl: 'src'
             }))
             .pipe(concat(requiresName + '.js'))
@@ -163,7 +163,7 @@ gulp.task('pack_modules', function () {
 
         gulp.src('src/**/*.js')
             .pipe(amdOptimize(buildName + '.modules', {
-                configFile: 'src/' + buildFile,
+                configFile: 'config/' + buildFile,
                 baseUrl: 'src'
             }))
             .pipe(concat(buildName + '.modules.js'))
