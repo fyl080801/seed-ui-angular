@@ -1,5 +1,5 @@
 define([
-    'modules/ngtable/module'
+    'modules/ngtable/factories'
 ], function (module) {
     'use strict';
 

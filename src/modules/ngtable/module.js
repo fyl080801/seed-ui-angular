@@ -2,14 +2,32 @@ define([
     'app/application',
     'modules/ngtable/configs/ngTableDefaults',
     'modules/ngtable/providers/ngTableDefaultGetData',
-    'modules/ngtable/providers/ngTableFilterConfig'
+    'modules/ngtable/providers/ngTableFilterConfig',
+    'modules/ngtable/factories/ngTableColumn',
+    'modules/ngtable/factories/ngTableEventsChannel',
+    'modules/ngtable/factories/ngTableGetDataBcShim',
+    'modules/ngtable/factories/NgTableParams',
+    'modules/ngtable/directives/ngTable',
+    'modules/ngtable/directives/ngTableDynamic',
+    'modules/ngtable/directives/ngTableFilterRow',
+    'modules/ngtable/directives/ngTablePagination',
+    'modules/ngtable/directives/ngTableSorterRow',
+    'modules/ngtable/controllers/ngTableController',
+    'modules/ngtable/controllers/ngTableFilterRowController',
+    'modules/ngtable/controllers/ngTableSorterRowController'
 ], function (application) {
     'use strict';
 
     application.requires.push('modules.ngtable');
 
     return angular
-        .module('modules.ngtable', ['modules.ngtable.configs', 'modules.ngtable.providers'])
+        .module('modules.ngtable', [
+            'modules.ngtable.configs',
+            'modules.ngtable.providers',
+            'modules.ngtable.factories',
+            'modules.ngtable.directives',
+            'modules.ngtable.controllers'
+        ])
         .run([
             '$templateCache',
             function ($templateCache) {

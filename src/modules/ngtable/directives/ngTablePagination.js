@@ -1,5 +1,5 @@
 define([
-    'modules/ngtable/module'
+    'modules/ngtable/directives'
 ], function (module) {
     'use strict';
 
