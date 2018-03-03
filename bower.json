@@ -2,22 +2,15 @@
   "name": "requiretest",
   "description": "",
   "main": "index.js",
-  "authors": [
-    "fyl080801 <fyl080801@hotmail.com>"
-  ],
+  "authors": ["fyl080801 <fyl080801@hotmail.com>"],
   "license": "ISC",
   "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
     "angular": "1.2.32",
     "angular-bootstrap": "0.12.0",
     "angular-ui-router": "0.3.1",
+    "angular-sanitize": "1.2.32",
     "bootstrap": "3.3.7",
     "es5-shim": "4.5.9",
     "html5shiv": "3.7.3",
