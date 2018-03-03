@@ -1,10 +1,11 @@
 define([
-    'rcss',
-    'angular',
-    'jquery',
-    'bootstrap',
-    'ui-bootstrap-tpls',
-    'angular-ui-router'
-], function () {
-    'use strict';
+  'rcss',
+  'angular',
+  'jquery',
+  'bootstrap',
+  'ui-bootstrap-tpls',
+  'angular-ui-router',
+  'angular-sanitize'
+], function() {
+  'use strict';
 });
