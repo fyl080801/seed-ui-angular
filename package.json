@@ -10,7 +10,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
-    "gulp-less": "*",
+    "gulp-less": "^4.0.0",
     "gulp-ngmin": "^0.3.0",
     "gulp-rename": "*",
     "gulp-uglify": "^1.5.4",
