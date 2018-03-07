@@ -6,7 +6,7 @@ define([
     module.controller('modules.sample.controllers.test', [
         '$scope',
         function ($scope) {
-            $scope.text = 'aaaaaaa';
+            $scope.text = 'zzxxx';
         }
     ]);
 });
