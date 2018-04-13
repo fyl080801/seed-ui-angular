@@ -1,6 +1,6 @@
 define([
-  'rcss',
   'angular',
+  'rcss',
   'jquery',
   'bootstrap',
   'ui-bootstrap-tpls',
@@ -8,4 +8,5 @@ define([
   'angular-sanitize'
 ], function() {
   'use strict';
+
 });

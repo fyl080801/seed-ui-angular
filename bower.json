@@ -4,7 +4,6 @@
   "main": "index.js",
   "authors": ["fyl080801 <fyl080801@hotmail.com>"],
   "license": "ISC",
-  "homepage": "",
   "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
     "angular": "1.2.32",
