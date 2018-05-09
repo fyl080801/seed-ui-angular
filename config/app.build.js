@@ -11,6 +11,7 @@ require.config({
     'angular-ui-router':
       '../bower_components/angular-ui-router/release/angular-ui-router.min',
     'angular-sanitize':
-      '../bower_components/angular-sanitize/angular-sanitize.min'
+      '../bower_components/angular-sanitize/angular-sanitize.min',
+    'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min'
   }
 });
