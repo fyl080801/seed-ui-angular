@@ -1,5 +1,5 @@
 import 'angular';
-import application = require('app/application');
+import application = require('../../../src/app/application');
 
 'use strict';
 

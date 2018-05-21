@@ -17,5 +17,8 @@
 
   "/bower_components/requirejs/require.js": "require.js",
   "/bower_components/require-css/css.js": "css.js",
-  "/src/startup.js": "startup.js"
+  "/src/startup.js": "startup.js",
+
+  "../../../src/": "",
+  "../../src/": ""
 }

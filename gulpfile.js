@@ -93,7 +93,7 @@ gulp.task('pack_application', [], function(cb) {
 gulp.task('pack_replace', ['pack_resources'], function(cb) {
   pump(
     [
-      gulp.src(['dist/**/*.html']),
+      gulp.src(['dist/**/*']),
       rev(['config/manifest.json']),
       gulp.dest('dist')
     ],
