@@ -1,13 +1,11 @@
 define([
   'angular',
-  'rcss',
   'jquery',
   'bootstrap',
   'ui-bootstrap-tpls',
-  'angular-ui-router',
-  'angular-sanitize',
-  'angular-cookies'
+  'angular-ui-router'
 ], function() {
   'use strict';
 
+  return angular.module('app.boot', ['ui.router', 'ui.bootstrap']);
 });

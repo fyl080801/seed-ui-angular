@@ -1,55 +1,55 @@
 (function(options) {
   'use strict';
 
-  var requires = ['app/application'],
-    config = {
-      urlArgs: app.getAttribute('data-args'),
-      paths: {
-        // patch
-        'es5-shim': '../bower_components/es5-shim/es5-shim.min',
-        'es5-sham': '../bower_components/es5-shim/es5-sham.min',
-        html5shiv: '../bower_components/html5shiv/dist/html5shiv.min',
-        json2: '../bower_components/json2/json2',
-        respond: '../bower_components/respond/dest/respond.min',
-        // app
-        angular: '../bower_components/angular/angular',
-        'angular-ui-router':
-          '../bower_components/angular-ui-router/release/angular-ui-router',
-        'ui-bootstrap-tpls':
-          '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
-        bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
-        jquery: '../bower_components/jquery/dist/jquery',
-        'app/application': 'app/application'
-      },
-      map: {
-        '*': {
-          rcss: '../bower_components/require-css/css'
-        }
-      },
-      shim: {
-        respond: {
-          deps: ['html5shiv']
-        },
-        'app/application': {
-          deps: [
-            'angular',
-            'jquery',
-            'bootstrap',
-            'angular-ui-router',
-            'ui-bootstrap-tpls'
-          ]
-        },
-        'ui-bootstrap-tpls': {
-          deps: ['angular', 'bootstrap']
-        },
-        'angular-ui-router': {
-          deps: ['angular']
-        },
-        bootstrap: {
-          deps: ['jquery']
-        }
-      }
-    };
+  // var requires = ['app/application'],
+  //   config = {
+  //     urlArgs: app.getAttribute('data-args'),
+  //     paths: {
+  //       // patch
+  //       'es5-shim': '../bower_components/es5-shim/es5-shim.min',
+  //       'es5-sham': '../bower_components/es5-shim/es5-sham.min',
+  //       html5shiv: '../bower_components/html5shiv/dist/html5shiv.min',
+  //       json2: '../bower_components/json2/json2',
+  //       respond: '../bower_components/respond/dest/respond.min',
+  //       // app
+  //       angular: '../bower_components/angular/angular',
+  //       'angular-ui-router':
+  //         '../bower_components/angular-ui-router/release/angular-ui-router',
+  //       'ui-bootstrap-tpls':
+  //         '../bower_components/angular-bootstrap/ui-bootstrap-tpls',
+  //       bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
+  //       jquery: '../bower_components/jquery/dist/jquery',
+  //       'app/application': 'app/application'
+  //     },
+  //     map: {
+  //       '*': {
+  //         rcss: '../bower_components/require-css/css'
+  //       }
+  //     },
+  //     shim: {
+  //       respond: {
+  //         deps: ['html5shiv']
+  //       },
+  //       'app/application': {
+  //         deps: [
+  //           'angular',
+  //           'jquery',
+  //           'bootstrap',
+  //           'angular-ui-router',
+  //           'ui-bootstrap-tpls'
+  //         ]
+  //       },
+  //       'ui-bootstrap-tpls': {
+  //         deps: ['angular', 'bootstrap']
+  //       },
+  //       'angular-ui-router': {
+  //         deps: ['angular']
+  //       },
+  //       bootstrap: {
+  //         deps: ['jquery']
+  //       }
+  //     }
+  //   };
 
   initBrowserPatch(config);
   initReference(requires, config, options.references);

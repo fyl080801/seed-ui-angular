@@ -10,6 +10,7 @@ var jsTarget = 'dist/js',
  * 模块定义
  */
 var gulp = require('gulp'),
+  pump = require('pump'),
   rimraf = require('rimraf'),
   concat = require('gulp-concat'),
   cssmin = require('gulp-cssmin'),
@@ -18,6 +19,7 @@ var gulp = require('gulp'),
   minimist = require('minimist'),
   amdOptimize = require('amd-optimize'),
   webserver = require('gulp-webserver'),
+  rev = require('sog-gulp-rev-collector'),
   fs = require('fs');
 
 /**
@@ -63,52 +65,40 @@ gulp.task('pack_patch', function() {
 });
 
 /**
- * 打包主体库
+ * 打包主体框架
  */
-gulp.task('pack_app', function() {
-  var paths = ['src/app.js'];
-  gulp
-    .src(paths)
-    .pipe(
-      amdOptimize('app', {
-        name: 'app',
-        configFile: 'config/app.build.js',
+gulp.task('pack_application', [], function(cb) {
+  pump(
+    [
+      gulp.src('src/**/*.js'),
+      amdOptimize('app/application', {
+        configFile: 'config/build.js',
         baseUrl: 'src'
-      })
-    )
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest(jsTarget))
-    .pipe(concat('app.min.js'))
-    .pipe(
+      }),
+      concat('app.application.js'),
+      gulp.dest(jsTarget),
+      concat('app.application.min.js'),
       uglify({
         outSourceMap: false
-      })
-    )
-    .pipe(gulp.dest(jsTarget));
+      }),
+      gulp.dest(jsTarget)
+    ],
+    cb
+  );
 });
 
 /**
- * 打包应用框架
+ * 替换引用
  */
-gulp.task('pack_application', function() {
-  gulp
-    .src('src/**/*.js')
-    .pipe(
-      amdOptimize('app/application', {
-        name: 'app/application',
-        configFile: 'config/application.build.js',
-        baseUrl: 'src'
-      })
-    )
-    .pipe(concat('app.application.js'))
-    .pipe(gulp.dest('dist/js'))
-    .pipe(concat('app.application.min.js'))
-    .pipe(
-      uglify({
-        outSourceMap: false
-      })
-    )
-    .pipe(gulp.dest(jsTarget));
+gulp.task('pack_replace', ['pack_resources'], function(cb) {
+  pump(
+    [
+      gulp.src(['dist/**/*.html']),
+      rev(['config/manifest.json']),
+      gulp.dest('dist')
+    ],
+    cb
+  );
 });
 
 /**
@@ -116,15 +106,7 @@ gulp.task('pack_application', function() {
  */
 gulp.task('pack_resources', function() {
   gulp
-    .src([
-      'resources/**/*',
-      'src/**/*',
-      '!src/modules/**/*.js',
-      '!src/app',
-      '!src/**/*.js',
-      '!src/index.html',
-      '!src/reference.json'
-    ])
+    .src(['resources/**/*', 'src/**/*.html', 'src/**/*.ico', 'src/startup.js'])
     .pipe(gulp.dest('dist'));
 
   var reference = JSON.parse(fs.readFileSync('config/reference.json'));
@@ -211,9 +193,9 @@ gulp.task('pack_modules', function() {
 gulp.task('build', [
   'pack_require',
   'pack_patch',
-  'pack_app',
-  'pack_application',
   'pack_resources',
+  'pack_replace',
+  'pack_application',
   'pack_modules'
 ]);
 

@@ -1,9 +1,9 @@
 define([
-    'app/configs'
-], function (configs) {
+    'app/boot'
+], function (boot) {
     'use strict';
 
-    configs.config([
+    boot.config([
         '$provide',
         function ($provide) {
             $provide.constant('$appEnvironment', {

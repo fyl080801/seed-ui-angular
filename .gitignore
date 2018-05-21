@@ -26,11 +26,10 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# reference
-lib
-bower_components
-node_modules
-publish
-
-# build path
-dist
+# exclude
+/lib
+/bower_components
+/node_modules
+/publish
+/dist
+/package-lock.json

@@ -1,0 +1,9 @@
+[
+  "jquery",
+  "angular",
+  "angular-ui-bootstrap",
+  "angular-ui-bootstrap-tpls",
+  "angular-ui-router",
+  "bootstrap",
+  "app/application"
+]

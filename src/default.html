@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!--[if lte IE 8]><html lang="zh-cn" data-html-type="no-js lte-ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="zh-cn" data-html-type="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script>
+        window.configs = {
+            urlArgs: app.getAttribute('data-args'),
+            paths: {
+                // patch
+                'es5-shim': '/bower_components/es5-shim/es5-shim.min',
+                'es5-sham': '/bower_components/es5-shim/es5-sham.min',
+                'html5shiv': '/bower_components/html5shiv/dist/html5shiv.min',
+                'json2': '/bower_components/json2/json2',
+                'respond': '/bower_components/respond/dest/respond.min',
+                // app
+                'angular': '/bower_components/angular/angular',
+                'angular-ui-router': '/bower_components/angular-ui-router/release/angular-ui-router',
+                'angular-ui-bootstrap-tpls': '/bower_components/angular-bootstrap/ui-bootstrap-tpls',
+                'bootstrap': '/bower_components/bootstrap/dist/js/bootstrap',
+                'jquery': '/bower_components/jquery/dist/jquery',
+                'app/application': 'src/app/application',
+                'modules/sample/module': '/src/modules/sample/module',
+                'modules/sample/requires': '/src/modules/sample/requires'
+            },
+            map: {
+                '*': {
+                    rcss: '/bower_components/require-css/css.js'
+                }
+            },
+            shim: {
+                'respond': {
+                    deps: ['html5shiv']
+                },
+                'bootstrap': {
+                    deps: ['jquery']
+                },
+                'app/application': {
+                    deps: [
+                        'angular',
+                        'jquery',
+                        'bootstrap',
+                        'angular-ui-router',
+                        'angular-ui-bootstrap-tpls'
+                    ]
+                },
+                'angular-ui-router': {
+                    deps: ['angular']
+                },
+                'angular-ui-bootstrap-tpls': {
+                    deps: ['angular']
+                }
+            }
+        };
+    </script>
+    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-args="v=0.0.1" data-debug="true"></script>
+    <title>Document</title>
+</head>
+
+<body ui-view>
+
+</body>
+
+</html>
