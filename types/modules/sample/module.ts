@@ -1,5 +1,4 @@
 import 'angular';
-// import application = require('../../../src/app/application');
 
 import application = require('app/application');
 
@@ -13,7 +12,7 @@ export default angular.module('modules.sample', []).config([
   '$stateProvider',
   '$urlRouterProvider',
   function(
-    $stateProvider: app.configs.IRequireStateProvider, //app.IStateProvider,
+    $stateProvider: app.configs.IRequireStateProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider
   ) {
     $stateProvider.state('home', {

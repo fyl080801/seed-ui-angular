@@ -7,8 +7,7 @@ define(["require", "exports", "app/application", "angular"], function (require, 
     exports["default"] = angular.module('modules.sample', []).config([
         '$stateProvider',
         '$urlRouterProvider',
-        function ($stateProvider, //app.IStateProvider,
-        $urlRouterProvider) {
+        function ($stateProvider, $urlRouterProvider) {
             $stateProvider.state('home', {
                 url: '/home',
                 templateUrl: 'modules/sample/components/home.html',

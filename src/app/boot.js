@@ -4,6 +4,7 @@ define([
   'bootstrap',
   'angular-ui-bootstrap-tpls',
   'angular-ui-router',
+  'angular-sanitize',
   'angular-cookies'
 ], function(angular) {
   'use strict';

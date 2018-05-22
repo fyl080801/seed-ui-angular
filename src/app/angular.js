@@ -1,3 +1,3 @@
-define('angular', ['angularbase'], function() {
-  return window['angular'];
+define('angular', ['angular-base'], function() {
+  return window.angular;
 });

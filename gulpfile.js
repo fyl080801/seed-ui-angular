@@ -19,7 +19,8 @@ var gulp = require('gulp'),
   minimist = require('minimist'),
   amdOptimize = require('amd-optimize'),
   webserver = require('gulp-webserver'),
-  rev = require('sog-gulp-rev-collector'),
+  rev = require('gulp-rev'),
+  revCollector = require('sog-gulp-rev-collector'),
   fs = require('fs');
 
 /**
@@ -27,19 +28,28 @@ var gulp = require('gulp'),
  */
 gulp.task('pack_require', function() {
   gulp
-    .src([
-      'bower_components/requirejs/require.js',
-      'bower_components/require-css/css.js'
-    ])
+    .src(['bower_components/requirejs/require.js'])
     .pipe(concat('require.js'))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(jsTarget))
     .pipe(concat('require.min.js'))
     .pipe(
       uglify({
         outSourceMap: false
       })
     )
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest(jsTarget));
+
+  gulp
+    .src(['bower_components/require-css/css.js'])
+    .pipe(concat('css.js'))
+    .pipe(gulp.dest(jsTarget))
+    .pipe(concat('css.min.js'))
+    .pipe(
+      uglify({
+        outSourceMap: false
+      })
+    )
+    .pipe(gulp.dest(jsTarget));
 });
 
 /**
@@ -84,20 +94,6 @@ gulp.task('pack_application', [], function(cb) {
         outSourceMap: false
       }),
       gulp.dest(jsTarget)
-    ],
-    cb
-  );
-});
-
-/**
- * 替换引用
- */
-gulp.task('pack_replace', ['pack_resources'], function(cb) {
-  pump(
-    [
-      gulp.src(['dist/**/*.html', 'dist/startup.js']),
-      rev(['config/manifest.json']),
-      gulp.dest('dist')
     ],
     cb
   );
@@ -192,13 +188,22 @@ gulp.task('pack_modules', function() {
 /**
  * 执行build
  */
-gulp.task('build', [
-  'pack_require',
-  'pack_patch',
-  'pack_resources',
-  'pack_application',
-  'pack_modules'
-]);
+gulp.task(
+  'build',
+  [
+    'pack_require',
+    'pack_patch',
+    'pack_application',
+    'pack_modules',
+    'pack_resources'
+  ],
+  function() {
+    gulp
+      .src(['dist/**/*.html', 'dist/startup.js'])
+      .pipe(revCollector(['config/rev.json']))
+      .pipe(gulp.dest('dist'));
+  }
+);
 
 /**
  * 启动server

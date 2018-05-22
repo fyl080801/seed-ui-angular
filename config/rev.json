@@ -9,9 +9,12 @@
     "css/bootstrap.min.css",
 
   "/bower_components/angular/angular": "js/app.application",
+  "/src/app/angular": "js/app.application",
   "/bower_components/angular-ui-router/release/angular-ui-router":
     "js/app.application",
   "/bower_components/angular-bootstrap/ui-bootstrap-tpls": "js/app.application",
+  "/bower_components/angular-sanitize/angular-sanitize": "js/app.application",
+  "/bower_components/angular-cookies/angular-cookies": "js/app.application",
   "/bower_components/jquery/dist/jquery": "js/app.application",
   "/bower_components/bootstrap/dist/js/bootstrap": "js/app.application",
 
@@ -19,8 +22,8 @@
   "/src/modules/sample/module": "js/modules.sample",
   "/src/modules/sample/requires": "js/requires.sample",
 
-  "/bower_components/requirejs/require.js": "require.js",
-  "/bower_components/require-css/css.js": "require.js",
+  "/bower_components/requirejs/require.js": "js/require.js",
+  "/bower_components/require-css/css.js": "js/css.js",
 
   "../../../src/": "",
   "../../src/": ""
