@@ -1,5 +1,9 @@
 {
-  "/bower_components/es5-shim/es5-sham.min": "js/patch",
+  "/bower_components/es5-shim/es5-shim.min": "js/app.patch",
+  "/bower_components/es5-shim/es5-sham.min": "js/app.patch",
+  "/bower_components/html5shiv/dist/html5shiv.min": "js/app.patch",
+  "/bower_components/json2/json2": "js/app.patch",
+  "/bower_components/respond/dest/respond.min": "js/app.patch",
 
   "/bower_components/bootstrap/dist/css/bootstrap.min.css":
     "css/bootstrap.min.css",

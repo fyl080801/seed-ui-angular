@@ -15,6 +15,12 @@
         window.configs = {
             urlArgs: 'v=0.0.1',
             references: {
+                // patch
+                'es5-shim': '/bower_components/es5-shim/es5-shim.min',
+                'es5-sham': '/bower_components/es5-shim/es5-sham.min',
+                html5shiv: '/bower_components/html5shiv/dist/html5shiv.min',
+                json2: '/bower_components/json2/json2',
+                respond: '/bower_components/respond/dest/respond.min',
                 // app
                 'angular': {
                     path: '/bower_components/angular/angular',
@@ -69,7 +75,7 @@
             requires: ['modules/sample/module']
         };
     </script>
-    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
+    <script async id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
     <title>Document</title>
 </head>
 

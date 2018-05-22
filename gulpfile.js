@@ -46,19 +46,18 @@ gulp.task('pack_require', function() {
  * 打包兼容性补丁
  */
 gulp.task('pack_patch', function() {
-  var paths = ['src/patch.js'];
+  var paths = ['src/app/patch.js'];
   gulp
     .src(paths)
     .pipe(
-      amdOptimize('patch', {
-        name: 'iepatch',
-        configFile: 'config/patch.build.js',
+      amdOptimize('app/patch', {
+        configFile: 'config/build.js',
         baseUrl: 'src'
       })
     )
-    .pipe(concat('patch.js'))
+    .pipe(concat('app.patch.js'))
     .pipe(gulp.dest(jsTarget))
-    .pipe(concat('patch.min.js'))
+    .pipe(concat('app.patch.min.js'))
     .pipe(
       uglify({
         outSourceMap: false
@@ -96,7 +95,7 @@ gulp.task('pack_application', [], function(cb) {
 gulp.task('pack_replace', ['pack_resources'], function(cb) {
   pump(
     [
-      gulp.src(['dist/**/*.html']),
+      gulp.src(['dist/**/*.html', 'dist/startup.js']),
       rev(['config/manifest.json']),
       gulp.dest('dist')
     ],
@@ -195,11 +194,11 @@ gulp.task('pack_modules', function() {
  */
 gulp.task('build', [
   'pack_require',
-  //'pack_patch',
+  'pack_patch',
   'pack_resources',
   'pack_application',
-  'pack_modules',
-  'pack_replace'
+  'pack_modules'
+  //'pack_replace'
 ]);
 
 /**
