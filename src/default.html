@@ -22,11 +22,11 @@
                 json2: '/bower_components/json2/json2',
                 respond: '/bower_components/respond/dest/respond.min',
                 // app
+                'angularbase': {
+                    path: '/bower_components/angular/angular'
+                },
                 'angular': {
-                    path: '/bower_components/angular/angular',
-                    shim: {
-                        exports: 'angular'
-                    }
+                    path: '/src/app/angular'
                 },
                 'angular-ui-router': {
                     path: '/bower_components/angular-ui-router/release/angular-ui-router',
@@ -35,6 +35,9 @@
                 'angular-ui-bootstrap-tpls': {
                     path: '/bower_components/angular-bootstrap/ui-bootstrap-tpls',
                     shim: { deps: ['angular'] }
+                },
+                'angular-cookies': {
+                    path: '/bower_components/angular-cookies/angular-cookies'
                 },
                 'bootstrap': {
                     path: '/bower_components/bootstrap/dist/js/bootstrap',

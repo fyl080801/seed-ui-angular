@@ -4,6 +4,7 @@
   "angular-ui-bootstrap",
   "angular-ui-bootstrap-tpls",
   "angular-ui-router",
+  "angular-cookies",
   "bootstrap",
   "app/application"
 ]

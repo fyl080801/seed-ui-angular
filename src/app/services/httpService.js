@@ -6,7 +6,7 @@ define(['app/boot'], function(boot) {
     '$q',
     '$modal',
     '$appConfig',
-    'app.factories.httpDataHandler',
+    'app/factories/httpDataHandler',
     function($http, $q, $modal, $appConfig, httpDataHandler) {
       var me = this;
 

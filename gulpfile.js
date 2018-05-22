@@ -198,7 +198,6 @@ gulp.task('build', [
   'pack_resources',
   'pack_application',
   'pack_modules'
-  //'pack_replace'
 ]);
 
 /**
