@@ -1,4 +1,5 @@
 define([
+  'angular',
   'app/configs/appConfig',
   'app/configs/dependencyLoader',
   'app/configs/appEnvironment',
@@ -14,10 +15,12 @@ define([
   'app/directives/title',
   'app/directives/theme',
   'app/directives/equals'
-], function() {
+], function(angular) {
   'use strict';
 
+  var application = angular.module('app.application', ['app.boot']);
   var fn = angular.module;
+
   angular.module = function(name, requires, configFn) {
     var app = fn(name, requires, configFn);
     app.config([
@@ -38,8 +41,12 @@ define([
         app.service = $provide.service;
       }
     ]);
+
+    if (name !== 'app.application' && application.requires.indexOf(name) < 0)
+      application.requires.push(name);
+
     return app;
   };
 
-  return angular.module('app.application', ['app.boot']);
+  return application;
 });

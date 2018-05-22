@@ -1,17 +1,8 @@
-import 'angular';
+import angular = require('angular');
 
-import application = require('app/application');
-
-'use strict';
-
-let angular: ng.IAngularStatic = window['angular'];
-
-application['requires'].push('modules.sample');
-
-export default angular.module('modules.sample', []).config([
-  '$stateProvider',
-  '$urlRouterProvider',
-  function(
+class SampleModule {
+  static $inject = ['$stateProvider', '$urlRouterProvider'];
+  constructor(
     $stateProvider: app.configs.IRequireStateProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider
   ) {
@@ -23,4 +14,6 @@ export default angular.module('modules.sample', []).config([
 
     $urlRouterProvider.otherwise('/home');
   }
-]);
+}
+
+export default angular.module('modules.sample', []).config(SampleModule);
