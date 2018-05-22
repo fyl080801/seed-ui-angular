@@ -27,16 +27,19 @@ var gulp = require('gulp'),
  */
 gulp.task('pack_require', function() {
   gulp
-    .src('bower_components/requirejs/require.js')
+    .src([
+      'bower_components/requirejs/require.js',
+      'bower_components/require-css/css.js'
+    ])
     .pipe(concat('require.js'))
-    .pipe(gulp.dest(jsTarget))
+    .pipe(gulp.dest('dist'))
     .pipe(concat('require.min.js'))
     .pipe(
       uglify({
         outSourceMap: false
       })
     )
-    .pipe(gulp.dest(jsTarget));
+    .pipe(gulp.dest('dist'));
 });
 
 /**
@@ -93,7 +96,7 @@ gulp.task('pack_application', [], function(cb) {
 gulp.task('pack_replace', ['pack_resources'], function(cb) {
   pump(
     [
-      gulp.src(['dist/**/*']),
+      gulp.src(['dist/**/*.html']),
       rev(['config/manifest.json']),
       gulp.dest('dist')
     ],
@@ -129,62 +132,62 @@ gulp.task('pack_resources', function() {
  * 打包模块
  */
 gulp.task('pack_modules', function() {
-  var modules = fs.readdirSync('src/modules');
-  var builds = fs.readdirSync('config').filter(function(file) {
-    return (
-      file.endsWith('.build.js') &&
-      !file.startsWith('requires.') &&
-      file !== 'app.build.js' &&
-      file !== 'application.build.js' &&
-      file !== 'patch.build.js'
-    );
+  var exclude = JSON.parse(fs.readFileSync('config/exclude/module.json'));
+  var modules = [];
+  var moduleConfigs = [];
+
+  fs.readdirSync('src/modules').forEach(function(current) {
+    moduleConfigs.push({
+      requiresPath: 'modules/' + current + '/requires', // requires文件路径
+      modulePath: 'modules/' + current + '/module', // module文件路径
+      requiresName: 'requires.' + current, // requires文件编译结果
+      moduleName: 'modules.' + current
+    });
+
+    modules.push('modules/' + current + '/module');
   });
 
-  for (var idx in modules) {
-    var requiresPath = 'modules/' + modules[idx] + '/requires';
-    var requiresName = 'modules.' + modules[idx];
-
+  moduleConfigs.forEach(function(current) {
     gulp
-      .src('src/**/*.js')
+      .src(['src/**/*.js'])
       .pipe(
-        amdOptimize(requiresPath, {
-          configFile: 'config/requires.build.js',
-          baseUrl: 'src'
+        amdOptimize(current.requiresPath, {
+          configFile: 'config/build.js',
+          baseUrl: 'src',
+          exclude: exclude.concat(modules)
         })
       )
-      .pipe(concat(requiresName + '.js'))
-      .pipe(gulp.dest('dist/js'))
-      .pipe(concat(requiresName + '.min.js'))
-      .pipe(
-        uglify({
-          outSourceMap: false
-        })
-      )
-      .pipe(gulp.dest(jsTarget));
-  }
-
-  for (var bidx in builds) {
-    var buildFile = builds[bidx];
-    var buildName = buildFile.replace('.build.js', '');
-
-    gulp
-      .src('src/**/*.js')
-      .pipe(
-        amdOptimize(buildName + '.modules', {
-          configFile: 'config/' + buildFile,
-          baseUrl: 'src'
-        })
-      )
-      .pipe(concat(buildName + '.modules.js'))
+      .pipe(concat(current.requiresName + '.js'))
       .pipe(gulp.dest(jsTarget))
-      .pipe(concat(buildName + '.modules.min.js'))
+      .pipe(concat(current.requiresName + '.min.js'))
       .pipe(
         uglify({
           outSourceMap: false
         })
       )
       .pipe(gulp.dest(jsTarget));
-  }
+  });
+
+  moduleConfigs.forEach(function(current) {
+    gulp
+      .src(['src/**/*.js'])
+      .pipe(
+        amdOptimize(current.modulePath, {
+          configFile: 'config/build.js',
+          baseUrl: 'src',
+          exclude: exclude
+        })
+      )
+      .pipe(concat(current.moduleName + '.js'))
+      .pipe(gulp.dest(jsTarget))
+      .pipe(concat(current.moduleName + '.min.js'))
+      .pipe(
+        uglify({
+          outSourceMap: false
+        })
+      )
+      .pipe(gulp.dest(jsTarget));
+  });
 });
 
 /**
@@ -192,11 +195,11 @@ gulp.task('pack_modules', function() {
  */
 gulp.task('build', [
   'pack_require',
-  'pack_patch',
+  //'pack_patch',
   'pack_resources',
-  'pack_replace',
   'pack_application',
-  'pack_modules'
+  'pack_modules',
+  'pack_replace'
 ]);
 
 /**

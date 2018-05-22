@@ -1,4 +1,4 @@
-define(['app/boot'], function(services) {
+define(['app/boot'], function(boot) {
   'use strict';
 
   boot.service('app/services/httpService', [

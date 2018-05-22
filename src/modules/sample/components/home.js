@@ -2,6 +2,14 @@ define(["require", "exports", "modules/sample/module"], function (require, expor
     "use strict";
     exports.__esModule = true;
     'use strict';
-    mod["default"].controller('modules/sample/components/home', [function () { }]);
+    var HomeController = /** @class */ (function () {
+        function HomeController($scope) {
+            this.$scope = $scope;
+            $scope['text'] = 'aaaaaaa';
+        }
+        HomeController.$inject = ['$scope'];
+        return HomeController;
+    }());
+    mod["default"].controller('modules/sample/components/home', HomeController);
 });
 //# sourceMappingURL=home.js.map

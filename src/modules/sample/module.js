@@ -1,7 +1,21 @@
-define(["require", "exports", "../../../src/app/application", "angular"], function (require, exports, application) {
+define(["require", "exports", "app/application", "angular"], function (require, exports, application) {
     "use strict";
     exports.__esModule = true;
     'use strict';
-    exports["default"] = application.module('modules.sample', []);
+    var angular = window['angular'];
+    application['requires'].push('modules.sample');
+    exports["default"] = angular.module('modules.sample', []).config([
+        '$stateProvider',
+        '$urlRouterProvider',
+        function ($stateProvider, //app.IStateProvider,
+        $urlRouterProvider) {
+            $stateProvider.state('home', {
+                url: '/home',
+                templateUrl: 'modules/sample/components/home.html',
+                requires: ['modules/sample/requires']
+            });
+            $urlRouterProvider.otherwise('/home');
+        }
+    ]);
 });
 //# sourceMappingURL=module.js.map

@@ -13,55 +13,63 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script>
         window.configs = {
-            urlArgs: app.getAttribute('data-args'),
-            paths: {
-                // patch
-                'es5-shim': '/bower_components/es5-shim/es5-shim.min',
-                'es5-sham': '/bower_components/es5-shim/es5-sham.min',
-                'html5shiv': '/bower_components/html5shiv/dist/html5shiv.min',
-                'json2': '/bower_components/json2/json2',
-                'respond': '/bower_components/respond/dest/respond.min',
+            urlArgs: 'v=0.0.1',
+            references: {
                 // app
-                'angular': '/bower_components/angular/angular',
-                'angular-ui-router': '/bower_components/angular-ui-router/release/angular-ui-router',
-                'angular-ui-bootstrap-tpls': '/bower_components/angular-bootstrap/ui-bootstrap-tpls',
-                'bootstrap': '/bower_components/bootstrap/dist/js/bootstrap',
+                'angular': {
+                    path: '/bower_components/angular/angular',
+                    shim: {
+                        exports: 'angular'
+                    }
+                },
+                'angular-ui-router': {
+                    path: '/bower_components/angular-ui-router/release/angular-ui-router',
+                    shim: { deps: ['angular'] }
+                },
+                'angular-ui-bootstrap-tpls': {
+                    path: '/bower_components/angular-bootstrap/ui-bootstrap-tpls',
+                    shim: { deps: ['angular'] }
+                },
+                'bootstrap': {
+                    path: '/bower_components/bootstrap/dist/js/bootstrap',
+                    shim: { deps: ['jquery'] }
+                },
                 'jquery': '/bower_components/jquery/dist/jquery',
-                'app/application': 'src/app/application',
-                'modules/sample/module': '/src/modules/sample/module',
-                'modules/sample/requires': '/src/modules/sample/requires'
+                // application
+                'app/application': {
+                    path: '/src/app/application',
+                    shim: {
+                        deps: [
+                            'angular',
+                            'jquery',
+                            'bootstrap',
+                            'angular-ui-router',
+                            'angular-ui-bootstrap-tpls'
+                        ]
+                    }
+                },
+                'modules/sample/module': {
+                    path: '/src/modules/sample/module',
+                    shim: {
+                        deps: ['app/application']
+                    }
+                },
+                'modules/sample/requires': {
+                    path: '/src/modules/sample/requires',
+                    shim: {
+                        deps: ['modules/sample/module']
+                    }
+                }
             },
             map: {
                 '*': {
                     rcss: '/bower_components/require-css/css.js'
                 }
             },
-            shim: {
-                'respond': {
-                    deps: ['html5shiv']
-                },
-                'bootstrap': {
-                    deps: ['jquery']
-                },
-                'app/application': {
-                    deps: [
-                        'angular',
-                        'jquery',
-                        'bootstrap',
-                        'angular-ui-router',
-                        'angular-ui-bootstrap-tpls'
-                    ]
-                },
-                'angular-ui-router': {
-                    deps: ['angular']
-                },
-                'angular-ui-bootstrap-tpls': {
-                    deps: ['angular']
-                }
-            }
+            requires: ['modules/sample/module']
         };
     </script>
-    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-args="v=0.0.1" data-debug="true"></script>
+    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
     <title>Document</title>
 </head>
 

@@ -1,5 +1,5 @@
 {
-  "/bower_components/es5-shim/es5-shim.min": "",
+  "/bower_components/es5-shim/es5-sham.min": "js/patch",
 
   "/bower_components/bootstrap/dist/css/bootstrap.min.css":
     "css/bootstrap.min.css",
@@ -16,8 +16,7 @@
   "/src/modules/sample/requires": "js/requires.sample",
 
   "/bower_components/requirejs/require.js": "require.js",
-  "/bower_components/require-css/css.js": "css.js",
-  "/src/startup.js": "startup.js",
+  "/bower_components/require-css/css.js": "require.js",
 
   "../../../src/": "",
   "../../src/": ""
