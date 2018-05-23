@@ -1,7 +1,5 @@
 import mod = require('modules/sample/module');
 
-'use strict';
-
 class HomeController {
   static $inject = ['$scope'];
   constructor(private $scope: ng.IScope) {

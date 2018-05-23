@@ -1,7 +1,6 @@
 define(["require", "exports", "modules/sample/module"], function (require, exports, mod) {
     "use strict";
     exports.__esModule = true;
-    'use strict';
     var HomeController = /** @class */ (function () {
         function HomeController($scope) {
             this.$scope = $scope;

@@ -22,6 +22,9 @@
                 json2: '/bower_components/json2/json2',
                 respond: '/bower_components/respond/dest/respond.min',
                 // app
+                'rcss': {
+                    path: '/bower_components/require-css/css'
+                },
                 'angular-base': {
                     path: '/bower_components/angular/angular'
                 },
@@ -73,12 +76,7 @@
                     }
                 }
             },
-            map: {
-                '*': {
-                    rcss: '/bower_components/require-css/css.js'
-                }
-            },
-            requires: ['modules/sample/module']
+            requires: ['rcss!css/sample.css', 'modules/sample/module']
         };
     </script>
     <script async id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
