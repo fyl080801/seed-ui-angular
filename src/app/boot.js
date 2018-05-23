@@ -1,5 +1,6 @@
 define([
   'angular',
+  'rcss',
   'jquery',
   'bootstrap',
   'angular-ui-bootstrap',

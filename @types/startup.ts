@@ -7,7 +7,7 @@
     shim: {},
     map: options.map
   };
-  var references = options['references'];
+  var references = options['configs'];
   var requires = ['app/application'];
 
   for (var name in references) {
@@ -31,21 +31,12 @@
     for (var path in configs.paths) {
       configs.shim[path] = configs.shim[path] || {};
       configs.shim[path].deps = configs.shim[path].deps || {};
-      configs.shim[path].deps = configs.shim[path].deps.concat([
-        'es5-shim',
-        'es5-sham',
-        'html5shiv',
-        'json2',
-        'respond'
-      ]);
+      configs.shim[path].deps = configs.shim[path].deps.concat(options.patchs);
     }
   }
 
   require.config(configs);
   require(requires.concat(options['requires']), function() {
-    define('angular', function() {
-      return window['angular'];
-    });
     angular.element(document).ready(function() {
       angular.bootstrap(document, ['app.application']);
       angular
@@ -54,4 +45,4 @@
         .addClass('ng-app');
     });
   });
-})(window['configs']);
+})(window['options']);

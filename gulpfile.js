@@ -38,18 +38,6 @@ gulp.task('pack_require', function() {
       })
     )
     .pipe(gulp.dest(jsTarget));
-
-  gulp
-    .src(['bower_components/require-css/css.js'])
-    .pipe(concat('css.js'))
-    .pipe(gulp.dest(jsTarget))
-    .pipe(concat('css.min.js'))
-    .pipe(
-      uglify({
-        outSourceMap: false
-      })
-    )
-    .pipe(gulp.dest(jsTarget));
 });
 
 /**
@@ -104,7 +92,7 @@ gulp.task('pack_application', [], function(cb) {
  */
 gulp.task('pack_resources', function() {
   gulp
-    .src(['resources/**/*', 'src/**/*.html', 'src/**/*.ico', 'src/startup.js'])
+    .src(['src/**/*', '!src/app/**/*.js', '!src/modules/**/*.js'])
     .pipe(gulp.dest('dist'));
 
   var reference = JSON.parse(fs.readFileSync('config/reference.json'));

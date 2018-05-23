@@ -9,6 +9,7 @@ require.config({
     json2: '../bower_components/json2/json2',
     respond: '../bower_components/respond/dest/respond.min',
     //
+    rcss: '../bower_components/require-css/css',
     'angular-base': '../bower_components/angular/angular',
     angular: '../src/app/angular',
     jquery: '../bower_components/jquery/dist/jquery.min',
