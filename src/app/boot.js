@@ -2,7 +2,7 @@ define([
   'angular',
   'jquery',
   'bootstrap',
-  'angular-ui-bootstrap-tpls',
+  'angular-ui-bootstrap',
   'angular-ui-router',
   'angular-sanitize',
   'angular-cookies'
