@@ -17,7 +17,12 @@
             configs: {
                 // patch
                 'es5-shim': '/bower_components/es5-shim/es5-shim.min',
-                'es5-sham': '/bower_components/es5-shim/es5-sham.min',
+                'es5-sham': {
+                    path: '/bower_components/es5-shim/es5-sham.min',
+                    shim: {
+                        deps: ['es5-shim']
+                    }
+                },
                 html5shiv: '/bower_components/html5shiv/dist/html5shiv.min',
                 json2: '/bower_components/json2/json2',
                 respond: '/bower_components/respond/dest/respond.min',
@@ -29,7 +34,8 @@
                     path: '/bower_components/angular/angular'
                 },
                 'angular': {
-                    path: '/src/app/angular'
+                    path: '/src/app/angular',
+                    shim: { deps: ['angular-base'] }
                 },
                 'angular-ui-router': {
                     path: '/bower_components/angular-ui-router/release/angular-ui-router',
@@ -55,9 +61,6 @@
                     path: '/src/app/application',
                     shim: {
                         deps: [
-                            'angular',
-                            'jquery',
-                            'bootstrap',
                             'angular-ui-router',
                             'angular-ui-bootstrap'
                         ]
@@ -86,7 +89,7 @@
             requires: ['rcss!css/sample.css', 'modules/sample/module']
         };
     </script>
-    <script async id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
+    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
     <title>Document</title>
 </head>
 

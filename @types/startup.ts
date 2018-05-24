@@ -5,7 +5,7 @@
     urlArgs: options.urlArgs,
     paths: {},
     shim: {},
-    map: options.map
+    map: options.map || {}
   };
   var references = options['configs'];
   var requires = ['app/application'];
@@ -28,11 +28,7 @@
     document.getElementsByTagName('html')[0].getAttribute('data-html-type') ===
     'no-js lte-ie8'
   ) {
-    for (var path in configs.paths) {
-      configs.shim[path] = configs.shim[path] || {};
-      configs.shim[path].deps = configs.shim[path].deps || {};
-      configs.shim[path].deps = configs.shim[path].deps.concat(options.patchs);
-    }
+    requires = options.patchs.concat(requires);
   }
 
   require.config(configs);
