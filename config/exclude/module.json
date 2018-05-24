@@ -4,6 +4,7 @@
   "angular",
   "angular-ui-bootstrap",
   "angular-ui-router",
+  "angular-sanitize",
   "angular-cookies",
   "bootstrap",
   "app/application"
