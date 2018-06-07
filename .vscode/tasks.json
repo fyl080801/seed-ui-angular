@@ -11,13 +11,12 @@
     },
     {
       "type": "gulp",
-      "task": "start",
+      "task": "webserver",
       "problemMatcher": []
     },
     {
-      "type": "gulp",
-      "task": "build",
-      "problemMatcher": []
+      "type": "npm",
+      "script": "start"
     }
   ]
 }

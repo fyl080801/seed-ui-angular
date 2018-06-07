@@ -196,7 +196,7 @@ gulp.task(
 /**
  * 启动server
  */
-gulp.task('start', function() {
+gulp.task('webserver', function() {
   gulp.src('').pipe(
     webserver({
       fallback: 'src/index.html',
