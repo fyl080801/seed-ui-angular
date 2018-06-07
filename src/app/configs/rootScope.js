@@ -3,10 +3,10 @@ define(["require", "exports", "app/boot"], function (require, exports, boot) {
     exports.__esModule = true;
     var ConfigClass = (function () {
         function ConfigClass($provide) {
-            this.decorator.$inject = ['$delegate', '$appEnvironment'];
-            $provide.decorator('$rootScope', this.decorator);
+            ConfigClass.decorator.$inject = ['$delegate', '$appEnvironment'];
+            $provide.decorator('$rootScope', ConfigClass.decorator);
         }
-        ConfigClass.prototype.decorator = function ($delegate, $appEnvironment) {
+        ConfigClass.decorator = function ($delegate, $appEnvironment) {
             $delegate.$appEnvironment = $appEnvironment;
             return $delegate;
         };

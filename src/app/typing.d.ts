@@ -46,6 +46,7 @@ declare namespace app {
      */
     export interface IRequireState extends ng.ui.IState {
       requires?: Array<string>;
+      title?: string;
       dependencies?: Array<string>;
     }
 
@@ -131,10 +132,6 @@ declare namespace app {
       cancel(callback?: ((reason: any) => void) | null): IConfirmPromise;
     }
 
-    // export interface IPopupConfirmPromise
-    //   extends IPopupPromise,
-    //     IConfirmPromise {}
-
     /**
      *
      */
@@ -177,12 +174,11 @@ declare namespace app {
      *
      */
     export interface IPopupService {
-      information(
-        text: string,
-        size?: Size
-      ): ng.ui.bootstrap.IModalInstanceService;
+      information(text: string, size?: Size): ng.IPromise<any>;
 
       confirm(text: string, size?: Size): IConfirmPromise;
+
+      error(text: string, size?: Size): ng.IPromise<any>;
     }
 
     export interface ITreeItem<T> {

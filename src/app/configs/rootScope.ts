@@ -1,7 +1,7 @@
 import boot = require('app/boot');
 
 class ConfigClass {
-  private decorator(
+  static decorator(
     $delegate: app.configs.IExtendRootScopeService,
     $appEnvironment: app.IAppEnvironment
   ): app.configs.IExtendRootScopeService {
@@ -10,9 +10,9 @@ class ConfigClass {
   }
 
   constructor($provide: ng.IModule) {
-    this.decorator.$inject = ['$delegate', '$appEnvironment'];
+    ConfigClass.decorator.$inject = ['$delegate', '$appEnvironment'];
 
-    $provide.decorator('$rootScope', this.decorator);
+    $provide.decorator('$rootScope', ConfigClass.decorator);
   }
 }
 
