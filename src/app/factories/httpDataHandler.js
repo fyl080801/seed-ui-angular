@@ -1,31 +1,29 @@
-define(['app/boot'], function(boot) {
-  'use strict';
-
-  boot.factory('app/factories/httpDataHandler', [
-    '$modal',
-    function($modal) {
-      var handler = {
-        doResponse: function(response, defered) {
-          response.data = response.data ? response.data : {};
-          if (response.data && response.data.success === false) {
-            handler.doError(response, defered);
-          } else {
-            defered.resolve(response.data);
-          }
-        },
-
-        doError: function(response, defered) {
-          response.data = response.data ? response.data : {};
-          $modal.open({
-            templateUrl: 'templates/modal/Error.html',
-            data: {
-              text: response.data.message
+define(["require", "exports", "app/boot", "angular"], function (require, exports, boot, angular) {
+    "use strict";
+    exports.__esModule = true;
+    function factory(popupService) {
+        return {
+            doResponse: function (response, defer) {
+                response.data = angular.extend({
+                    success: false
+                }, response.data);
+                if (response.data.success) {
+                    defer.resolve(response.data.data);
+                }
+                else {
+                    this.doError(response, defer);
+                }
+            },
+            doError: function (response, defer) {
+                response.data = angular.extend({
+                    success: false
+                }, response.data);
+                popupService.error(response.data.message);
+                defer.reject(response.data);
             }
-          });
-          defered.reject(response.data);
-        }
-      };
-      return handler;
+        };
     }
-  ]);
+    factory.$inject = ['app/services/popupService'];
+    boot.factory('app/factories/httpDataHandler', factory);
 });
+//# sourceMappingURL=httpDataHandler.js.map

@@ -1,48 +1,39 @@
-define(['app/boot'], function(boot) {
-  'use strict';
-
-  boot.factory('app/factories/httpState', [
-    '$q',
-    '$appEnvironment',
-    function($q, $appEnvironment) {
-      return {
-        request: function(configs) {
-          $appEnvironment.ajaxState = {
-            loading: true,
-            url: configs.url,
-            method: configs.method,
-            data: configs.data
-          };
-          return configs;
-        },
-        requestError: function(err) {
-          $appEnvironment.ajaxState = {
-            loading: false,
-            url: null,
-            method: null,
-            data: null
-          };
-          return err;
-        },
-        response: function(response) {
-          $appEnvironment.ajaxState = {
-            loading: false,
-            url: null,
-            method: null,
-            data: null
-          };
-          return response;
-        },
-        responseError: function(err) {
-          $appEnvironment.ajaxState = {
-            loading: false,
-            url: null,
-            method: null,
-            data: null
-          };
-          return err;
-        }
-      };
+define(["require", "exports", "app/boot"], function (require, exports, boot) {
+    "use strict";
+    exports.__esModule = true;
+    function factory($appEnvironment) {
+        return {
+            request: function (config) {
+                $appEnvironment.ajaxState.loading = true;
+                $appEnvironment.ajaxState.url = config.url;
+                $appEnvironment.ajaxState.method = config.method;
+                $appEnvironment.ajaxState.data = config.data;
+                return config;
+            },
+            requestError: function (rejection) {
+                $appEnvironment.ajaxState.loading = false;
+                $appEnvironment.ajaxState.url = null;
+                $appEnvironment.ajaxState.method = null;
+                $appEnvironment.ajaxState.data = null;
+                return rejection;
+            },
+            response: function (response) {
+                $appEnvironment.ajaxState.loading = false;
+                $appEnvironment.ajaxState.url = null;
+                $appEnvironment.ajaxState.method = null;
+                $appEnvironment.ajaxState.data = null;
+                return response;
+            },
+            responseError: function (rejection) {
+                $appEnvironment.ajaxState.loading = false;
+                $appEnvironment.ajaxState.url = null;
+                $appEnvironment.ajaxState.method = null;
+                $appEnvironment.ajaxState.data = null;
+                return rejection;
+            }
+        };
     }
-  ]);
+    factory.$inject = ['$appEnvironment'];
+    boot.factory('app/factories/httpState', factory);
 });
+//# sourceMappingURL=httpState.js.map
