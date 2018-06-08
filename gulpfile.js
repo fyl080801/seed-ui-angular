@@ -92,7 +92,17 @@ gulp.task('pack_application', [], function(cb) {
  */
 gulp.task('pack_resources', function() {
   gulp
-    .src(['src/**/*', '!src/app/**/*.js', '!src/modules/**/*.js'])
+    .src([
+      'src/**/*',
+      '!src/*.ts',
+      '!src/*.map',
+      '!src/modules/**/*.js',
+      '!src/modules/**/*.ts',
+      '!src/modules/**/*.map',
+      '!src/app/**/*.js',
+      '!src/app/**/*.ts',
+      '!src/app/**/*.map'
+    ])
     .pipe(gulp.dest('dist'));
 
   var reference = JSON.parse(fs.readFileSync('config/reference.json'));

@@ -5,12 +5,6 @@ export as namespace app;
 export = app;
 
 declare namespace app {
-  export enum Size {
-    sm = 'sm',
-    nm = '',
-    lg = 'lg'
-  }
-
   /**
    *
    */
@@ -174,11 +168,11 @@ declare namespace app {
      *
      */
     export interface IPopupService {
-      information(text: string, size?: Size): ng.IPromise<any>;
+      information(text: string, size?: string): ng.IPromise<any>;
 
-      confirm(text: string, size?: Size): IConfirmPromise;
+      confirm(text: string, size?: string): IConfirmPromise;
 
-      error(text: string, size?: Size): ng.IPromise<any>;
+      error(text: string | Array<any>, size?: string): ng.IPromise<any>;
     }
 
     export interface ITreeItem<T> {
