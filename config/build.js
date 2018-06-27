@@ -22,5 +22,8 @@ require.config({
       '../bower_components/angular-sanitize/angular-sanitize.min',
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min'
   },
+  shim: {
+    bootstrap: { deps: ['jquery'] }
+  },
   exclude: []
 });
