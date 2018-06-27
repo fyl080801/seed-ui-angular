@@ -23,7 +23,7 @@ require.config({
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min'
   },
   shim: {
-    bootstrap: { deps: ['jquery'] }
+    bootstrap: { deps: ['angular'] }
   },
   exclude: []
 });

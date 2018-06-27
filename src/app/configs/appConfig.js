@@ -1,4 +1,4 @@
-define(["require", "exports", "app/boot"], function (require, exports, boot) {
+define(["require", "exports", "app/boot", "jquery"], function (require, exports, boot, $) {
     "use strict";
     exports.__esModule = true;
     boot.config([

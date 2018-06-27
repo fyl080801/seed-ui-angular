@@ -1,4 +1,5 @@
 import boot = require('app/boot');
+import $ = require('jquery');
 
 boot.config([
   '$provide',
