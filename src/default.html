@@ -13,7 +13,6 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script>
         window.options = {
-            urlArgs: 'v=0.0.1',
             configs: {
                 // patch
                 'es5-shim': '/bower_components/es5-shim/es5-shim.min',
@@ -56,6 +55,18 @@
                     shim: { deps: ['jquery'] }
                 },
                 'jquery': '/bower_components/jquery/dist/jquery',
+
+                // extends
+                // 'jexcel': {
+                //     path: '/node_modules/jexcel/dist/js/jexcel'
+                // },
+                'jquery.jexcel': {
+                    path: '/node_modules/jexcel/dist/js/jquery.jexcel',
+                    shim: {
+                        deps: ['jquery']
+                    }
+                },
+
                 // application
                 'app/application': {
                     path: '/src/app/application',
@@ -86,10 +97,10 @@
                 'json2',
                 'respond'
             ],
-            requires: ['rcss!css/sample.css', 'modules/sample/module']
+            requires: ['rcss!css/sample.css', 'rcss!../node_modules/jexcel/dist/css/jquery.jexcel.css', 'modules/sample/module']
         };
     </script>
-    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
+    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-args="v=0.0.2" data-debug="true"></script>
     <title>Document</title>
 </head>
 

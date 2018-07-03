@@ -6,14 +6,25 @@ class SampleModule {
     $stateProvider: app.configs.IRequireStateProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider
   ) {
+    $stateProvider.state('index', {
+      url: '/index',
+      templateUrl: 'modules/sample/views/index.html'
+    });
+
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: 'modules/sample/components/home.html',
       requires: ['modules/sample/requires']
     });
 
-    $urlRouterProvider.otherwise('/home');
+    $stateProvider.state('jexcel', {
+      url: '/jexcel',
+      templateUrl: 'modules/sample/components/jexcel.html',
+      requires: ['modules/sample/requires']
+    });
+
+    $urlRouterProvider.otherwise('/index');
   }
 }
 
-export default angular.module('modules.sample', []).config(SampleModule);
+export = angular.module('modules.sample', []).config(SampleModule);

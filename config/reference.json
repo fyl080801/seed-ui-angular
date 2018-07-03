@@ -11,5 +11,9 @@
       "./bower_components/bootstrap/dist/css/bootstrap.min.css.map"
     ],
     "fonts": ["./bower_components/bootstrap/dist/fonts/*"]
+  },
+  "jexcel": {
+    "js": ["./node_modules/jexcel/dist/js/*"],
+    "css": ["./node_modules/jexcel/dist/css/*"]
   }
 }

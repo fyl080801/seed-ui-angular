@@ -9,6 +9,6 @@ define(["require", "exports", "modules/sample/module"], function (require, expor
         HomeController.$inject = ['$scope'];
         return HomeController;
     }());
-    mod["default"].controller('modules/sample/components/home', HomeController);
+    mod.controller('modules/sample/components/home', HomeController);
 });
 //# sourceMappingURL=home.js.map
