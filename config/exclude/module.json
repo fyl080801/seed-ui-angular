@@ -9,6 +9,7 @@
   "bootstrap",
 
   "jquery.jexcel",
+  "three",
 
   "app/application"
 ]

@@ -23,7 +23,8 @@ require.config({
     'angular-cookies':
       '../bower_components/angular-cookies/angular-cookies.min',
     //
-    'jquery.jexcel': '../node_modules/jexcel/dist/js/jquery.jexcel'
+    'jquery.jexcel': '../node_modules/jexcel/dist/js/jquery.jexcel',
+    three: '../bower_components/three/build/three.min'
   },
   shim: {
     bootstrap: { deps: ['angular'] }

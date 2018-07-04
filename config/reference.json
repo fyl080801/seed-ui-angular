@@ -15,5 +15,8 @@
   "jexcel": {
     "js": ["./node_modules/jexcel/dist/js/*"],
     "css": ["./node_modules/jexcel/dist/css/*"]
+  },
+  "three": {
+    "js": ["./bower_components/three/build/*.js"]
   }
 }

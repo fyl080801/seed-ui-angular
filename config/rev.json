@@ -27,6 +27,7 @@
 
   "/node_modules/jexcel/dist/js/jquery.jexcel": "js/jquery.jexcel",
   "../node_modules/jexcel/dist/css/jquery.jexcel.css": "css/jquery.jexcel.css",
+  "/bower_components/three/build/three.min": "js/three.min",
 
   "../../../src/": "",
   "../../src/": ""
