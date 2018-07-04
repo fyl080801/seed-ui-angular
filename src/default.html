@@ -73,7 +73,8 @@
                     shim: {
                         deps: [
                             'angular-ui-router',
-                            'angular-ui-bootstrap'
+                            'angular-ui-bootstrap',
+                            'jquery'
                         ]
                     }
                 },
@@ -97,7 +98,11 @@
                 'json2',
                 'respond'
             ],
-            requires: ['rcss!css/sample.css', 'rcss!../node_modules/jexcel/dist/css/jquery.jexcel.css', 'modules/sample/module']
+            requires: [
+                'rcss!css/sample.css',
+                'rcss!/node_modules/jexcel/dist/css/jquery.jexcel.css',
+                //'rcss!/node_modules/jexcel/dist/css/jquery.jexcel.bootstrap.css',
+                'modules/sample/module']
         };
     </script>
     <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-args="v=0.0.2" data-debug="true"></script>
