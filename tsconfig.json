@@ -7,5 +7,5 @@
     "sourceMap": true,
     "baseUrl": "src"
   },
-  "exclude": ["node_modules", "bower_components"]
+  "exclude": ["node_modules", "bower_components", "dist", "config", ".vscode"]
 }

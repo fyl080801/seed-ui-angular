@@ -16,6 +16,11 @@ define(["require", "exports", "angular"], function (require, exports, angular) {
                 templateUrl: 'modules/sample/components/jexcel.html',
                 requires: ['modules/sample/requires']
             });
+            $stateProvider.state('three', {
+                url: '/three',
+                templateUrl: 'modules/sample/components/threeDemo.html',
+                requires: ['modules/sample/requires']
+            });
             $urlRouterProvider.otherwise('/index');
         }
         SampleModule.$inject = ['$stateProvider', '$urlRouterProvider'];

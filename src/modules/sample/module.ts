@@ -23,6 +23,12 @@ class SampleModule {
       requires: ['modules/sample/requires']
     });
 
+    $stateProvider.state('three', {
+      url: '/three',
+      templateUrl: 'modules/sample/components/threeDemo.html',
+      requires: ['modules/sample/requires']
+    });
+
     $urlRouterProvider.otherwise('/index');
   }
 }

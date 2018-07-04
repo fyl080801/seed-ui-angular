@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "webserver": "gulp webserver",
-    "tsc": "tsc --watch",
+    "tsc": "tsc --watch -p tsconfig.json",
     "start": "concurrently \"npm run tsc\" \"npm run webserver\""
   },
   "devDependencies": {
