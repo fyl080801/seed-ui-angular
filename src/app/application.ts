@@ -16,6 +16,7 @@ import 'app/directives/title';
 import 'app/directives/theme';
 import 'app/directives/equals';
 
+window['angular'] = angular;
 var application = angular.module('app.application', ['app.boot']);
 var fn = angular.module;
 
