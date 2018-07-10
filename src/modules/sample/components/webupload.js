@@ -5,11 +5,12 @@ define(["require", "exports", "modules/sample/module", "../../../../bower_compon
         function Controller($scope) {
             this.$scope = $scope;
             $scope.vm = this;
+            $scope.server = '';
             var uploader = new WebUploader.Uploader({
                 pick: '#up',
                 swf: '../../../../bower_components/fex-webuploader/dist/Uploader.swf',
                 chunked: false,
-                server: 'http://103.26.1.78:611/HandlerImgUpload.ashx?EnteCode=31'
+                server: $scope.server
             });
             uploader.on('fileQueued', function (file) {
                 var x = '';
