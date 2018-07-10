@@ -18,5 +18,12 @@
   },
   "three": {
     "js": ["./bower_components/three/build/*.js"]
+  },
+  "webuploader": {
+    "js": [
+      "./bower_components/fex-webuploader/dist/*.js",
+      "./bower_components/fex-webuploader/dist/Uploader.swf"
+    ],
+    "css": ["./bower_components/fex-webuploader/dist/webuploader.css"]
   }
 }

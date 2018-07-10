@@ -29,6 +29,12 @@ class SampleModule {
       requires: ['modules/sample/requires']
     });
 
+    $stateProvider.state('webupload', {
+      url: '/webupload',
+      templateUrl: 'modules/sample/components/webupload.html',
+      requires: ['modules/sample/requires']
+    });
+
     $urlRouterProvider.otherwise('/index');
   }
 }

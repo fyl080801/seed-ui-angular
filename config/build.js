@@ -25,6 +25,9 @@ require.config({
     //
     'jquery.jexcel': '../node_modules/jexcel/dist/js/jquery.jexcel',
     three: '../bower_components/three/build/three.min'
+    // webuploader: '../bower_components/fex-webuploader/dist/webuploader.min',
+    // 'webuploader.withoutimage':
+    //   '../bower_components/fex-webuploader/dist/webuploader.withoutimage.min'
   },
   shim: {
     bootstrap: { deps: ['angular'] }

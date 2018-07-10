@@ -1,5 +1,5 @@
 import mod = require('modules/sample/module');
-import THREE = require('three');
+//import THREE = require('three');
 import $ = require('jquery');
 
 class Controller {
