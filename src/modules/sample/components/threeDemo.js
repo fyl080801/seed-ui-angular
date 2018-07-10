@@ -1,4 +1,4 @@
-define(["require", "exports", "modules/sample/module", "jquery"], function (require, exports, mod, $) {
+define(["require", "exports", "modules/sample/module", "three", "jquery"], function (require, exports, mod, THREE, $) {
     "use strict";
     exports.__esModule = true;
     var Controller = (function () {
