@@ -5,6 +5,10 @@ export as namespace app;
 export = app;
 
 declare namespace app {
+  export interface IApplication {
+    module(name: string, requires?: string[], fn?: Function): ng.IModule;
+  }
+
   /**
    *
    */

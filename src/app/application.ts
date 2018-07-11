@@ -35,8 +35,14 @@ angular.module = (name, requires, configFn) => {
     }
   ]);
 
-  if (name !== 'app.application' && application.requires.indexOf(name) < 0)
-    application.requires.push(name);
+  var reqIdx = -1;
+  for (var i = 0; i < application.requires.length; i++) {
+    if (application.requires[i] === name) {
+      reqIdx = i;
+      break;
+    }
+  }
+  if (name !== 'app.application' && reqIdx < 0) application.requires.push(name);
 
   return app;
 };

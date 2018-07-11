@@ -25,6 +25,13 @@
 
   "/bower_components/requirejs/require.js": "js/require.js",
 
+  "/node_modules/jexcel/dist/js/jquery.jexcel": "js/jquery.jexcel",
+  "/node_modules/jexcel/dist/css/jquery.jexcel.css": "css/jquery.jexcel.css",
+  "/node_modules/jexcel/dist/css/jquery.jexcel.bootstrap.css":
+    "css/jquery.jexcel.bootstrap.css",
+  "/bower_components/three/build/three.min": "js/three.min",
+  "/bower_components/fex-webuploader/dist/webuploader": "js/webuploader",
+
   "../../../src/": "",
   "../../src/": ""
 }

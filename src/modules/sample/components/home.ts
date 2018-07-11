@@ -7,4 +7,4 @@ class HomeController {
   }
 }
 
-mod.default.controller('modules/sample/components/home', HomeController);
+mod.controller('modules/sample/components/home', HomeController);
