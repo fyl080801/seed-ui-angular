@@ -17,7 +17,14 @@ define(["require", "exports", "angular", "app/configs/appConfig", "app/configs/d
                 app.service = $provide.service;
             }
         ]);
-        if (name !== 'app.application' && application.requires.indexOf(name) < 0)
+        var reqIdx = -1;
+        for (var i = 0; i < application.requires.length; i++) {
+            if (application.requires[i] === name) {
+                reqIdx = i;
+                break;
+            }
+        }
+        if (name !== 'app.application' && reqIdx < 0)
             application.requires.push(name);
         return app;
     };
