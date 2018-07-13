@@ -6,8 +6,9 @@
   "license": "ISC",
   "scripts": {
     "webserver": "gulp webserver",
-    "tsc": "tsc --watch",
-    "start": "concurrently \"npm run tsc\" \"npm run webserver\""
+    "tsc": "tsc --watch -p tsconfig.json",
+    "start": "concurrently \"npm run tsc\" \"npm run webserver\"",
+    "build": "gulp build && gulp pack_rev"
   },
   "devDependencies": {
     "@types/angular": "^1.6.45",
@@ -16,6 +17,7 @@
     "@types/jquery": "^3.3.1",
     "@types/popper.js": "^1.11.0",
     "@types/requirejs": "^2.1.31",
+    "@types/three": "^0.92.11",
     "amd-optimize": "^0.6.1",
     "bower": "^1.8.4",
     "codelyzer": "~4.2.1",
@@ -38,5 +40,8 @@
     "rimraf": "^2.6.2",
     "sog-gulp-rev-collector": "0.0.1",
     "typescript": "^2.9.1"
+  },
+  "dependencies": {
+    "jexcel": "^1.5.5"
   }
 }

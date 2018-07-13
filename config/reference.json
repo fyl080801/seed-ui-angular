@@ -11,5 +11,19 @@
       "./bower_components/bootstrap/dist/css/bootstrap.min.css.map"
     ],
     "fonts": ["./bower_components/bootstrap/dist/fonts/*"]
+  },
+  "jexcel": {
+    "js": ["./node_modules/jexcel/dist/js/*"],
+    "css": ["./node_modules/jexcel/dist/css/*"]
+  },
+  "three": {
+    "js": ["./bower_components/three/build/*.js"]
+  },
+  "webuploader": {
+    "js": [
+      "./bower_components/fex-webuploader/dist/*.js",
+      "./bower_components/fex-webuploader/dist/Uploader.swf"
+    ],
+    "css": ["./bower_components/fex-webuploader/dist/webuploader.css"]
   }
 }

@@ -7,5 +7,9 @@
   "angular-sanitize",
   "angular-cookies",
   "bootstrap",
+
+  "jquery.jexcel",
+  "three",
+
   "app/application"
 ]

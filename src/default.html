@@ -11,9 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .view-loading {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-image: url('img/loading.gif');
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
     <script>
         window.options = {
-            urlArgs: 'v=0.0.1',
             configs: {
                 // patch
                 'es5-shim': '/bower_components/es5-shim/es5-shim.min',
@@ -56,13 +67,38 @@
                     shim: { deps: ['jquery'] }
                 },
                 'jquery': '/bower_components/jquery/dist/jquery',
+
+                // extends
+                'jquery.jexcel': {
+                    path: '/node_modules/jexcel/dist/js/jquery.jexcel',
+                    shim: {
+                        deps: ['jquery']
+                    }
+                },
+                'three': {
+                    path: '/bower_components/three/build/three.min'
+                },
+                'webuploader': {
+                    path: '/bower_components/fex-webuploader/dist/webuploader',
+                    shim: {
+                        deps: ['jquery']
+                    }
+                },
+                'webuploader.withoutimage': {
+                    path: '/bower_components/fex-webuploader/dist/webuploader.withoutimage',
+                    shim: {
+                        deps: ['jquery']
+                    }
+                },
+
                 // application
                 'app/application': {
                     path: '/src/app/application',
                     shim: {
                         deps: [
                             'angular-ui-router',
-                            'angular-ui-bootstrap'
+                            'angular-ui-bootstrap',
+                            'jquery'
                         ]
                     }
                 },
@@ -86,15 +122,19 @@
                 'json2',
                 'respond'
             ],
-            requires: ['rcss!css/sample.css', 'modules/sample/module']
+            requires: [
+                'rcss!css/sample.css',
+                'rcss!/node_modules/jexcel/dist/css/jquery.jexcel.css',
+                //'rcss!/node_modules/jexcel/dist/css/jquery.jexcel.bootstrap.css',
+                'modules/sample/module']
         };
     </script>
-    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-debug="true"></script>
+    <script id="app" src="/bower_components/requirejs/require.js" data-main="startup.js" data-args="v=0.0.2" data-debug="true"></script>
     <title>Document</title>
 </head>
 
 <body ui-view>
-
+    <div class="view-loading"></div>
 </body>
 
 </html>
