@@ -12,7 +12,7 @@ define(["require", "exports", "modules/sample/module"], function (require, expor
             this.$modal.open({
                 template: '<div>aaa</div>',
                 windowClass: 'right',
-                size: '7',
+                size: '8',
                 backdrop: true
             });
         };

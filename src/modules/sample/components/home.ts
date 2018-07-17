@@ -11,7 +11,7 @@ class HomeController {
     this.$modal.open({
       template: '<div>aaa</div>',
       windowClass: 'right',
-      size: '7',
+      size: '8',
       backdrop: true
     });
   }
