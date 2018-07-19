@@ -41,6 +41,8 @@ define(["require", "exports", "app/boot", "angular", "app/configs/enums/size"], 
                 else {
                     defer.reject(result);
                 }
+            })["catch"](function () {
+                defer.reject();
             });
             return promise;
         };
