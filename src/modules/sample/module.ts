@@ -3,7 +3,7 @@ import angular = require('angular');
 class SampleModule {
   static $inject = ['$stateProvider', '$urlRouterProvider'];
   constructor(
-    $stateProvider: app.configs.IRequireStateProvider,
+    $stateProvider: app.IRequireStateProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider
   ) {
     $stateProvider.state('index', {

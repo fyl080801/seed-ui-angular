@@ -1,4 +1,4 @@
-define(["require", "exports", "angular", "app/configs/appConfig", "app/configs/dependencyLoader", "app/configs/appEnvironment", "app/configs/rootScope", "app/configs/modal", "app/configs/http", "app/configs/route", "app/factories/httpState", "app/factories/httpDataHandler", "app/services/ajaxService", "app/services/httpService", "app/services/popupService", "app/services/treeUtility", "app/directives/title", "app/directives/theme", "app/directives/equals"], function (require, exports, angular) {
+define(["require", "exports", "angular", "app/configs/appConfig", "app/configs/dependencyLoader", "app/configs/appEnvironment", "app/configs/rootScope", "app/configs/modal", "app/configs/http", "app/configs/route", "app/factories/httpState", "app/factories/httpDataHandler", "app/factories/delayTimer", "app/services/ajaxService", "app/services/httpService", "app/services/popupService", "app/services/treeUtility", "app/directives/title", "app/directives/theme", "app/directives/equals"], function (require, exports, angular) {
     "use strict";
     var application = angular.module('app.application', ['app.boot']);
     var fn = angular.module;

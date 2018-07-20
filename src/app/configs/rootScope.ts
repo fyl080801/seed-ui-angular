@@ -2,9 +2,9 @@ import boot = require('app/boot');
 
 class ConfigClass {
   static decorator(
-    $delegate: app.configs.IExtendRootScopeService,
+    $delegate: app.IExtendRootScopeService,
     $appEnvironment: app.IAppEnvironment
-  ): app.configs.IExtendRootScopeService {
+  ): app.IExtendRootScopeService {
     $delegate.$appEnvironment = $appEnvironment;
     return $delegate;
   }

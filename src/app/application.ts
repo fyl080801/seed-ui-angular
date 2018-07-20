@@ -8,6 +8,7 @@ import 'app/configs/http';
 import 'app/configs/route';
 import 'app/factories/httpState';
 import 'app/factories/httpDataHandler';
+import 'app/factories/delayTimer';
 import 'app/services/ajaxService';
 import 'app/services/httpService';
 import 'app/services/popupService';
