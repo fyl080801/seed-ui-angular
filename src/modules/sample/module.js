@@ -26,6 +26,11 @@ define(["require", "exports", "angular"], function (require, exports, angular) {
                 templateUrl: 'modules/sample/components/webupload.html',
                 requires: ['modules/sample/requires']
             });
+            $stateProvider.state('cemera', {
+                url: '/cemera',
+                templateUrl: 'modules/sample/components/cemera.html',
+                requires: ['modules/sample/requires']
+            });
             $stateProvider.state('test', {
                 url: '/test',
                 templateUrl: 'modules/sample/components/test.html',
