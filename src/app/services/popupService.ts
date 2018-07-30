@@ -29,12 +29,15 @@ class PopupService implements app.services.IPopupService {
           }
         })
       })
-      .result.then(function(result) {
+      .result.then(result => {
         if (result === true) {
           defer.resolve(result);
         } else {
           defer.reject(result);
         }
+      })
+      .catch(() => {
+        defer.reject();
       });
 
     return promise;

@@ -3,7 +3,7 @@ import angular = require('angular');
 class SampleModule {
   static $inject = ['$stateProvider', '$urlRouterProvider'];
   constructor(
-    $stateProvider: app.configs.IRequireStateProvider,
+    $stateProvider: app.IRequireStateProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider
   ) {
     $stateProvider.state('index', {
@@ -35,8 +35,32 @@ class SampleModule {
       requires: ['modules/sample/requires']
     });
 
+    $stateProvider.state('cemera', {
+      url: '/cemera',
+      templateUrl: 'modules/sample/components/cemera.html',
+      requires: ['modules/sample/requires']
+    });
+
+    $stateProvider.state('test', {
+      url: '/test',
+      templateUrl: 'modules/sample/components/test.html',
+      requires: ['modules/sample/requires']
+    });
+
     $urlRouterProvider.otherwise('/index');
   }
 }
+
+angular.module('template/modal/window.html', []).run([
+  '$templateCache',
+  function($templateCache) {
+    $templateCache.put(
+      'template/modal/window.html',
+      '<div tabindex="-1" role="dialog" class="modal fade" ng-class="{in: animate}" ng-style="{\'z-index\': 1050 + index*10, display: \'block\'}" ng-click="close($event)">\n' +
+        '    <div class="modal-dialog modal-{{size}}"><div class="modal-content" modal-transclude></div></div>\n' +
+        '</div>'
+    );
+  }
+]);
 
 export = angular.module('modules.sample', []).config(SampleModule);

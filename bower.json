@@ -20,14 +20,15 @@
     "angular-sanitize": "1.2.32",
     "angular-cookies": "1.2.32",
     "bootstrap": "3.3.7",
-    "es5-shim": "4.5.9",
-    "html5shiv": "3.7.3",
+    "es5-shim": "^4.5.9",
+    "html5shiv": "^3.7.3",
     "jquery": "1.12.4",
     "json2": "*",
     "requirejs": "latest",
     "require-css": "0.1.10",
-    "respond": "1.4.2",
+    "respond": "^1.4.2",
     "three": "*",
-    "fex-webuploader": "^0.1.5"
+    "fex-webuploader": "^0.1.5",
+    "html5media": "^1.2.2"
   }
 }

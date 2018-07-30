@@ -33,3 +33,8 @@ build/Release
 /publish
 /dist
 /package-lock.json
+/src/app/**/*.js
+/src/modules/**/*.js
+/src/**/*.map
+/src/startup.js
+/src/startup.map

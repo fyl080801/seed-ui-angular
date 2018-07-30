@@ -2,8 +2,8 @@ import boot = require('app/boot');
 
 class RouteRun {
   constructor(
-    $rootScope: app.configs.IExtendRootScopeService,
-    $state: app.configs.IExtendStateService,
+    $rootScope: app.IExtendRootScopeService,
+    $state: app.IExtendStateService,
     $stateParams: ng.ui.IStateParamsService
   ) {
     $rootScope.$state = $state;

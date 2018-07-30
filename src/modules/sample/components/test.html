@@ -1,0 +1,43 @@
+<div ng-controller="modules/sample/components/test">
+    不在一个选项卡组里相互控制
+    <div>
+        <ul class="nav nav-tabs fake-tab" role="tablist" style="position: absolute; left: 0;">
+            <li role="presentation" class="active">
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab" ng-click="vm.aaa()">Home</a>
+            </li>
+        </ul>
+
+        <!-- Nav tabs -->
+        <ul id="mytabs" class="nav nav-tabs" role="tablist" style="margin-left: 71px">
+            <li role="presentation" class="active" style="display: none">
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+            </li>
+            <li role="presentation">
+                <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+            </li>
+            <li role="presentation">
+                <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+            </li>
+            <li role="presentation">
+                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                aaa
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                bbb
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+                ccc
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">
+                ddd
+            </div>
+        </div>
+
+    </div>
+</div>
