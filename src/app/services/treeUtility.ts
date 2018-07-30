@@ -3,22 +3,24 @@ import angular = require('angular');
 
 class TreeContext<T> implements app.services.ITreeContext<T> {
   constructor(private defer: ng.IDeferred<app.services.ITreeItem<T>>) {}
+
   onEach(
     fn: (item: app.services.ITreeItem<T>) => void
   ): app.services.ITreeContext<T> {
-    this.eachCallback = fn;
+    this.defer.promise.then(angular.noop, angular.noop, fn);
     return this;
   }
+
   result: ng.IPromise<app.services.ITreeItem<T>> = this.defer.promise;
-  eachCallback: (item: app.services.ITreeItem<T>) => void;
 }
 
-class TreeConvertContext<T> implements app.services.ITreeConvertContext<T> {
-  constructor(private defer: ng.IDeferred<app.services.ITreeItem<T>>) {}
+class TreeConvertContext<T> extends TreeContext<T>
+  implements app.services.ITreeConvertContext<T> {
   private _key: any = 'id';
   private _parentKey: any = 'parentId';
-  key(name: any): app.services.ITreeConvertContext<T>;
-  key();
+
+  key(name: string): app.services.ITreeConvertContext<T>;
+  key(): string;
   key(name?: any) {
     if (name) {
       this._key = name;
@@ -26,8 +28,9 @@ class TreeConvertContext<T> implements app.services.ITreeConvertContext<T> {
     }
     return this._key;
   }
-  parentKey(name: any): app.services.ITreeConvertContext<T>;
-  parentKey();
+
+  parentKey(name: string): app.services.ITreeConvertContext<T>;
+  parentKey(): string;
   parentKey(name?: any) {
     if (name) {
       this._parentKey = name;
@@ -35,32 +38,53 @@ class TreeConvertContext<T> implements app.services.ITreeConvertContext<T> {
     }
     return this._parentKey;
   }
-  onEach(
-    fn: (item: app.services.ITreeItem<T>) => void
-  ): app.services.ITreeContext<T> {
-    this.eachCallback = fn;
-    return this;
+}
+
+class TreeResolveContext<T> extends TreeContext<T>
+  implements app.services.ITreeResolveContext<T> {
+  private _key: any = 'id';
+  private _childrenKey: any = 'children';
+
+  key(name: string): app.services.ITreeResolveContext<T>;
+  key(): string;
+  key(name?: any) {
+    if (name) {
+      this._key = name;
+      return this;
+    }
+    return this._key;
   }
-  result: ng.IPromise<app.services.ITreeItem<T>> = this.defer.promise;
-  eachCallback: ((item: app.services.ITreeItem<T>) => void);
+
+  childrenKey(name: string): app.services.ITreeResolveContext<T>;
+  childrenKey(): string;
+  childrenKey(name?: any) {
+    if (name) {
+      this._childrenKey = name;
+      return this;
+    }
+    return this._childrenKey;
+  }
 }
 
 class TreeUtility implements app.services.ITreeUtility {
   static $inject = ['$q', '$timeout'];
+
   constructor(private $q: ng.IQService, private $timeout: ng.ITimeoutService) {}
-  private convertToTree<T>(
+
+  private _convert<T>(
     data: T[],
-    context: app.services.ITreeConvertContext<T>
+    context: app.services.ITreeConvertContext<T>,
+    defer: ng.IDeferred<app.services.ITreeItem<T>>
   ): app.services.ITreeItem<T> {
     // 将键值映射成键值对
     let map: { [key: string]: app.services.ITreeItem<T> } = {};
-    data.forEach((item, idx, arr) => {
-      let current = arr[idx];
+    for (var i = 0; i < data.length; i++) {
+      let current = data[i];
       map[current[context.key()]] = {
         $data: current,
         $key: current[context.key()]
       };
-    });
+    }
 
     // 构建树
     let root: app.services.ITreeItem<T> = {
@@ -78,38 +102,76 @@ class TreeUtility implements app.services.ITreeUtility {
         current.$parent = root;
         root.$children.push(current);
       }
-      (context.eachCallback || angular.noop)(current);
+      defer.notify(current);
     }
 
     return root;
   }
-  private doEachTree<T>(
-    root: app.services.ITreeItem<T>,
-    context: app.services.ITreeContext<T>
-  ) {
-    var self = this;
-    root.$children.forEach(function(item) {
-      (context.eachCallback || angular.noop)(item);
-      if (item.$children) {
-        self.doEachTree(item, context);
-      }
-    });
+
+  private _resolve<T>(
+    data: T,
+    context: app.services.ITreeResolveContext<T>,
+    defer: ng.IDeferred<app.services.ITreeItem<T>>,
+    parent?: app.services.ITreeItem<T>
+  ): app.services.ITreeItem<T> {
+    let node: app.services.ITreeItem<T> = {
+      $data: data,
+      $parent: parent,
+      $key: data[context.key()]
+    };
+
+    let resolvedChildren: app.services.ITreeItem<T>[] = [];
+    let children = data[context.childrenKey()];
+    children = angular.isArray(children) ? children : [];
+
+    for (var i = 0; i < children.length; i++) {
+      resolvedChildren.push(this._resolve(children[i], context, defer, node));
+    }
+
+    node.$children = resolvedChildren;
+    delete node.$data[context.childrenKey()];
+
+    defer.notify(node);
+
+    return node;
   }
+
+  private _each<T>(
+    root: app.services.ITreeItem<T>,
+    context: app.services.ITreeContext<T>,
+    defer: ng.IDeferred<app.services.ITreeItem<T>>
+  ) {
+    for (var i = 0; i < root.$children.length; i++) {
+      defer.notify(root.$children[i]);
+      if (root.$children[i].$children) {
+        this._each(root.$children[i], context, defer);
+      }
+    }
+  }
+
   toTree<T>(data: T[]): app.services.ITreeConvertContext<T> {
-    let self = this;
     let defer = this.$q.defer<app.services.ITreeItem<T>>();
     let context = new TreeConvertContext<T>(defer);
     this.$timeout(() => {
-      defer.resolve(self.convertToTree<T>(data, context));
+      defer.resolve(this._convert<T>(data, context, defer));
     });
     return context;
   }
+
+  resolveTree<T>(data: T): app.services.ITreeResolveContext<T> {
+    let defer = this.$q.defer<app.services.ITreeItem<T>>();
+    let context = new TreeResolveContext<T>(defer);
+    this.$timeout(() => {
+      defer.resolve(this._resolve<T>(data, context, defer));
+    });
+    return context;
+  }
+
   eachTree<T>(root: app.services.ITreeItem<T>): app.services.ITreeContext<T> {
-    let self = this;
     let defer = this.$q.defer<app.services.ITreeItem<T>>();
     let context = new TreeContext<T>(defer);
     this.$timeout(() => {
-      self.doEachTree<T>(root, context);
+      this._each<T>(root, context, defer);
       defer.resolve(root);
     });
     return context;

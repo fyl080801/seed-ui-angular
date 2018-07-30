@@ -176,34 +176,46 @@ declare namespace app {
       $data: T;
       $parent?: ITreeItem<T>;
       $children?: ITreeItem<T>[];
-      $key: any;
+      $key: string;
     }
 
     interface ITreeContext<T> {
       onEach(fn: ((item: ITreeItem<T>) => void)): ITreeContext<T>;
-      eachCallback: ((item: ITreeItem<T>) => void);
       result: ng.IPromise<ITreeItem<T>>;
     }
 
     interface ITreeConvertContext<T> extends ITreeContext<T> {
-      key(name: any): ITreeConvertContext<T>;
-      key(): any;
-      parentKey(name: any): ITreeConvertContext<T>;
-      parentKey(): any;
+      key(name: string): ITreeConvertContext<T>;
+      key(): string;
+      parentKey(name: string): ITreeConvertContext<T>;
+      parentKey(): string;
+    }
+
+    interface ITreeResolveContext<T> extends ITreeContext<T> {
+      key(name: string): ITreeResolveContext<T>;
+      key(): string;
+      childrenKey(name: string): ITreeResolveContext<T>;
+      childrenKey(): string;
     }
 
     /**
-     *
+     * 树结构工具类
      */
     interface ITreeUtility {
       /**
-       *
+       * 数组转换成树
        * @param data
        */
       toTree<T>(data: Array<T>): ITreeConvertContext<T>;
 
       /**
-       *
+       * 处理树节点，将树转化成标准结构
+       * @param data
+       */
+      resolveTree<T>(data: T): ITreeResolveContext<T>;
+
+      /**
+       * 遍历树
        * @param root
        */
       eachTree<T>(root: ITreeItem<T>): ITreeContext<T>;
