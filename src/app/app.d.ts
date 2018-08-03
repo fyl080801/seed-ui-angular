@@ -95,7 +95,9 @@ declare namespace app {
   export namespace services {
     interface IDelayTimerContext {
       callback(fn: (state) => any): IDelayTimerContext;
+      callback(): (state) => any;
       canceling(fn: () => void): IDelayTimerContext;
+      canceling(): (() => void);
     }
 
     interface IDelayTimer {
