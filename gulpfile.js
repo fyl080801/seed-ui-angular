@@ -185,7 +185,7 @@ gulp.task('pack_modules', function() {
 
 gulp.task('pack_rev', function() {
   gulp
-    .src(['dist/**/*.html', 'dist/startup.js'])
+    .src(['dist/**/*.html', 'dist/**/*.js', 'dist/startup.js'])
     .pipe(revCollector(['config/rev.json']))
     .pipe(gulp.dest('dist'));
 });
