@@ -9,7 +9,9 @@ define(["require", "exports", "modules/sample/module", "three", "jquery"], funct
             this.scene = new THREE.Scene();
             $scope.vm = this;
             $element = $($element);
-            this.camera = new THREE.PerspectiveCamera(75, $element.innerWidth() / 700, 0.1, 1000);
+            var axes = new THREE.AxesHelper(50);
+            $scope.vm.scene.add(axes);
+            this.camera = new THREE.PerspectiveCamera(75, $element.innerWidth() / 700, 0.1, 10);
             this.renderer.setSize($element.innerWidth(), 700);
             $element.append(this.renderer.domElement);
             function render() {
