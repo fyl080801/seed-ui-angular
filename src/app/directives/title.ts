@@ -1,23 +1,28 @@
-define(['app/boot'], function(boot) {
-  'use strict';
+import boot = require('app/boot');
 
-  boot.directive('title', [
-    '$rootScope',
-    '$timeout',
-    function($rootScope, $timeout) {
-      var _link = function(scope, element, attrs) {
-        $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-          $timeout(function() {
-            document.title =
-              toState.data && toState.data.title ? toState.data.title : '';
-          });
-        });
-      };
+function directive(
+  $rootScope: ng.IRootScopeService,
+  $timeout: ng.ITimeoutService
+): ng.IDirective {
+  function _link(
+    scope: any,
+    instanceElement: JQLite,
+    instanceAttributes: ng.IAttributes
+  ) {
+    $rootScope.$on('$stateChangeSuccess', (event, toState: ng.ui.IState) => {
+      $timeout(() => {
+        document.title =
+          toState.data && toState.data.title ? toState.data.title : '';
+      });
+    });
+  }
 
-      return {
-        restrict: 'E',
-        link: _link
-      };
-    }
-  ]);
-});
+  return {
+    restrict: 'E',
+    link: _link
+  };
+}
+
+directive.$inject = ['$rootScope', '$timeout'];
+
+boot.directive('title', directive);
