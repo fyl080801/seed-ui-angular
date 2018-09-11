@@ -14,8 +14,6 @@ class HttpConfig {
 
     // http请求处理
     $httpProvider.interceptors.push('app/factories/httpState');
-
-    jQuery.support.cors = true;
   }
 }
 

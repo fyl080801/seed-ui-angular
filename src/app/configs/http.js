@@ -11,7 +11,6 @@ define(["require", "exports", "app/boot"], function (require, exports, boot) {
             $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
             $httpProvider.defaults.headers.get.Pragma = 'no-cache';
             $httpProvider.interceptors.push('app/factories/httpState');
-            jQuery.support.cors = true;
         }
         return HttpConfig;
     }());

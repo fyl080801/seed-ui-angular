@@ -1,4 +1,4 @@
-define(["require", "exports", "modules/sample/module", "jquery", "jquery.jexcel"], function (require, exports, mod, $) {
+define(["require", "exports", "modules/sample/module", "jquery.jexcel"], function (require, exports, mod) {
     "use strict";
     exports.__esModule = true;
     var CellType;

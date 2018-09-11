@@ -1,7 +1,6 @@
 import mod = require('modules/sample/module');
 import THREE = require('three');
 import L = require('leaflet');
-import $ = require('jquery');
 
 class Controller {
   private renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer();
@@ -10,7 +9,7 @@ class Controller {
   static $inject = ['$scope', '$element'];
   constructor(private $scope, private $element: JQLite) {
     $scope.vm = this;
-    $element = $($element);
+    // $element = $($element);
 
     // var Element = function(id, x, y, z, ry) {
     //   var div = document.createElement('div');

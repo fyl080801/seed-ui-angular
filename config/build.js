@@ -30,7 +30,8 @@ require.config({
     //   '../bower_components/fex-webuploader/dist/webuploader.withoutimage.min'
   },
   shim: {
-    bootstrap: { deps: ['angular'] }
+    bootstrap: { deps: ['jquery'] },
+    'jquery.jexcel': { deps: ['jquery'] }
   },
   exclude: []
 });

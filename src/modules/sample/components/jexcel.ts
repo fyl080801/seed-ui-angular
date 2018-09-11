@@ -1,5 +1,4 @@
 import mod = require('modules/sample/module');
-import $ = require('jquery');
 import 'jquery.jexcel';
 
 enum CellType {
