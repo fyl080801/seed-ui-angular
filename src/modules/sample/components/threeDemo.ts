@@ -8,9 +8,9 @@ class Controller {
   private scene: THREE.Scene = new THREE.Scene();
   private camera: THREE.Camera;
   static $inject = ['$scope', '$element'];
-  constructor(private $scope, private $element: JQLite) {
+  constructor(private $scope, private $element: JQuery) {
     $scope.vm = this;
-    $element = $($element);
+    //$element = $($element);
 
     // var Element = function(id, x, y, z, ry) {
     //   var div = document.createElement('div');

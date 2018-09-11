@@ -1,4 +1,4 @@
-define(["require", "exports", "modules/sample/module", "three", "jquery"], function (require, exports, mod, THREE, $) {
+define(["require", "exports", "modules/sample/module", "three"], function (require, exports, mod, THREE) {
     "use strict";
     exports.__esModule = true;
     var Controller = (function () {
@@ -8,7 +8,6 @@ define(["require", "exports", "modules/sample/module", "three", "jquery"], funct
             this.renderer = new THREE.WebGLRenderer();
             this.scene = new THREE.Scene();
             $scope.vm = this;
-            $element = $($element);
             var axes = new THREE.AxesHelper(50);
             $scope.vm.scene.add(axes);
             this.camera = new THREE.PerspectiveCamera(75, $element.innerWidth() / 700, 0.1, 10);
