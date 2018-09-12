@@ -20,11 +20,8 @@ define(["require", "exports", "modules/sample/module"], function (require, expor
             var fff = 1;
             function sss() {
                 console.log(fff);
-                var fff = 'asaa';
-                console.log(fff);
-                console.log(this.fff);
             }
-            sss();
+            sss.call(window);
         };
         HomeController.$inject = ['$scope', '$modal'];
         return HomeController;

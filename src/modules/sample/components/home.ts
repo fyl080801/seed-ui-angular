@@ -21,11 +21,11 @@ class HomeController {
 
     function sss() {
       console.log(fff);
-      var fff = 'asaa';
-      console.log(fff);
-      console.log(this.fff);
+      // var fff = 'asaa';
+      // console.log(fff);
+      // console.log(this.fff);
     }
-    sss();
+    sss.call(window);
   }
 }
 
