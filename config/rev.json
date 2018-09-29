@@ -31,6 +31,11 @@
     "css/jquery.jexcel.bootstrap.css",
   "/bower_components/three/build/three.min": "js/three.min",
   "/bower_components/fex-webuploader/dist/webuploader": "js/webuploader",
+  "/bower_components/fex-webuploader/dist/webuploader.withoutimage":
+    "js/webuploader.withoutimage",
+
+  "../bower_components/fex-webuploader/dist/webuploader.withoutimage":
+    "webuploader.withoutimage",
 
   "../../../src/": "",
   "../../src/": ""

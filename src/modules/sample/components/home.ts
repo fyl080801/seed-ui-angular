@@ -15,6 +15,18 @@ class HomeController {
       backdrop: true
     });
   }
+
+  fntest() {
+    var fff = 1;
+
+    function sss() {
+      console.log(fff);
+      // var fff = 'asaa';
+      // console.log(fff);
+      // console.log(this.fff);
+    }
+    sss.call(window);
+  }
 }
 
 mod.controller('modules/sample/components/home', HomeController);

@@ -1,8 +1,6 @@
-define(["require", "exports", "jquery", "angular-base"], function (require, exports, jQuery) {
+define(["require", "exports", "angular-base"], function (require, exports) {
     "use strict";
     var ng = window['angular'];
-    window['jQuery'] = jQuery;
-    window['$'] = jQuery;
     return ng;
 });
 //# sourceMappingURL=angular.js.map

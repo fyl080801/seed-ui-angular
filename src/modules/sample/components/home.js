@@ -16,6 +16,13 @@ define(["require", "exports", "modules/sample/module"], function (require, expor
                 backdrop: true
             });
         };
+        HomeController.prototype.fntest = function () {
+            var fff = 1;
+            function sss() {
+                console.log(fff);
+            }
+            sss.call(window);
+        };
         HomeController.$inject = ['$scope', '$modal'];
         return HomeController;
     }());
