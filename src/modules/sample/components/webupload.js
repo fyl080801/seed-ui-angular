@@ -1,4 +1,4 @@
-define(["require", "exports", "modules/sample/module", "../../../../bower_components/fex-webuploader/dist/webuploader.withoutimage"], function (require, exports, mod, WebUploader) {
+define(["require", "exports", "modules/sample/module", "../../../../node_modules/webuploader/dist/webuploader.withoutimage"], function (require, exports, mod, WebUploader) {
     "use strict";
     exports.__esModule = true;
     var Controller = (function () {
@@ -8,7 +8,7 @@ define(["require", "exports", "modules/sample/module", "../../../../bower_compon
             $scope.server = '';
             var uploader = new WebUploader.Uploader({
                 pick: '#up',
-                swf: '../../../../bower_components/fex-webuploader/dist/Uploader.swf',
+                swf: '../../../../node_modules/webuploader/dist/Uploader.swf',
                 chunked: false,
                 server: $scope.server
             });

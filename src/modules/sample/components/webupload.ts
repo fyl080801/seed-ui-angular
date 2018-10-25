@@ -1,5 +1,5 @@
 import mod = require('modules/sample/module');
-import WebUploader = require('../../../../bower_components/fex-webuploader/dist/webuploader.withoutimage');
+import WebUploader = require('../../../../node_modules/webuploader/dist/webuploader.withoutimage');
 
 class Controller {
   up() {
@@ -13,7 +13,7 @@ class Controller {
 
     var uploader = new WebUploader.Uploader({
       pick: '#up',
-      swf: '../../../../bower_components/fex-webuploader/dist/Uploader.swf',
+      swf: '../../../../node_modules/webuploader/dist/Uploader.swf',
       chunked: false,
       server: $scope.server //'http://103.26.1.78:611/HandlerImgUpload.ashx?EnteCode=31'
     });
