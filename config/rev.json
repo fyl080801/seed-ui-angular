@@ -1,41 +1,36 @@
 {
-  "/bower_components/es5-shim/es5-shim.min": "js/app.patch",
-  "/bower_components/es5-shim/es5-sham.min": "js/app.patch",
-  "/bower_components/html5shiv/dist/html5shiv.min": "js/app.patch",
-  "/bower_components/json2/json2": "js/app.patch",
-  "/bower_components/respond/dest/respond.min": "js/app.patch",
+  "/node_modules/es5-shim/es5-shim.min": "js/app.patch",
+  "/node_modules/es5-shim/es5-sham.min": "js/app.patch",
+  "/node_modules/html5shiv/dist/html5shiv.min": "js/app.patch",
+  "/node_modules/JSON/json2": "js/app.patch",
+  "/node_modules/respond/dest/respond.min": "js/app.patch",
 
-  "/bower_components/bootstrap/dist/css/bootstrap.min.css":
-    "css/bootstrap.min.css",
+  "/node_modules/bootstrap/dist/css/bootstrap.min.css": "css/bootstrap.min.css",
 
-  "/bower_components/require-css/css": "js/app.application",
-  "/bower_components/angular/angular": "js/app.application",
+  "/node_modules/require-css/css": "js/app.application",
+  "/node_modules/angular/angular": "js/app.application",
   "/src/app/angular": "js/app.application",
-  "/bower_components/angular-ui-router/release/angular-ui-router":
-    "js/app.application",
-  "/bower_components/angular-bootstrap/ui-bootstrap-tpls": "js/app.application",
-  "/bower_components/angular-sanitize/angular-sanitize": "js/app.application",
-  "/bower_components/angular-cookies/angular-cookies": "js/app.application",
-  "/bower_components/jquery/dist/jquery": "js/app.application",
-  "/bower_components/bootstrap/dist/js/bootstrap": "js/app.application",
+  "/node_modules/angular-ui-router/release/angular-ui-router": "js/app.application",
+  "/node_modules/angular-bootstrap/ui-bootstrap-tpls": "js/app.application",
+  "/node_modules/angular-sanitize/angular-sanitize": "js/app.application",
+  "/node_modules/angular-cookies/angular-cookies": "js/app.application",
+  "/node_modules/jquery/dist/jquery": "js/app.application",
+  "/node_modules/bootstrap/dist/js/bootstrap": "js/app.application",
 
   "/src/app/application": "js/app.application",
   "/src/modules/sample/module": "js/modules.sample",
   "/src/modules/sample/requires": "js/requires.sample",
 
-  "/bower_components/requirejs/require.js": "js/require.js",
+  "/node_modules/requirejs/require.js": "js/require.js",
 
   "/node_modules/jexcel/dist/js/jquery.jexcel": "js/jquery.jexcel",
   "/node_modules/jexcel/dist/css/jquery.jexcel.css": "css/jquery.jexcel.css",
-  "/node_modules/jexcel/dist/css/jquery.jexcel.bootstrap.css":
-    "css/jquery.jexcel.bootstrap.css",
-  "/bower_components/three/build/three.min": "js/three.min",
-  "/bower_components/fex-webuploader/dist/webuploader": "js/webuploader",
-  "/bower_components/fex-webuploader/dist/webuploader.withoutimage":
-    "js/webuploader.withoutimage",
+  "/node_modules/jexcel/dist/css/jquery.jexcel.bootstrap.css": "css/jquery.jexcel.bootstrap.css",
+  "/node_modules/three/build/three.min": "js/three.min",
+  "/node_modules/webuploader/dist/webuploader": "js/webuploader",
+  "/node_modules/webuploader/dist/webuploader.withoutimage": "js/webuploader.withoutimage",
 
-  "../bower_components/fex-webuploader/dist/webuploader.withoutimage":
-    "webuploader.withoutimage",
+  "../node_modules/webuploader/dist/webuploader.withoutimage": "webuploader.withoutimage",
 
   "../../../src/": "",
   "../../src/": ""
