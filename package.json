@@ -43,6 +43,23 @@
     "typescript": "^2.9.1"
   },
   "dependencies": {
-    "jexcel": "^1.5.5"
+    "JSON": "^1.0.0",
+    "angular": "^1.2.32",
+    "angular-bootstrap": "^0.12.2",
+    "angular-cookies": "^1.2.32",
+    "angular-sanitize": "^1.2.32",
+    "angular-ui-router": "^0.3.1",
+    "api-check": "^7.5.5",
+    "bootstrap": "^3.3.7",
+    "es5-shim": "^4.5.12",
+    "html5media": "^1.2.1",
+    "html5shiv": "^3.7.3",
+    "jexcel": "^1.5.7",
+    "jquery": "^1.12.4",
+    "require-css": "^0.1.10",
+    "requirejs": "^2.3.6",
+    "respond.js": "^1.4.2",
+    "three": "^0.97.0",
+    "webuploader": "^0.1.8"
   }
 }
